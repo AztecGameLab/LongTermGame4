@@ -1,3 +1,5 @@
 Hi My name is Jacob
 
 I will be on the art team this project :)
+
+I also am teaching git and branches today!
