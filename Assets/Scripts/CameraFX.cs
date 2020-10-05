@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class CameraFX : MonoBehaviour
 {
+    public static CameraFX instance;
+
     // TODO: eventually move these values to a CameraSettings scriptable object
     [Header("Camera Shake Values")]
     [SerializeField] private float maxYaw = 5f;
@@ -13,41 +16,28 @@ public class CameraFX : MonoBehaviour
     [SerializeField] private float decaySpeed = 1f;
     [SerializeField] private float shakeSpeed = 10f;
 
-    private Transform cameraDirection;
-    private new Camera camera;
+    [Header("GameObject References")]
+    [SerializeField] private Transform cameraDirection = null;
+    [SerializeField] private new Camera camera = null;
+
     private Vector3 targetCameraAngle;
 
     private float Trauma { get; set; }          // How much camera shake we should apply
     private float Shake => Trauma * Trauma;     // The actual value that determines camera rotation
     public bool IsFrozen { get; set; }          // Whether or not the Trauma should decrease over time
 
-    public CameraFX Initialize(Transform cameraDir, Camera cam)
+    private void Awake()
     {
-        cameraDirection = cameraDir;
-        camera = cam;
+        instance = this;
+
         IsFrozen = false;
         targetCameraAngle = Vector3.zero;
-
-        return this;
-    }
-
-    public void AddTrauma(float amount)
-    {
-        Trauma += amount;
     }
 
     private void Update()
     {
-        try
-        {
-            UpdateTrauma();
-            ApplyCameraShake();
-        }
-        catch (UnassignedReferenceException)
-        {
-            Debug.LogError("CameraFX was not initialized correctly. \nIs there a valid camera being passed in?");
-            Debug.Break();
-        }
+        UpdateTrauma();
+        ApplyCameraShake();
     }
 
     private void ApplyCameraShake()
@@ -65,6 +55,11 @@ public class CameraFX : MonoBehaviour
     {
         if (IsFrozen) return;
         Trauma = Mathf.Clamp(Trauma - (Time.deltaTime * decaySpeed), 0f, 1f);
+    }
+
+    public void AddTrauma(float amount)
+    {
+        Trauma += amount;
     }
 
 #if UNITY_EDITOR
