@@ -5,8 +5,8 @@ using UnityEngine;
 public class Looking : MonoBehaviour
 {
 
-    public float mouseSenseH = 200f;
-    public float mouseSenseV = 100f;
+    public float mouseSenseH = 300f;
+    public float mouseSenseV = 300f;
     public Transform playerBody;
 
     private void Start()
