@@ -35,7 +35,7 @@ public class Looking : MonoBehaviour
         }
 
         angleX = Mathf.Clamp(angleX, -80f, 80f);
-        //yMouse = cameraAngle.x - angleX;
+        yMouse = cameraAngle.x - angleX;
 
         transform.Rotate(-yMouse, 0f, 0f);
 
