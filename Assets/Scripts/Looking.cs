@@ -5,9 +5,9 @@ using UnityEngine;
 public class Looking : MonoBehaviour
 {
 
-    public float mouseSense = 100f;
+    public float mouseSenseH = 200f;
+    public float mouseSenseV = 100f;
     public Transform playerBody;
-    float rotateUpDown = 0f;
 
     private void Start()
     {
@@ -19,17 +19,25 @@ public class Looking : MonoBehaviour
     void Update()
     {
 
-        float xMouse = Input.GetAxis("Mouse X") * mouseSense * Time.deltaTime;
-        float yMouse = Input.GetAxis("Mouse Y") * mouseSense * Time.deltaTime;
-
+        //look left and right
+        float xMouse = Input.GetAxis("Mouse X") * mouseSenseH * Time.deltaTime;
         playerBody.Rotate(Vector3.up * xMouse);
 
-        rotateUpDown -= yMouse;
+        //look up and down
+        float yMouse = Input.GetAxis("Mouse Y") * mouseSenseV * Time.deltaTime;
+        Vector3 cameraAngle = transform.rotation.eulerAngles;
+        float angleX = cameraAngle.x - yMouse;
 
-        rotateUpDown = Mathf.Clamp(rotateUpDown, -90f, 90f);
 
+        if (angleX > 180)
+        {
+            angleX = angleX - 360;
+        }
 
-        transform.localRotation * Quaternion.Euler(rotateUpDown, 0f, 0f);
+        angleX = Mathf.Clamp(angleX, -80f, 80f);
+        //yMouse = cameraAngle.x - angleX;
+
+        transform.Rotate(-yMouse, 0f, 0f);
 
     }
 }
