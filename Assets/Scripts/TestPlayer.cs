@@ -32,7 +32,7 @@ public class TestPlayer : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Freeze Trauma");
-            CameraFX.instance.IsFrozen = !CameraFX.instance.IsFrozen;
+            CameraFX.instance.SetFrozen(!CameraFX.instance.IsFrozen, 5f);
         }
     }
 }

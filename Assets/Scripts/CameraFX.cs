@@ -21,10 +21,11 @@ public class CameraFX : MonoBehaviour
     [SerializeField] private new Camera camera = null;
 
     private Vector3 targetCameraAngle;
+    private float freezeTime;
 
     private float Trauma { get; set; }          // How much camera shake we should apply
     private float Shake => Trauma * Trauma;     // The actual value that determines camera rotation
-    public bool IsFrozen { get; set; }          // Whether or not the Trauma should decrease over time
+    public bool IsFrozen { get; private set; }          // Whether or not the Trauma should decrease over time
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class CameraFX : MonoBehaviour
 
         IsFrozen = false;
         targetCameraAngle = Vector3.zero;
+        freezeTime = 0f;
     }
 
     private void Update()
@@ -53,13 +55,36 @@ public class CameraFX : MonoBehaviour
 
     private void UpdateTrauma()
     {
-        if (IsFrozen) return;
+        if (IsFrozen)
+        {
+            if (freezeTime == -1)
+            {
+                return;
+            }
+
+            if (freezeTime > 0)
+            {
+                freezeTime = Mathf.Max(freezeTime - Time.deltaTime, 0f);
+            }
+            else
+            {
+                IsFrozen = false;
+            }
+
+            return;
+        }
         Trauma = Mathf.Clamp(Trauma - (Time.deltaTime * decaySpeed), 0f, 1f);
     }
 
     public void AddTrauma(float amount)
     {
         Trauma += amount;
+    }
+
+    public void SetFrozen(bool isFrozen, float time = -1f)
+    {
+        IsFrozen = isFrozen;
+        freezeTime = IsFrozen ? time : 0f;
     }
 
 #if UNITY_EDITOR
@@ -75,7 +100,7 @@ public class CameraFX : MonoBehaviour
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize = h * 2 / 100;
         style.normal.textColor = Color.white;
-        string text = string.Format("Trauma: {0}\nShake: {1}", (int) (Trauma * 100), (int) (Shake * 100));
+        string text = string.Format("Trauma: {0}\nShake: {1}\nFreeze Time: {2}", (int) (Trauma * 100), (int) (Shake * 100), freezeTime);
         GUI.Label(rect, text, style);
     }
 #endif
