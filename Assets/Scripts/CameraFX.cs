@@ -20,12 +20,12 @@ public class CameraFX : MonoBehaviour
     [SerializeField] private Transform cameraDirection = null;
     [SerializeField] private new Camera camera = null;
 
-    private Vector3 targetCameraAngle;
-    private float freezeTime;
+    private Vector3 targetCameraAngle;          // What we want the camera rotation to look like
+    private float freezeTime;                   // How much time is left before the camera unfreezes
 
     private float Trauma { get; set; }          // How much camera shake we should apply
     private float Shake => Trauma * Trauma;     // The actual value that determines camera rotation
-    public bool IsFrozen { get; private set; }          // Whether or not the Trauma should decrease over time
+    public bool IsFrozen { get; private set; }  // Whether or not the Trauma should decrease over time
 
     private void Awake()
     {
@@ -57,11 +57,13 @@ public class CameraFX : MonoBehaviour
     {
         if (IsFrozen)
         {
+            // If we are frozen without a specified time, freeze indefinately
             if (freezeTime == -1)
             {
                 return;
             }
 
+            // Countdown every second, and unfreeze at zero
             if (freezeTime > 0)
             {
                 freezeTime = Mathf.Max(freezeTime - Time.deltaTime, 0f);
@@ -73,6 +75,8 @@ public class CameraFX : MonoBehaviour
 
             return;
         }
+
+        // If we are not frozen, decrease Trauma
         Trauma = Mathf.Clamp(Trauma - (Time.deltaTime * decaySpeed), 0f, 1f);
     }
 
@@ -81,10 +85,10 @@ public class CameraFX : MonoBehaviour
         Trauma += amount;
     }
 
-    public void SetFrozen(bool isFrozen, float time = -1f)
+    public void SetFrozen(bool isFrozen, float durationSeconds = -1f)
     {
         IsFrozen = isFrozen;
-        freezeTime = IsFrozen ? time : 0f;
+        freezeTime = IsFrozen ? durationSeconds : 0f;
     }
 
 #if UNITY_EDITOR
