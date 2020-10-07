@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 10f;
-    public float gravity = 6f;
-    public float jumpSpeed = 10f;
+    public float moveSpeed = 5f;
+    public float gravity = 10f;
+    public float jumpSpeed = 5f;
 
     private CharacterController charController;
     
@@ -47,13 +47,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocity.y = jumpSpeed;
             }
-            Debug.Log("Grounded!");
+            
         }
-        if (charController.isGrounded == false)
-        {
-            velocity.y -= gravity * Time.deltaTime;
-        }
-
+       
     }
 
 }
