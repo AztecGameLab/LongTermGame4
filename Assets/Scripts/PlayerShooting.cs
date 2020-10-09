@@ -8,12 +8,11 @@ public class PlayerShooting : MonoBehaviour
     public GameObject arrowPrefab;
     
     public static float minForce = 0f;
-    public static float maxForce = 20f;
-    public static float timer = 0f;
+    public static float maxForce = 20f; 
     public static float timeToGetToMaxForce = 2.5f;
 
     private float shootingStrength = minForce;
-    
+    private float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +35,7 @@ public class PlayerShooting : MonoBehaviour
             arrowObject.transform.position = transform.position + transform.forward;
             arrowObject.transform.forward = transform.forward;
             arrowObject.GetComponent<Rigidbody>().AddForce(transform.forward * shootingStrength, ForceMode.Impulse);
+
             timer = minForce;
             shootingStrength = minForce;
         }
