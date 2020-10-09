@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
-    public List<GameObject> doors;
-    public List<Animator> animators;
+    public GameObject Door;
+    public Vector3 OpenDirection;
+    private bool IsOpen = false;
 
     private void Start()
     {
-        foreach (GameObject door in doors)
-            animators.Add(door.GetComponent<Animator>());
+        
     }
-
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Open();
+            if (!IsOpen)
+            {
+                Open();
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            Close();
+            if (IsOpen)
+            {
+                Close();
+            }
         }
     }
 
@@ -32,21 +37,32 @@ public class SlidingDoor : MonoBehaviour
 
     public void Open()
     {
-        Slide(true);
+        StopAllCoroutines();
+        StartCoroutine(Slide(OpenDirection, 2f));
     }
 
     public void Close()
     {
-        Slide(false);
+        StopAllCoroutines();
+        StartCoroutine(Slide(-OpenDirection, 2f));
     }
 
-    private void Slide(bool state)
+
+    IEnumerator Slide(Vector3 direction, float time)
     {
-        foreach (Animator animator in animators)
+        Vector3 startPos = Door.transform.position;
+        Vector3 finalPos = Door.transform.position + Vector3.Scale(Door.transform.localScale, direction);
+
+        float elapsedTime = 0;
+        while (elapsedTime < time)
         {
-            animator.SetBool("slide", state);
-            Debug.Log("Set slide to " + state);
+            Door.transform.position = Vector3.Lerp(startPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+
+        IsOpen = !IsOpen;
+
     }
 
 
