@@ -29,7 +29,7 @@ public class PlayerShooting : MonoBehaviour
             timer = Mathf.Clamp(timer, minForce, timeToGetToMaxForce);
             shootingStrength = maxForce * timer;
         }
-        else if (!Input.GetMouseButtonDown(0) && shootingStrength > .1f)
+        else if (!Input.GetMouseButton(0) && shootingStrength > .1f)
         {
             GameObject arrowObject = Instantiate(arrowPrefab) as GameObject;
             arrowObject.transform.position = transform.position + transform.forward;
