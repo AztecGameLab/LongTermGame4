@@ -19,23 +19,6 @@ public class SlidingDoor : MonoBehaviour
         OpenPosition = Door.transform.position + Vector3.Scale(Door.transform.localScale, OpenDirection);
     }
 
-    private void Update()
-    {
-        // These triggers are meant to be overriden
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Open();
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Close();
-        }
-    }
-
-
-
 
     public void Open()
     {
