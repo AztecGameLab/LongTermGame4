@@ -43,6 +43,9 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+#Just to stop the annoying problem with this file
+packages-lock.json
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
