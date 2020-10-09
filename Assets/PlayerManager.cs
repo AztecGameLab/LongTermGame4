@@ -4,15 +4,49 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static PlayerManager _instance;
+    public static PlayerManager instance { get { return _instance; } }
+    public float Health = 100;
+
+    [HideInInspector]
+    public PlayerMovement s_playerMovement;
+    [HideInInspector]
+    public Looking s_looking;
+    [HideInInspector]
+    public PlayerShooting s_playerShooting;
+
+    private void Awake()
     {
-        
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            Debug.LogError("Multiple Players found. Destroying extra players");
+        }
+        else
+        {
+            _instance = this;
+        }
+
+        s_playerMovement = GetComponentInChildren<PlayerMovement>();
+        if(!s_playerMovement)
+            Debug.LogError("PlayerMovement component missing");
+
+        s_looking = GetComponentInChildren<Looking>();
+        if(!s_looking)
+            Debug.LogError("Looking component missing");
+
+        s_playerShooting = GetComponentInChildren<PlayerShooting>();
+        if(!s_playerShooting)
+            Debug.LogError("PlayerShooting component missing");
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
-        
+
     }
 }
