@@ -6,8 +6,13 @@ public class PlayerShooting : MonoBehaviour
 {
     
     public GameObject arrowPrefab;
-    public float shootingStrength = 0f;
-    public float maxShootingStrength = 3000f;
+    
+    public static float minForce = 0f;
+    public static float maxForce = 20f;
+    public static float timer = 0f;
+    public static float timeToGetToMaxForce = 2.5f;
+
+    private float shootingStrength = minForce;
     
 
     // Start is called before the first frame update
@@ -21,20 +26,21 @@ public class PlayerShooting : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-            shootingStrength += 20f;
+            timer += Time.deltaTime;
+            timer = Mathf.Clamp(timer, minForce, timeToGetToMaxForce);
+            shootingStrength = maxForce * timer;
         }
         else if (!Input.GetMouseButtonDown(0) && shootingStrength > .1f)
         {
             GameObject arrowObject = Instantiate(arrowPrefab) as GameObject;
             arrowObject.transform.position = transform.position + transform.forward;
             arrowObject.transform.forward = transform.forward;
-            arrowObject.GetComponent<Rigidbody>().AddForce(transform.forward * shootingStrength);
-            shootingStrength = 0;
+            arrowObject.GetComponent<Rigidbody>().AddForce(transform.forward * shootingStrength, ForceMode.Impulse);
+            timer = minForce;
+            shootingStrength = minForce;
         }
 
-        if (shootingStrength >= maxShootingStrength)
-        {
-            shootingStrength = maxShootingStrength;
-        }
+        //Debug.Log(shootingStrength);
+       
     }
 }
