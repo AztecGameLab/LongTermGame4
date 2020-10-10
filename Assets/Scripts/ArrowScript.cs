@@ -21,7 +21,6 @@ public class ArrowScript : MonoBehaviour
         if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly
         {
             arrowRB.isKinematic = true;
-            arrowRB.velocity = Vector3.zero;
         }
     }
 }
