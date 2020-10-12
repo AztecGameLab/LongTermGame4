@@ -6,6 +6,7 @@ public class PlayerShooting : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public float speed = 100f;
+    private GameObject[] arrowTracker;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,14 @@ public class PlayerShooting : MonoBehaviour
             arrowObject.transform.position = transform.position + transform.forward;
             arrowObject.transform.forward = transform.forward;
             arrowObject.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
-            
+            arrowTracker = GameObject.FindGameObjectsWithTag("arrow");
+        }
+
+
+        foreach (GameObject arrow in arrowTracker)
+        {
+            if(arrow.GetComponent<Rigidbody>().velocity.x > 0.1)
+                arrow.transform.rotation = Quaternion.LookRotation(arrow.GetComponent<Rigidbody>().velocity, Vector3.up);
         }
     }
 }
