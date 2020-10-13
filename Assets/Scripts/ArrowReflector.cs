@@ -11,10 +11,12 @@ public class ArrowReflector : MonoBehaviour
 
     //a multiplyer that affects the resulting velocity
     //  negitive values are more realistic while positive add energy
-    public float EnergyMultiplyer = -.9f;
+    [SerializeField]
+    private float EnergyMultiplyer = -.9f;
 
     //a boost to hight to correct for drop when reaching the target, adds directly to the Y of the velocity
-    public float BoostHeight = 0f;
+    [SerializeField]
+    private float BoostHeight = 0f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -36,3 +38,4 @@ public class ArrowReflector : MonoBehaviour
         rigidBody.velocity = result;
     }
 }
+//Author: James Maron
