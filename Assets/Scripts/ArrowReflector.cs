@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,28 +15,70 @@ public class ArrowReflector : MonoBehaviour
     [SerializeField]
     private float EnergyMultiplyer = -.9f;
 
-    //a boost to hight to correct for drop when reaching the target, adds directly to the Y of the velocity
+    //a varibles for boosting the X, Y, and Z
     [SerializeField]
-    private float BoostHeight = 0f;
+    private float BoostY = 0f;
 
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField]
+    private float BoostX = 0f;
+
+    [SerializeField]
+    private float BoostZ = 0f;
+
+    //stores velocities of objects before they physical hit the wall
+    Dictionary<int, Vector3> Velocities = new Dictionary<int, Vector3>();
+
+    //cashes velocity when an object enters the feild
+    private void OnTriggerEnter(Collider other)
     {
-        //defines varibles to edit collision object
-        var rigidBody = collision.rigidbody;
-        var velocity = rigidBody.velocity;
-
-        //adds the velocity and normalized venocity to get a good approxamation of the reflection angle,
-        //then multiplies by the velocites magnatude and energy multipyer to get resulting force
-        var result = (rigidBody.velocity.normalized - collision.GetContact(0).normal) * velocity.magnitude * EnergyMultiplyer;
-
-        //adds a boost amount to the Y for ease of shot lineup
-        if (BoostHeight != 0)
+        //stores the velocity in the velocity dictonary
+        if (other.gameObject.tag != "Player")
         {
-            result.y += BoostHeight;
+            Velocities.Add(other.gameObject.GetInstanceID(), other.attachedRigidbody.velocity);
         }
+    }
 
-        //sets the calculated velocity to the rigidbody
-        rigidBody.velocity = result;
+    //removes velocities from the dictonary
+    private void OnTriggerExit(Collider other)
+    {
+        //removes the velocity from the leaving object from the dictonary
+        if (other.gameObject.tag != "Player")
+        {
+            Velocities.Remove(other.gameObject.GetInstanceID());
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag != "Player")
+        {
+            //defines varibles to edit collision object
+            var rigidBody = other.rigidbody;
+            var velocity = rigidBody.velocity;
+
+            //Uses Vector3.Reflect() with the normal and the stored velocity to get the reflected velocity, multiplys by the energy multiplyer
+            var result = Vector3.Reflect(Velocities[other.gameObject.GetInstanceID()], other.GetContact(0).normal) * EnergyMultiplyer;
+
+            var point = other.GetContact(0).point;
+
+            Debug.DrawLine(point, point + other.GetContact(0).normal, Color.red);
+            Debug.DrawLine(point, point + -Velocities[other.gameObject.GetInstanceID()], Color.green);
+            Debug.DrawLine(point, point + result, Color.blue);
+
+            Debug.Break();
+
+            //adds a boost amount to the X, Y, and Z
+            result.x += BoostX;
+            result.y += BoostY;
+            result.z += BoostZ;
+
+            //points arrow at reflection
+            rigidBody.transform.forward = result;
+
+            rigidBody.transform.Translate(Vector3.Cross(other.GetContact(0).point - rigidBody.position, other.GetContact(0).normal).normalized, rigidBody.transform);
+
+            //sets the calculated velocity to the rigidbody
+            rigidBody.velocity = result;
+        }
     }
 }
-//Author: James Maron
