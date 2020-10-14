@@ -25,6 +25,13 @@ public class ArrowReflector : MonoBehaviour
     [SerializeField]
     private float BoostZ = 0f;
 
+    //a feild for our inner box collider to calculate the arrows new position
+    [SerializeField]
+    private Collider InnerBoxCollider;
+
+    //scale factor, around half of the arrows width
+    private float TransformScaleFactor = .5f;
+
     //stores velocities of objects before they physical hit the wall
     Dictionary<int, Vector3> Velocities = new Dictionary<int, Vector3>();
 
@@ -55,17 +62,11 @@ public class ArrowReflector : MonoBehaviour
             //defines varibles to edit collision object
             var rigidBody = other.rigidbody;
             var velocity = rigidBody.velocity;
-
-            //Uses Vector3.Reflect() with the normal and the stored velocity to get the reflected velocity, multiplys by the energy multiplyer
-            var result = Vector3.Reflect(Velocities[other.gameObject.GetInstanceID()], other.GetContact(0).normal) * EnergyMultiplyer;
-
+            var normal = other.GetContact(0).normal;
             var point = other.GetContact(0).point;
 
-            Debug.DrawLine(point, point + other.GetContact(0).normal, Color.red);
-            Debug.DrawLine(point, point + -Velocities[other.gameObject.GetInstanceID()], Color.green);
-            Debug.DrawLine(point, point + result, Color.blue);
-
-            Debug.Break();
+            //Uses Vector3.Reflect() with the normal and the stored velocity to get the reflected velocity, multiplys by the energy multiplyer
+            var result = Vector3.Reflect(Velocities[other.gameObject.GetInstanceID()], normal) * EnergyMultiplyer;
 
             //adds a boost amount to the X, Y, and Z
             result.x += BoostX;
@@ -75,7 +76,8 @@ public class ArrowReflector : MonoBehaviour
             //points arrow at reflection
             rigidBody.transform.forward = result;
 
-            rigidBody.transform.Translate(Vector3.Cross(other.GetContact(0).point - rigidBody.position, other.GetContact(0).normal).normalized, rigidBody.transform);
+            //transforms the arrow to make reflection folow line of reflection
+            rigidBody.transform.position = InnerBoxCollider.ClosestPointOnBounds(point) + result.normalized * TransformScaleFactor;
 
             //sets the calculated velocity to the rigidbody
             rigidBody.velocity = result;

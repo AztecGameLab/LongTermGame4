@@ -326,6 +326,7 @@ MonoBehaviour:
   BoostY: 0
   BoostX: 0
   BoostZ: 0
+  InnerBoxCollider: {fileID: 1011629092}
 --- !u!65 &1011629097
 BoxCollider:
   m_ObjectHideFlags: 0
