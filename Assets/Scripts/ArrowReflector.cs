@@ -27,7 +27,7 @@ public class ArrowReflector : MonoBehaviour
 
     //a feild for our inner box collider to calculate the arrows new position
     [SerializeField]
-    private Collider InnerBoxCollider;
+    private Collider InnerBoxCollider = null;
 
     //scale factor, around half of the arrows width
     private float TransformScaleFactor = .5f;
@@ -39,7 +39,7 @@ public class ArrowReflector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //stores the velocity in the velocity dictonary
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag.ToUpper().Equals("ARROW"))
         {
             Velocities.Add(other.gameObject.GetInstanceID(), other.attachedRigidbody.velocity);
         }
@@ -49,7 +49,7 @@ public class ArrowReflector : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         //removes the velocity from the leaving object from the dictonary
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag.ToUpper().Equals("ARROW"))
         {
             Velocities.Remove(other.gameObject.GetInstanceID());
         }
@@ -57,7 +57,7 @@ public class ArrowReflector : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag.ToUpper().Equals("ARROW"))
         {
             //defines varibles to edit collision object
             var rigidBody = other.rigidbody;
