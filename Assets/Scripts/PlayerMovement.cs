@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float gravity = 10f;
-    public float jumpSpeed = 5f;
+    public float jumpSpeed = 2f;
 
     private CharacterController charController;
     
@@ -45,10 +45,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                velocity.y = jumpSpeed;
+                velocity.y = Mathf.Sqrt(jumpSpeed * 2f * gravity);
+
+            } else if (velocity.y < 0)
+            {
+                velocity.y = 0f;
             }
             
         }
+        
        
     }
 
