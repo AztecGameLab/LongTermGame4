@@ -37,7 +37,7 @@ public class GrapplingArrow : MonoBehaviour
         StartCoroutine(MoveObject(collision));
 
         //Debug.Log(collision.rigidbody.mass);
-        //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
+        
        
 
         
@@ -45,7 +45,8 @@ public class GrapplingArrow : MonoBehaviour
 
     IEnumerator MoveObject(Collision collision)
     {
-       if(collision.rigidbody.mass < 4)
+        //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
+        if (collision.rigidbody.mass < 4)
         {
             while (Vector3.Distance(this.transform.position, player.transform.position) > 2)
             {
@@ -54,6 +55,7 @@ public class GrapplingArrow : MonoBehaviour
             }
             yield break;
         }
+        //When player is being pulled, player movement must temporarily be disabled to function properly
         player.s_playerMovement.enabled = false;
    
         while (Vector3.Distance(player.transform.position, this.transform.position) > 2)
