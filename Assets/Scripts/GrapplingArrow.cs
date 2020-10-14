@@ -15,10 +15,6 @@ public class GrapplingArrow : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        //These are the varous variables that will be used
-        var player = PlayerManager.instance;
-        Vector3 playerPosition = player.transform.position;
-        Vector3 arrowPosition = this.transform.position;
         
 
 
