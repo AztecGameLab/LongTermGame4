@@ -15,12 +15,6 @@ public class GrapplingArrow : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        
-
-
-        //Get the position of the collided object
-        Vector3 collisionPosition = collision.transform.position;
-
         //if the collided object DOES have a rigid body, then the grapple will work on it
         if (collision.rigidbody == null)
         {
