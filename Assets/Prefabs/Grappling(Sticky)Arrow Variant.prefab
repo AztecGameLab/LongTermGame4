@@ -79,7 +79,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grappling(Sticky)Arrow Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2252486385955874144, guid: f9032e0d9c5658c42b434ed8b3742d16, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9032e0d9c5658c42b434ed8b3742d16, type: 3}
 --- !u!1 &6237226022821270646 stripped
 GameObject:
