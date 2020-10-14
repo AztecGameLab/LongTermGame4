@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrapplingArrow : MonoBehaviour
 {
     PlayerManager player = PlayerManager.instance;
-    float moveSpeed = 1;
+    public float moveSpeed = 1;
     Rigidbody arrowRB;
     // Start is called before the first frame update
     void Start()
