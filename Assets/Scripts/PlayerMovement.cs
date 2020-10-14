@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
-    public float gravity = 10f;
+    public float gravity = 15f;
     public float jumpSpeed = 2f;
 
     private CharacterController charController;
