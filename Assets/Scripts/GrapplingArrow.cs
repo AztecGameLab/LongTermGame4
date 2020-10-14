@@ -6,6 +6,7 @@ public class GrapplingArrow : MonoBehaviour
 {
     PlayerManager player = PlayerManager.instance;
     public float moveSpeed = 1;
+    public int massThreshold = 4;
     Rigidbody arrowRB;
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,7 @@ public class GrapplingArrow : MonoBehaviour
     IEnumerator MoveObject(Collision collision)
     {
         //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
-        if (collision.rigidbody.mass < 4)
+        if (collision.rigidbody.mass < massThreshold)
         {
             while (Vector3.Distance(this.transform.position, player.transform.position) > 2)
             {
