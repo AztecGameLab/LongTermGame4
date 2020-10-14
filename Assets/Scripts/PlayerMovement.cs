@@ -41,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
         //Jump
         
-        if (charController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (charController.isGrounded)
             {
                 velocity.y = Mathf.Sqrt(jumpSpeed * 2f * gravity);
 
