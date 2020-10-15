@@ -5,20 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class ArrowTriggeredIndicator : MonoBehaviour
 {
-
+    private Renderer ren;
     private void Start()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        ren = GetComponent<Renderer>();
+        ren.material.color = Color.red;
     }
     public void ChangeColor()
     {
-        GetComponent<Renderer>().material.color = Color.green;
+        ren.material.color = Color.green;
     }
 
     public void Revert()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        ren.material.color = Color.red;
     }
 
-  
 }
+    

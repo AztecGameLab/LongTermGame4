@@ -7,10 +7,6 @@ public class ArrowTrigger : MonoBehaviour
     public UnityEvent triggerEnter;
     public UnityEvent triggerExit;
 
-    private void Reset()
-    {
-        GetComponent<Collider>().isTrigger = true;
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("arrow"))
