@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62d7bc50-04a9-46e7-ad15-6ce4afc2b3f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LongTermGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LongTermGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LongTermGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LongTermGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/Arrows/Arrow_Hit_Wall.wav.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio/Arrows/Arrow_Hit_Wall.wav.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/Sound.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/Sound.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +48,10 @@
         <option value="$PROJECT_DIR$/Assets/Audio/Sound.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Sound.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/Sound.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Looking.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/TestSounds.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/TestSounds.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Audio Scripts/Sound.cs" />
       </list>
     </option>
   </component>
@@ -99,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602567104455</updated>
       <workItem from="1602567110007" duration="3902000" />
-      <workItem from="1602721849537" duration="12471000" />
+      <workItem from="1602721849537" duration="14442000" />
     </task>
     <servers />
   </component>
@@ -124,6 +121,10 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog" timestamp="1602735968822">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="92" y="92" width="1736" height="896" key="VCS.FileHistoryDialog/-1920.-8.1280.720/0.0.1920.1080@0.0.1920.1080" timestamp="1602735968822" />
     <state x="616" y="250" key="run.anything.popup" timestamp="1602730468892">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
