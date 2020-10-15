@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public class ArrowTrigger : MonoBehaviour
 {
+    public UnityEvent triggerEnter;
+    public UnityEvent triggerExit;
+
     private void Reset()
     {
         GetComponent<Collider>().isTrigger = true;
@@ -11,7 +15,7 @@ public class ArrowTrigger : MonoBehaviour
     {
         if (other.CompareTag("arrow"))
         {
-            EventManager.current.ArrowTriggerEnter();
+            triggerEnter.Invoke();
         }
     }
 
@@ -19,7 +23,7 @@ public class ArrowTrigger : MonoBehaviour
     {
         if (other.CompareTag("arrow"))
         {
-            EventManager.current.ArrowTriggerExit();
+            triggerExit.Invoke();
         }
     }
 }

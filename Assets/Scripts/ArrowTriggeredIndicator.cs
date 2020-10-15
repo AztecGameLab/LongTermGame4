@@ -9,23 +9,16 @@ public class ArrowTriggeredIndicator : MonoBehaviour
     private void Start()
     {
         GetComponent<Renderer>().material.color = Color.red;
-
-        EventManager.current.onArrowTriggerEnter += ChangeColor;
-        EventManager.current.onArrowTriggerExit += Revert;
     }
-    private void ChangeColor()
+    public void ChangeColor()
     {
         GetComponent<Renderer>().material.color = Color.green;
     }
 
-    private void Revert()
+    public void Revert()
     {
         GetComponent<Renderer>().material.color = Color.red;
     }
 
-    private void OnDestroy()
-    {
-        EventManager.current.onArrowTriggerEnter -= ChangeColor;
-        EventManager.current.onArrowTriggerExit -= Revert;
-    }
+  
 }
