@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   gravity: 10
-  jumpSpeed: 5
+  jumpSpeed: 2
 --- !u!114 &4984713569114710062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,3 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4bf5926d0855448bfc2b001c45b8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100
+  s_playerMovement: {fileID: 0}
+  s_looking: {fileID: 0}
+  s_playerShooting: {fileID: 0}
