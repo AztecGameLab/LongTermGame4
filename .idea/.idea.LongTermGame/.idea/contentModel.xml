@@ -13,8 +13,14 @@
           <e p="ArrowReflector.cs" t="Include" />
           <e p="ArrowScript.cs" t="Include" />
           <e p="ArrowTriggeredButton.cs" t="Include" />
+          <e p="Audio Scripts" t="Include">
+            <e p="AudioManager.cs" t="Include" />
+            <e p="Sound.cs" t="Include" />
+            <e p="TestSounds.cs" t="Include" />
+          </e>
           <e p="ButtonManager.cs" t="Include" />
           <e p="CameraFX.cs" t="Include" />
+          <e p="GrapplingArrow.cs" t="Include" />
           <e p="Looking.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="PlayerShooting.cs" t="Include" />
