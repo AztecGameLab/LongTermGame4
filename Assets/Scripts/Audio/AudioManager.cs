@@ -80,7 +80,7 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Play a non-looping 2D sound effect
+    /// Play a non-looping 2D sound effect.
     /// </summary>
     /// <param name="sound"></param>
     public void PlayOneShot(Sound sound)
@@ -89,6 +89,7 @@ public class AudioManager : MonoBehaviour
         _sfxChannel.PlayOneShot(sound.Clip);
     }
 
+    // Find a channel that's not currently playing music
     private AudioSource GetOpenMusicChannel()
     {
         if (AvailableChannelCount <= 0)
@@ -105,9 +106,11 @@ public class AudioManager : MonoBehaviour
         return openChannels.First();
     }
 
+    // IMGUI Variables
     private Rect _windowRect = new Rect(Screen.width - 200, 0, 150, 100);
     private bool _showingAllSounds = true;
 
+    // Drawing the IMGUI window
     private void OnGUI()
     {
         if (!showDebug) return;
@@ -117,7 +120,6 @@ public class AudioManager : MonoBehaviour
 
     private void HandleWindow(int id)
     {
-    
         GUILayout.Label("Available sound channels: " + AvailableChannelCount);
 
         _showingAllSounds = GUILayout.Toggle(_showingAllSounds, "Active sounds: " + _activeChannels.Count);
