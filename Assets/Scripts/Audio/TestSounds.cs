@@ -1,51 +1,48 @@
 ﻿using UnityEngine;
 
-namespace Audio
+public class TestSounds : MonoBehaviour
 {
-    public class TestSounds : MonoBehaviour
+    [SerializeField] private Sound arrowHit = default;
+    [SerializeField] private Sound arrowShootIce = default;
+    [SerializeField] private Sound arrowShootFire = default;
+    [SerializeField] private Sound music = default;
+
+    private AudioManager _audioManager;
+    private bool _playingMusic;
+
+    private void Awake()
     {
-        [SerializeField] private Sound arrowHit = default;
-        [SerializeField] private Sound arrowShootIce = default;
-        [SerializeField] private Sound arrowShootFire = default;
-        [SerializeField] private Sound music = default;
-    
-        private AudioManager _audioManager;
-        private bool _playingMusic;
-    
-        private void Awake()
+        _audioManager = AudioManager.Instance();
+        _playingMusic = false;
+    }
+
+    private void OnGUI()
+    {
+        if (GUILayout.Button("arrow-hit"))
         {
-            _audioManager = AudioManager.Instance();
-            _playingMusic = false;
+            _audioManager.PlayOneShot(arrowHit);
         }
 
-        private void OnGUI()
+        if (GUILayout.Button("arrow-shoot-ice"))
         {
-            if (GUILayout.Button("arrow-hit"))
-            {
-                _audioManager.PlayOneShot(arrowHit);
-            }
+            _audioManager.PlayOneShot(arrowShootIce);
+        }
+    
+        if (GUILayout.Button("arrow-shoot-fire"))
+        {
+            _audioManager.PlayOneShot(arrowShootFire);
+        }
 
-            if (GUILayout.Button("arrow-shoot-ice"))
-            {
-                _audioManager.PlayOneShot(arrowShootIce);
-            }
-        
-            if (GUILayout.Button("arrow-shoot-fire"))
-            {
-                _audioManager.PlayOneShot(arrowShootFire);
-            }
+        if (_playingMusic == GUILayout.Toggle(_playingMusic, "music")) return;
+        _playingMusic = !_playingMusic;
 
-            if (_playingMusic == GUILayout.Toggle(_playingMusic, "music")) return;
-            _playingMusic = !_playingMusic;
-
-            if (_playingMusic)
-            {
-                _audioManager.PlayMusic(music);
-            }
-            else
-            {
-                _audioManager.StopMusic(music);
-            }
+        if (_playingMusic)
+        {
+            _audioManager.PlayMusic(music);
+        }
+        else
+        {
+            _audioManager.StopMusic(music);
         }
     }
 }
