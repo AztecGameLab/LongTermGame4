@@ -55,11 +55,11 @@ public class TestSounds : MonoBehaviour
 
         if (_playingMusic)
         {
-            _audioManager.PlayMusic(music);
+            _audioManager.PlayLoopable(music);
         }
         else
         {
-            _audioManager.StopMusic(music);
+            _audioManager.StopLoopable(music);
         }
     }
 }

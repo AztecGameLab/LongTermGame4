@@ -63,7 +63,7 @@ public class Sound : ScriptableObject
     /// Applies a sound's parameters to an AudioSource (should be called before playing)
     /// </summary>
     /// <param name="source">The AudioSource to apply changes to</param>
-    public IEnumerator ApplyToSource(AudioSource source)
+    public IEnumerator ApplyToChannel(AudioSource source)
     {
         source.clip = Clip;
         source.loop = Looping;

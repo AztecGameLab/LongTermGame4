@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JetBrains.Annotations;
 using UnityEngine;
 
 /// <summary>
-/// Singleton-styled class for playing 2D audio clips.
+/// Singleton-styled class for starting and stopping 2D audio clips.
+/// <para>Lazily creates new AudioSource channels for SFX and music playback</para>
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
+    private bool showDebug;
+    
     public static AudioManager Instance()
     {
         if (_instance == null)
@@ -23,10 +26,6 @@ public class AudioManager : MonoBehaviour
         return _instance;
     }
     private static AudioManager _instance = null;
-
-    [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
-    private bool showDebug;
-
     private HashSet<AudioSource> _channels;
 
     private void Awake()
@@ -34,19 +33,38 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         showDebug = Debug.isDebugBuild;
-
-        // Initialize AudioSources
         _channels = new HashSet<AudioSource>();
     }
 
     /// <summary>
+    /// Start playing a non-loopable 2D sound.
+    /// </summary>
+    /// <param name="sound"></param>
+    public void PlayOneShot(Sound sound)
+    {
+        // SFX are fine all living on the same channel - if a channel is already 
+        // playing this sound, just take it over and interrupt that sound.
+        AudioSource channel = GetCurrentlyPlaying(sound.Clip, true);
+        
+        // Apply the sound's modulation and initial parameters.
+        StartCoroutine(sound.ApplyToChannel(channel));
+        
+        // One-shots cannot loop, but that's OK for SFX.
+        channel.PlayOneShot(sound.Clip);
+    }
+    
+    /// <summary>
     /// Start playing a loopable 2D sound.
     /// </summary>
     /// <param name="sound">The sound that will be played</param>
-    public void PlayMusic(Sound sound)
+    public void PlayLoopable(Sound sound)
     {
+        // Loopable sounds probably won't sound good interrupting each other,
+        // so for now they each get their own channel.
         AudioSource source = GetOpenChannel();
-        StartCoroutine(sound.ApplyToSource(source));
+        
+        // Apply modulation and initialize audio source.
+        StartCoroutine(sound.ApplyToChannel(source));
         source.Play();
     }
 
@@ -54,26 +72,20 @@ public class AudioManager : MonoBehaviour
     /// Stop playing a loopable 2D sound.
     /// </summary>
     /// <param name="sound">The sound that will be stopped, if its playing</param>
-    public void StopMusic(Sound sound)
+    public void StopLoopable(Sound sound)
     {
+        // Try and find the requested sound, if its playing.
         AudioSource source = GetCurrentlyPlaying(sound.Clip);
+        
         if (source != null) 
+            // TODO: add more ways to stop loopable music, e.g. fade out or cross-fade, or other cool transitions
             source.Stop();
     }
 
     /// <summary>
-    /// Play a non-looping 2D sound effect.
+    /// Find an audio channel that isn't currently playing anything
     /// </summary>
-    /// <param name="sound"></param>
-    public void PlayOneShot(Sound sound)
-    {
-        AudioSource source = GetCurrentlyPlaying(sound.Clip, true);
-        StartCoroutine(sound.ApplyToSource(source));
-        
-        source.PlayOneShot(sound.Clip);
-    }
-
-    // Find a channel that's not currently playing music
+    /// <returns>An audio channel that isn't being used</returns>
     private AudioSource GetOpenChannel()
     {
         AudioSource result;
@@ -88,6 +100,7 @@ public class AudioManager : MonoBehaviour
         }
         catch (InvalidOperationException)
         {
+            // If no open channels exist, make a new one and return it
             result = gameObject.AddComponent<AudioSource>();
             _channels.Add(result);
         }
@@ -95,7 +108,12 @@ public class AudioManager : MonoBehaviour
         return result;
     }
 
-    // Find a channel playing the specified clip
+    /// <summary>
+    /// Find an audio channel that is playing a certain clip
+    /// </summary>
+    /// <param name="target">The clip to search for</param>
+    /// <param name="getIfNone">Make a new channel if the target is missing</param>
+    /// <returns></returns>
     private AudioSource GetCurrentlyPlaying(AudioClip target, bool getIfNone = false)
     {
         AudioSource result = null;
@@ -117,11 +135,11 @@ public class AudioManager : MonoBehaviour
         return result;
     }
 
-    // IMGUI Variables
+    #region gui / editor code
+
     private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
     private bool _showingAllSounds = false;
 
-    // Drawing the IMGUI window
     private void OnGUI()
     {
         if (!showDebug) return;
@@ -154,4 +172,6 @@ public class AudioManager : MonoBehaviour
         result.AppendLine("\tPan: " + source.panStereo);
         return result.ToString();
     }
+
+    #endregion
 }
