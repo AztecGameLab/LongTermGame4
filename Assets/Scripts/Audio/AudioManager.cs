@@ -159,6 +159,11 @@ public class AudioManager : MonoBehaviour
                 GUILayout.Label($"Channel {i + 1}: {GetChannelInfo(_channels.ElementAt(i))}");
             }
         }
+        else
+        {
+            _windowRect.width = 250;
+            _windowRect.height = 75;
+        }
 
         GUI.DragWindow();
     }
