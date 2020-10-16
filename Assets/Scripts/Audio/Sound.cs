@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Playable audio wrapper, can be passed into <see cref="AudioManager"/> for playback.
@@ -17,6 +18,9 @@ public class Sound : ScriptableObject
     
     [SerializeField, Tooltip("Whether or not this sound loops when its finished")]
     private bool looping = false;
+
+    [SerializeField] 
+    private AudioMixerGroup mixerGroup = default;
     
     [Header("Modulated Values")]
     
@@ -31,7 +35,6 @@ public class Sound : ScriptableObject
 
     public AudioClip Clip => clip;
     private bool Looping => looping;
-    private bool _isPlaying = false;
 
     private void OnEnable()
     {
@@ -62,21 +65,19 @@ public class Sound : ScriptableObject
     /// <param name="source">The AudioSource to apply changes to</param>
     public IEnumerator ApplyToSource(AudioSource source)
     {
-        _isPlaying = true;
+        source.clip = Clip;
+        source.loop = Looping;
+        source.outputAudioMixerGroup = mixerGroup;
+
         do
         {
             var time = Time.time;
-            
-            source.clip = Clip;
-            source.loop = Looping;
             source.volume = GetVolume(time);
             source.pitch = GetPitch(time);
             source.panStereo = GetPan(time);
 
             yield return new WaitForEndOfFrame();
         } while (source.isPlaying);
-
-        _isPlaying = false;
     }
     
     /// <summary>

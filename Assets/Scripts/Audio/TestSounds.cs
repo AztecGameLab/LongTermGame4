@@ -10,6 +10,7 @@ public class TestSounds : MonoBehaviour
     [SerializeField] private Sound music = default;
 
     [SerializeField] private float spamTime = -1;
+    [SerializeField] private Sound spamSound = default;
     
     private AudioManager _audioManager;
     private bool _playingMusic;
@@ -28,7 +29,7 @@ public class TestSounds : MonoBehaviour
         if (spamTime > 0 && CanSpam)
         {
             _lastSpammed = Time.time;
-            _audioManager.PlayOneShot(arrowShootIce);
+            _audioManager.PlayOneShot(spamSound);
         }
     }
 

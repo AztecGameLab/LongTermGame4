@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using JetBrains.Annotations;
 using UnityEngine;
 
 /// <summary>
@@ -7,13 +10,6 @@ using UnityEngine;
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
-    // How many channels should be created for playing loopable music.
-    
-    // More channels is not bad, but playing multiple long tracks at the same time
-    // takes up a lot of memory, best practice to keep them to a minimum.
-    private const int MaxMusicChannels = 2;
-    private int AvailableChannelCount => _musicChannels.Length - _activeChannels.Count;
-
     public static AudioManager Instance()
     {
         if (_instance == null)
@@ -31,11 +27,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
     private bool showDebug;
 
-    // The source used for playing sound effects, aka one-shots
-    private AudioSource _sfxChannel;
-    // The sources used for playing looping sound effects, such as music or ambience
-    private AudioSource[] _musicChannels;
-    private Dictionary<Sound, AudioSource> _activeChannels;
+    private HashSet<AudioSource> _channels;
 
     private void Awake()
     {
@@ -44,14 +36,7 @@ public class AudioManager : MonoBehaviour
         showDebug = Debug.isDebugBuild;
 
         // Initialize AudioSources
-        _sfxChannel = gameObject.AddComponent<AudioSource>();
-        _activeChannels = new Dictionary<Sound, AudioSource>();
-        _musicChannels = new AudioSource[MaxMusicChannels];
-
-        for (var i = 0; i < _musicChannels.Length; i++)
-        {
-            _musicChannels[i] = gameObject.AddComponent<AudioSource>();
-        }
+        _channels = new HashSet<AudioSource>();
     }
 
     /// <summary>
@@ -60,13 +45,9 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound">The sound that will be played</param>
     public void PlayMusic(Sound sound)
     {
-        Debug.Log("Started playing");
-        AudioSource source = GetOpenMusicChannel();
+        AudioSource source = GetOpenChannel();
         StartCoroutine(sound.ApplyToSource(source));
         source.Play();
-        
-
-        _activeChannels.Add(sound, source);
     }
 
     /// <summary>
@@ -75,10 +56,9 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound">The sound that will be stopped, if its playing</param>
     public void StopMusic(Sound sound)
     {
-        AudioSource source = _activeChannels[sound];
-        source.Stop();
-
-        _activeChannels.Remove(sound);
+        AudioSource source = GetCurrentlyPlaying(sound.Clip);
+        if (source != null) 
+            source.Stop();
     }
 
     /// <summary>
@@ -87,30 +67,59 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound"></param>
     public void PlayOneShot(Sound sound)
     {
-        StartCoroutine(sound.ApplyToSource(_sfxChannel));
-        _sfxChannel.PlayOneShot(sound.Clip);
+        AudioSource source = GetCurrentlyPlaying(sound.Clip, true);
+        StartCoroutine(sound.ApplyToSource(source));
+        
+        source.PlayOneShot(sound.Clip);
     }
 
     // Find a channel that's not currently playing music
-    private AudioSource GetOpenMusicChannel()
+    private AudioSource GetOpenChannel()
     {
-        if (AvailableChannelCount <= 0)
+        AudioSource result;
+        try
         {
-            Debug.LogWarning("No more music channels can be opened.");
-            Debug.Break();
+            var openChannels =
+                from channel in _channels
+                where !channel.isPlaying
+                select channel;
+            
+            result = openChannels.First();
+        }
+        catch (InvalidOperationException)
+        {
+            result = gameObject.AddComponent<AudioSource>();
+            _channels.Add(result);
         }
 
-        var openChannels =
-            from channel in _musicChannels
-            where channel.isPlaying == false
-            select channel;
-    
-        return openChannels.First();
+        return result;
+    }
+
+    // Find a channel playing the specified clip
+    private AudioSource GetCurrentlyPlaying(AudioClip target, bool getIfNone = false)
+    {
+        AudioSource result = null;
+        try
+        {
+            var openChannels =
+                from channel in _channels
+                where channel.clip.Equals(target)
+                select channel;
+
+            result = openChannels.First();
+        }
+        catch (InvalidOperationException)
+        {
+            if (getIfNone)
+                result = GetOpenChannel();
+        }
+        
+        return result;
     }
 
     // IMGUI Variables
     private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
-    private bool _showingAllSounds = true;
+    private bool _showingAllSounds = false;
 
     // Drawing the IMGUI window
     private void OnGUI()
@@ -121,25 +130,28 @@ public class AudioManager : MonoBehaviour
 
     private void HandleWindow(int id)
     {
-        GUILayout.Label("Available sound channels: " + AvailableChannelCount);
+        GUILayout.Label("Current sound channels: " + _channels.Count);
 
         _showingAllSounds = GUILayout.Toggle(_showingAllSounds, "Show sounds");
     
         if (_showingAllSounds)
         {
-            GUILayout.Label($"SFXChannel: {_sfxChannel.isPlaying}");
-            
-            for (var i = 0; i < _musicChannels.Length; i++)
+            for (var i = 0; i < _channels.Count; i++)
             {
-                GUILayout.Label($"Channel {i + 1}: {_musicChannels[i].isPlaying}");
-            }
-            
-            foreach (Sound sound in _activeChannels.Keys)
-            {
-                GUILayout.Label(sound.ToString());
+                GUILayout.Label($"Channel {i + 1}: {GetChannelInfo(_channels.ElementAt(i))}");
             }
         }
 
         GUI.DragWindow();
+    }
+
+    private static string GetChannelInfo(AudioSource source)
+    {
+        StringBuilder result = new StringBuilder();
+        result.AppendLine(source.clip.name);
+        result.AppendLine("\tPitch: " + source.pitch);
+        result.AppendLine("\tVolume: " + source.volume);
+        result.AppendLine("\tPan: " + source.panStereo);
+        return result.ToString();
     }
 }
