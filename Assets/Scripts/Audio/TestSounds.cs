@@ -7,20 +7,22 @@ public class TestSounds : MonoBehaviour
     [SerializeField] private Sound arrowHit = default;
     [SerializeField] private Sound arrowShootIce = default;
     [SerializeField] private Sound arrowShootFire = default;
+    [SerializeField] private Sound spacialMusic = default;
     [SerializeField] private Sound music = default;
-
+    
     [SerializeField] private float spamTime = -1;
     [SerializeField] private Sound spamSound = default;
     
     private AudioManager _audioManager;
-    private bool _playingMusic;
+    private bool _playing3DMusic;
+    private bool _playing2DMusic;
     private float _lastSpammed;
     private bool CanSpam => Time.time - _lastSpammed > spamTime;
 
     private void Awake()
     {
         _audioManager = AudioManager.Instance();
-        _playingMusic = false;
+        _playing3DMusic = false;
         _lastSpammed = Time.time;
     }
 
@@ -55,16 +57,31 @@ public class TestSounds : MonoBehaviour
             _audioManager.PlayOneShot(arrowHit, gameObject);
         }
 
-        if (_playingMusic == GUILayout.Toggle(_playingMusic, "music")) return;
-        _playingMusic = !_playingMusic;
+        if (_playing3DMusic != GUILayout.Toggle(_playing3DMusic, "3d music"))
+        {
+            _playing3DMusic = !_playing3DMusic;
 
-        if (_playingMusic)
-        {
-            _audioManager.PlayLoopable(music);
+            if (_playing3DMusic)
+            {
+                _audioManager.PlayLoopable(spacialMusic, gameObject);
+            }
+            else
+            {
+                _audioManager.StopLoopable(spacialMusic, gameObject);
+            }            
         }
-        else
+        if (_playing2DMusic != GUILayout.Toggle(_playing2DMusic, "2d music"))
         {
-            _audioManager.StopLoopable(music);
+            _playing2DMusic = !_playing2DMusic;
+
+            if (_playing2DMusic)
+            {
+                _audioManager.PlayLoopable(music);
+            }
+            else
+            {
+                _audioManager.StopLoopable(music);
+            }            
         }
     }
 }

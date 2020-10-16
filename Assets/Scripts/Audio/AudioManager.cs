@@ -15,7 +15,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
     private bool showDebug;
 
-    private int ChannelCount => _channels.Values.Sum(channels => channels.Count);
+    private int SourcesCount => _channels.Values.Sum(channels => channels.Count);
+    private int PlayingChannelCount => _channels.Values.Sum(sources => sources.Sum(channel => channel.isPlaying ? 1 : 0));
+    
     public static AudioManager Instance()
     {
         if (_instance == null)
@@ -174,7 +176,7 @@ public class AudioManager : MonoBehaviour
     #region gui / editor code
 
     private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
-    private List<bool> _showSounds = new List<bool>();
+    private readonly List<bool> _showSounds = new List<bool>();
 
     private void OnGUI()
     {
@@ -189,7 +191,8 @@ public class AudioManager : MonoBehaviour
             _showSounds.Add(false);
         }
         
-        GUILayout.Label("Total sound channels: " + ChannelCount);
+        GUILayout.Label("Channels: " + SourcesCount);
+        GUILayout.Label("Active channels: " + PlayingChannelCount);
         for (var targetIndex = 0; targetIndex < _channels.Count; targetIndex++)
         {
             var target = _channels.ElementAt(targetIndex);
@@ -205,7 +208,7 @@ public class AudioManager : MonoBehaviour
         if (!_showSounds.Contains(true))
         {
             _windowRect.width = 250;
-            _windowRect.height = 75 + (10 * _showSounds.Count);
+            _windowRect.height = 75 + (25 * _showSounds.Count);
         }
 
         GUI.DragWindow();

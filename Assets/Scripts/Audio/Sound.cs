@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -21,42 +22,29 @@ public class Sound : ScriptableObject
 
     [SerializeField] 
     private AudioMixerGroup mixerGroup = default;
-    
-    [Header("Modulated Values")]
-    
-    [SerializeField, Tooltip("Volume of the playback (0 is silent, 1 is full volume)")] 
-    private ModulatedFloat volume = default;
-    
-    [SerializeField, Tooltip("Pitch of the playback (1 is default pitch)")] 
-    private ModulatedFloat pitch = default;
 
-    [SerializeField, Tooltip("The panning of the playback")]
-    private ModulatedFloat pan = default;
+    [Header("Modulated Values")] 
+    
+    [SerializeField] 
+    private ModulatedFloat[] modulatedValues = default;
 
     public AudioClip Clip => clip;
     private bool Looping => looping;
 
+    // A method that applied a value to an audio source
+    private delegate void ApplyValue(float value, AudioSource source);
+    private ApplyValue[] _applicators;
+
     private void OnEnable()
     {
-        Modulator none = CreateInstance<EmptyModulator>();
-
-        if (volume.modulator == null) volume.modulator = none;
-        if (pitch.modulator == null) pitch.modulator = none;
-        if (pan.modulator == null) pan.modulator = none;
-    }
-
-    // Apply modulation when accessing modulated values
-    private float GetVolume(float time)
-    {
-        return volume.modulator.Modulate(volume.value, time);
-    }
-    private float GetPitch(float time)
-    {
-        return pitch.modulator.Modulate(pitch.value, time);
-    }
-    private float GetPan(float time)
-    {
-        return pan.modulator.Modulate(pan.value, time);
+        _applicators = new ApplyValue[]
+        {
+            ApplyVolume,
+            ApplyPitch,
+            ApplyPan,
+            ApplyMaxRange3D,
+            ApplyMinRange3D
+        };
     }
 
     /// <summary>
@@ -73,13 +61,21 @@ public class Sound : ScriptableObject
         do
         {
             var elapsedTime = Time.time - startTime;
-            source.volume = GetVolume(elapsedTime);
-            source.pitch = GetPitch(elapsedTime);
-            source.panStereo = GetPan(elapsedTime);
+            
+            foreach (var val in modulatedValues)
+            {
+                _applicators[(int) val.setting](val.modulator.Modulate(val.value, elapsedTime), source);
+            }
 
             yield return new WaitForEndOfFrame();
         } while (source.isPlaying);
     }
+
+    private static void ApplyVolume(float val, AudioSource src) { src.volume = val; }
+    private static void ApplyPitch(float val, AudioSource src) { src.pitch = val; }
+    private static void ApplyPan(float val, AudioSource src) { src.panStereo = val; }
+    private static void ApplyMaxRange3D(float val, AudioSource src) { src.maxDistance = val; }
+    private static void ApplyMinRange3D(float val, AudioSource src) { src.minDistance = val; }
     
     /// <summary>
     /// Exposes a float to the inspector, associates it with a modulator.
@@ -87,14 +83,8 @@ public class Sound : ScriptableObject
     [Serializable]
     private class ModulatedFloat
     {
+        public SoundSetting setting = default;
         public float value = 1f;
         public Modulator modulator = default;
-    }
-
-    public override string ToString()
-    {
-        var time = Time.time;
-        var result = $"{clip.name}\n\tVolume: {GetVolume(time)}\n\tPitch: {GetPitch(time)}\n\tPan: {GetPan(time)}";
-        return result;
     }
 }
