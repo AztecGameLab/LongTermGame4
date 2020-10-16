@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4af433e92214fe5bf0304e76bc1d2a0, type: 3}
-  m_Name: LFO
+  m_Name: Pan LFO
   m_EditorClassIdentifier: 
   notes: Sounds good when applied to the "Pan" parameter.
   amplitude: 0.25
