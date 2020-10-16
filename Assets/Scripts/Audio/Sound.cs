@@ -68,13 +68,14 @@ public class Sound : ScriptableObject
         source.clip = Clip;
         source.loop = Looping;
         source.outputAudioMixerGroup = mixerGroup;
-
+        var startTime = Time.time;
+        
         do
         {
-            var time = Time.time;
-            source.volume = GetVolume(time);
-            source.pitch = GetPitch(time);
-            source.panStereo = GetPan(time);
+            var elapsedTime = Time.time - startTime;
+            source.volume = GetVolume(elapsedTime);
+            source.pitch = GetPitch(elapsedTime);
+            source.panStereo = GetPan(elapsedTime);
 
             yield return new WaitForEndOfFrame();
         } while (source.isPlaying);

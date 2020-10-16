@@ -14,6 +14,8 @@ public class Random : Modulator
     [SerializeField, Tooltip("How high this value can be modulated")] 
     private float randomMax = default;
 
+    private float _randomOffset = 0f;
+    
     /// <summary>
     /// Shift a float by a configurable random amount.
     /// </summary>
@@ -22,6 +24,11 @@ public class Random : Modulator
     /// <returns>The value after it has been modified</returns>
     public override float Modulate(float value, float time)
     {
-        return value + UnityEngine.Random.Range(randomMin, randomMax);
+        if (time == 0)
+        {
+            _randomOffset = UnityEngine.Random.Range(randomMin, randomMax);
+        }
+
+        return value + _randomOffset;
     }
 }

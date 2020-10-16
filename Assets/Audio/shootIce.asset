@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
   m_Name: arrow shoot ice
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 44369a9abaf500c40b2c627d528611b3, type: 3}
-  volume: 1
+  clip: {fileID: 8300000, guid: ca2fcfb8f0d286d4c9a5e9675df4c041, type: 3}
   looping: 0
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
+  volume:
+    value: 1
+    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}
+  pitch:
+    value: 1
+    modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
+  pan:
+    value: 0
+    modulator: {fileID: 11400000, guid: b1d3f594a0c334240ad8812da58408ee, type: 2}

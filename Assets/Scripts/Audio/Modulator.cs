@@ -5,6 +5,9 @@
 /// </summary>
 public abstract class Modulator : ScriptableObject
 {
+    [SerializeField, TextArea]
+    private string notes;
+    
     /// <summary>
     /// Performs some operation on a float, usually changing it over time.
     /// </summary>

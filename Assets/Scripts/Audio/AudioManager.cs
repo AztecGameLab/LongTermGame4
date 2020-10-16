@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,8 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
     private bool showDebug;
-    
+
+    private int ChannelCount => _channels.Values.Sum(channels => channels.Count);
     public static AudioManager Instance()
     {
         if (_instance == null)
@@ -172,7 +174,7 @@ public class AudioManager : MonoBehaviour
     #region gui / editor code
 
     private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
-    private bool _showingAllSounds = false;
+    private List<bool> _showSounds = new List<bool>();
 
     private void OnGUI()
     {
@@ -182,26 +184,30 @@ public class AudioManager : MonoBehaviour
 
     private void HandleWindow(int id)
     {
-        GUILayout.Label("Current sound channels: " + _channels.Count);
-        _showingAllSounds = GUILayout.Toggle(_showingAllSounds, "Show sounds");
-    
-        if (_showingAllSounds)
+        while (_showSounds.Count < _channels.Count)
         {
-            foreach (var target in _channels)
+            _showSounds.Add(false);
+        }
+        
+        GUILayout.Label("Total sound channels: " + ChannelCount);
+        for (var targetIndex = 0; targetIndex < _channels.Count; targetIndex++)
+        {
+            var target = _channels.ElementAt(targetIndex);
+            _showSounds[targetIndex] = GUILayout.Toggle(_showSounds[targetIndex], target.Key.name);
+            
+            if (!_showSounds[targetIndex]) continue;
+            for (var channelIndex = 0; channelIndex < target.Value.Count; channelIndex++)
             {
-                GUILayout.Label(target.Key.name);
-                for (var i = 0; i < target.Value.Count; i++)
-                {
-                    GUILayout.Label($"Channel {i + 1}: {GetChannelInfo(target.Value.ElementAt(i))}");
-                }
-                GUILayout.Label("");
+                GUILayout.Label($"Channel {channelIndex + 1}: {GetChannelInfo(target.Value.ElementAt(channelIndex))}");
             }
         }
-        else
+
+        if (!_showSounds.Contains(true))
         {
             _windowRect.width = 250;
-            _windowRect.height = 75;
+            _windowRect.height = 75 + (10 * _showSounds.Count);
         }
+
         GUI.DragWindow();
     }
 

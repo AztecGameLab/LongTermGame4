@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c83a60a65948b6bfe529ac82a4188f, type: 3}
   m_Name: Empty Modulator
   m_EditorClassIdentifier: 
+  notes: 'These modulators don''t do anything: they prevent costly null checks in
+    the the code.'

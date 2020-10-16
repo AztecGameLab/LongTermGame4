@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f30b3125ad48a48fb9bd7edaedd6a2, type: 3}
   m_Name: Slight Random
   m_EditorClassIdentifier: 
-  randomMin: 0
-  randomMax: 0
+  notes: Sounds really good when applied to pitch on quick sound effects like the
+    footsteps and arrow hit. Sounds jarring when min/max are too large.
+  randomMin: 0.03
+  randomMax: -0.03

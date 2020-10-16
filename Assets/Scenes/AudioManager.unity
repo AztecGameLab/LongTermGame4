@@ -154,6 +154,8 @@ MonoBehaviour:
   arrowShootIce: {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
   arrowShootFire: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
   music: {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
+  spamTime: -1
+  spamSound: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
 --- !u!4 &104804748
 Transform:
   m_ObjectHideFlags: 0
