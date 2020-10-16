@@ -210,7 +210,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 2214633947940137220, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c,
     type: 3}
-  speed: 1000
+  minForce: 0
+  maxForce: 50
+  timeToGetToMaxForce: 2.5
+  shootingStrength: 0
+  timer: 0
 --- !u!114 &5293679182961493656
 MonoBehaviour:
   m_ObjectHideFlags: 0
