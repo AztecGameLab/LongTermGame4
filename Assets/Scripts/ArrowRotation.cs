@@ -15,8 +15,8 @@ public class ArrowRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (arrowRB.velocity.x > 1 || arrowRB.velocity.y > 1 || arrowRB.velocity.z > 1)
-            arrowRB.gameObject.transform.rotation = Quaternion.LookRotation(arrowRB.velocity, Vector3.up);
+        if (arrowRB.velocity.magnitude > 1)
+            arrowRB.gameObject.transform.rotation = Quaternion.LookRotation(arrowRB.velocity, Vector3.up);      //arrows looks in direction of velocity
     }
 
 }
