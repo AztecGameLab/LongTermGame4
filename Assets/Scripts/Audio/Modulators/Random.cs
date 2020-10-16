@@ -6,6 +6,8 @@
 [CreateAssetMenu(fileName = "New Random Modulator", menuName = "Custom/Random Modulator")]
 public class Random : Modulator
 {
+    [Header("Random Modulation Settings")]
+    
     [SerializeField, Tooltip("How low this value can be modulated")] 
     private float randomMin = default;
     

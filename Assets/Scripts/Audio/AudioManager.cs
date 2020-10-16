@@ -60,9 +60,11 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound">The sound that will be played</param>
     public void PlayMusic(Sound sound)
     {
+        Debug.Log("Started playing");
         AudioSource source = GetOpenMusicChannel();
-        sound.ApplyToSource(source);
+        StartCoroutine(sound.ApplyToSource(source));
         source.Play();
+        
 
         _activeChannels.Add(sound, source);
     }
@@ -85,7 +87,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound"></param>
     public void PlayOneShot(Sound sound)
     {
-        sound.ApplyToSource(_sfxChannel);
+        StartCoroutine(sound.ApplyToSource(_sfxChannel));
         _sfxChannel.PlayOneShot(sound.Clip);
     }
 
@@ -107,31 +109,37 @@ public class AudioManager : MonoBehaviour
     }
 
     // IMGUI Variables
-    private Rect _windowRect = new Rect(Screen.width - 200, 0, 150, 100);
+    private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
     private bool _showingAllSounds = true;
 
     // Drawing the IMGUI window
     private void OnGUI()
     {
         if (!showDebug) return;
-    
-        _windowRect = GUILayout.Window(0, _windowRect, HandleWindow, "AudioManager");        
+        _windowRect = GUILayout.Window(0, _windowRect, HandleWindow, "AudioManager");
     }
 
     private void HandleWindow(int id)
     {
         GUILayout.Label("Available sound channels: " + AvailableChannelCount);
 
-        _showingAllSounds = GUILayout.Toggle(_showingAllSounds, "Active sounds: " + _activeChannels.Count);
+        _showingAllSounds = GUILayout.Toggle(_showingAllSounds, "Show sounds");
     
         if (_showingAllSounds)
         {
-            foreach (var sound in _activeChannels.Keys)
+            GUILayout.Label($"SFXChannel: {_sfxChannel.isPlaying}");
+            
+            for (var i = 0; i < _musicChannels.Length; i++)
             {
-                GUILayout.Label("    " + sound.name);
+                GUILayout.Label($"Channel {i + 1}: {_musicChannels[i].isPlaying}");
+            }
+            
+            foreach (Sound sound in _activeChannels.Keys)
+            {
+                GUILayout.Label(sound.ToString());
             }
         }
-    
+
         GUI.DragWindow();
     }
 }

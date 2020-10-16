@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Media;
+using UnityEngine;
 
 public class TestSounds : MonoBehaviour
 {
@@ -7,13 +9,27 @@ public class TestSounds : MonoBehaviour
     [SerializeField] private Sound arrowShootFire = default;
     [SerializeField] private Sound music = default;
 
+    [SerializeField] private float spamTime = -1;
+    
     private AudioManager _audioManager;
     private bool _playingMusic;
+    private float _lastSpammed;
+    private bool CanSpam => Time.time - _lastSpammed > spamTime;
 
     private void Awake()
     {
         _audioManager = AudioManager.Instance();
         _playingMusic = false;
+        _lastSpammed = Time.time;
+    }
+
+    private void Update()
+    {
+        if (spamTime > 0 && CanSpam)
+        {
+            _lastSpammed = Time.time;
+            _audioManager.PlayOneShot(arrowShootIce);
+        }
     }
 
     private void OnGUI()
