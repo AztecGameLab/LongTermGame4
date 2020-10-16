@@ -49,6 +49,11 @@ public class TestSounds : MonoBehaviour
         {
             _audioManager.PlayOneShot(arrowShootFire);
         }
+        
+        if (GUILayout.Button("3D arrow-hit"))
+        {
+            _audioManager.PlayOneShot(arrowHit, gameObject);
+        }
 
         if (_playingMusic == GUILayout.Toggle(_playingMusic, "music")) return;
         _playingMusic = !_playingMusic;
