@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Media;
+using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class TestSounds : MonoBehaviour
 {
@@ -14,16 +17,20 @@ public class TestSounds : MonoBehaviour
     [SerializeField] private Sound spamSound = default;
     
     private AudioManager _audioManager;
-    private bool _playing3DMusic;
-    private bool _playing2DMusic;
+    private bool _playingMusicA = false;
+    private bool _playingMusicB = false;
     private float _lastSpammed;
+    private float _fadeCompletion;
+    private bool _fadingOut;
     private bool CanSpam => Time.time - _lastSpammed > spamTime;
 
     private void Awake()
     {
         _audioManager = AudioManager.Instance();
-        _playing3DMusic = false;
+        _playingMusicA = false;
         _lastSpammed = Time.time;
+        _fadeCompletion = 1;
+        _fadingOut = false;
     }
 
     private void Update()
@@ -57,24 +64,25 @@ public class TestSounds : MonoBehaviour
             _audioManager.PlayOneShot(arrowHit, gameObject);
         }
 
-        if (_playing3DMusic != GUILayout.Toggle(_playing3DMusic, "3d music"))
+        if (_playingMusicA != GUILayout.Toggle(_playingMusicA, "music A"))
         {
-            _playing3DMusic = !_playing3DMusic;
+            _playingMusicA = !_playingMusicA;
 
-            if (_playing3DMusic)
+            if (_playingMusicA)
             {
-                _audioManager.PlayLoopable(spacialMusic, gameObject);
+                _audioManager.PlayLoopable(spacialMusic);
             }
             else
             {
-                _audioManager.StopLoopable(spacialMusic, gameObject);
+                _audioManager.StopLoopable(spacialMusic);
             }            
         }
-        if (_playing2DMusic != GUILayout.Toggle(_playing2DMusic, "2d music"))
-        {
-            _playing2DMusic = !_playing2DMusic;
 
-            if (_playing2DMusic)
+        if (_playingMusicB != GUILayout.Toggle(_playingMusicB, "music B"))
+        {
+            _playingMusicB = !_playingMusicB;
+
+            if (_playingMusicB)
             {
                 _audioManager.PlayLoopable(music);
             }
@@ -83,5 +91,21 @@ public class TestSounds : MonoBehaviour
                 _audioManager.StopLoopable(music);
             }            
         }
+        
+        _fadingOut = GUILayout.Toggle(_fadingOut, "fade out");
+        
+        if(_fadingOut)
+        {
+            _fadeCompletion = Mathf.Clamp01(_fadeCompletion - (Time.deltaTime * 2f));
+        }
+        else
+        {
+            _fadeCompletion = Mathf.Clamp01(_fadeCompletion + (Time.deltaTime * 2f));
+        }
+
+        spacialMusic.Lerp(SoundSetting.Volume, 0, 1, _fadeCompletion);
+        spacialMusic.Lerp(SoundSetting.Pitch, 0.5f, 1, _fadeCompletion);
+        music.Lerp(SoundSetting.Volume, 0, 1, 1 - _fadeCompletion);
+        music.Lerp(SoundSetting.Pitch, 0.5f, 1, 1- _fadeCompletion);
     }
 }

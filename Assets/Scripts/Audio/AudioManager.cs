@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// Singleton-styled class for starting and stopping 2D audio clips
@@ -33,7 +35,7 @@ public class AudioManager : MonoBehaviour
     private static AudioManager _instance = null;
     private GameObject _globalTarget = null;
     private Dictionary<GameObject, HashSet<AudioSource>> _channels;
-
+    
     private void Awake()
     {
         DontDestroyOnLoad(this);
