@@ -21,10 +21,11 @@ public class StickyArrowScript : MonoBehaviour
          */
         if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly
         {
-            
+            arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
-            gameObject.transform.position = collision.GetContact(0).point;
-            Debug.Log(collision.contactCount);
+            if(collision.rigidbody != null)
+                gameObject.transform.parent = collision.gameObject.transform;
+            gameObject.transform.position = collision.GetContact(0).point - transform.forward * .4f;
 
         }
     }
