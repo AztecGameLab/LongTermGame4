@@ -74,10 +74,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2214633947940137219, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214633947940137219, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214633947940137219, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2214633947940137220, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c,
         type: 3}
       propertyPath: m_Name
-      value: Arrow Variant
+      value: StickyArrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c, type: 3}
