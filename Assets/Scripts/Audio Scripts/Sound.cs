@@ -10,7 +10,7 @@ using UnityEngine.Audio;
 
 //TODO: find better way to define default values / getters / setters, maybe move away from delegates?
 
-[CreateAssetMenu(fileName = "New Sound", menuName = "Custom/Sound")]
+[CreateAssetMenu(fileName = "New Sound", menuName = "Audio Custom/Sound", order = 1)]
 public class Sound : ScriptableObject
 {
     [Header("Sound Settings")]

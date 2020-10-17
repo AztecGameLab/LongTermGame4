@@ -4,7 +4,7 @@
 /// Modulates a value along a sine wave with adjustable parameters.
 /// </summary>
 
-[CreateAssetMenu(fileName = "New LFO Modulator", menuName = "Custom/LFO Modulator")]
+[CreateAssetMenu(fileName = "New LFO Modulator", menuName = "Audio Custom/LFO Modulator", order = 3)]
 public class LFO : Modulator
 {
     [Header("LFO Modulation Settings")]

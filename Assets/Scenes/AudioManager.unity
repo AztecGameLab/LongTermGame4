@@ -437,6 +437,7 @@ MonoBehaviour:
   arrowShootFire: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
   spacialMusic: {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
   music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
+  mixer: {fileID: 24100000, guid: 4617a18eb8577a4488e9e692a8ff5bf0, type: 2}
   spamTime: -1
   spamSound: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
 --- !u!65 &1849554958
