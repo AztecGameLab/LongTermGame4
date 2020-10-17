@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowScript : MonoBehaviour
+public class StickyArrowScript : MonoBehaviour
 {
     Rigidbody arrowRB;
+    GameObject arrowGO;
 
     private void Start()
     {
@@ -20,7 +21,11 @@ public class ArrowScript : MonoBehaviour
          */
         if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly
         {
+            
             arrowRB.isKinematic = true;
+            gameObject.transform.position = collision.GetContact(0).point;
+            Debug.Log(collision.contactCount);
+
         }
     }
 }
