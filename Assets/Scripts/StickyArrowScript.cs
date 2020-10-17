@@ -5,7 +5,7 @@ using UnityEngine;
 public class StickyArrowScript : MonoBehaviour
 {
     Rigidbody arrowRB;
-    GameObject arrowGO;
+    Quaternion arrowRotation;
 
     private void Start()
     {
@@ -14,19 +14,30 @@ public class StickyArrowScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        /*
-         * Not sure what would be the most efficient could be done in one of multible ways
-         * arrowRB.sleep(); but if arrow is hit by another arrow they both fall
-         *
-         */
-        if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly
+        ArrowReflector script = collision.gameObject.GetComponent<ArrowReflector>();
+
+        //To keep players from stacking arrows oddly, and to test if the arrow should bounce, should not stick to player
+        if (!collision.gameObject.CompareTag("arrow") && script == null &&  !collision.gameObject.CompareTag("Player"))
         {
+            //changing collision detection mode to avoid warning from unity
             arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
-            if(collision.rigidbody != null)
+            //Make sure the arrow is pointing in the right dirrection using last known rotation before collision.
+            gameObject.transform.rotation = arrowRotation;
+            //Object sticks to where it first made contact, sinks in just enough to be embedded. 
+            gameObject.transform.position = collision.GetContact(0).point + transform.forward * -.4f;
+            //Checks if object is a movable object, will set as parrent as to move with object. 
+            if (collision.rigidbody != null)
+            {
                 gameObject.transform.parent = collision.gameObject.transform;
-            gameObject.transform.position = collision.GetContact(0).point - transform.forward * .4f;
-
+            }
         }
+        
+    }
+
+    private void LateUpdate()
+    {
+        //grab the last rotation before collision's rotation
+        arrowRotation = gameObject.transform.rotation;
     }
 }
