@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pan LFO
   m_EditorClassIdentifier: 
   notes: Sounds good when applied to the "Pan" parameter.
-  amplitude: 0.25
-  frequency: 5
-  verticalShift: 0
+  amplitude: 0.2
+  frequency: 1
+  verticalShift: -0.5

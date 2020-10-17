@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
   m_Name: Raw Bow Stretch
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 1ab1f85b366d6a74796b9e1dcc18f722, type: 3}
   looping: 0
-  mixerGroup: {fileID: 0}
-  modulatedValues: []
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
+  modulatedValues:
+  - setting: 0
+    value: 0.5
+    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}

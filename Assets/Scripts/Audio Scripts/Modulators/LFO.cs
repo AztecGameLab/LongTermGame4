@@ -20,6 +20,6 @@ public class LFO : Modulator
 
     public override float Modulate(float value, float time)
     {
-        return value + amplitude * Mathf.Sin(frequency * time) + verticalShift;
+        return value + amplitude * Mathf.Sin(frequency * Time.time) + verticalShift;
     }
 }

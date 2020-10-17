@@ -313,6 +313,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9148738732498435, guid: bf0aa35baf52a6a408d97c37f9458d90, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3438913974619587664, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_RenderPostProcessing
@@ -432,14 +436,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac23e2102394ce94d876f6c434633a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowHit: {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
-  arrowShootIce: {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
-  arrowShootFire: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
-  spacialMusic: {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
-  music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
-  mixer: {fileID: 24100000, guid: 4617a18eb8577a4488e9e692a8ff5bf0, type: 2}
-  spamTime: -1
-  spamSound: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
+  sounds:
+  - {fileID: 11400000, guid: b5efe45b4c671094c934b1513ff080ee, type: 2}
+  - {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
+  - {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
+  - {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
+  - {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
+  - {fileID: 11400000, guid: b10fbe815d12bfa458ab09619d76241c, type: 2}
+  - {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
+  - {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
+  showGUI: 1
 --- !u!65 &1849554958
 BoxCollider:
   m_ObjectHideFlags: 0

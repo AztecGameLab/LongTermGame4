@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
-  m_Name: arrowHit
+  m_Name: Arrow Hit Wall
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: d7e0b0c5b6b3e934688e18150a08da41, type: 3}
   looping: 0
