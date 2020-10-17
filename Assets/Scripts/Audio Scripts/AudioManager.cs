@@ -135,7 +135,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="mixer">The mixer to apply the volume to</param>
     /// <param name="volume">The desired mixer volume (0 being mute, 1 being full)</param>
-    public static void SetVolume(AudioMixer mixer, float volume)
+    public static void SetMasterVolume(AudioMixer mixer, float volume)
     {
         var trueVolume = Mathf.Clamp(volume, 0.0001f, 1f);
         mixer.SetFloat("MasterVolume", Mathf.Log10(trueVolume) * 20);
@@ -150,7 +150,13 @@ public class AudioManager : MonoBehaviour
     {
         foreach (var target in _channels.Keys.Reverse())
         {
-            if (target != _globalTarget) _channels.Remove(target);
+            if (target == _globalTarget) continue;
+            
+            foreach (var channel in _channels[target])
+            {
+                channel.Stop();
+            }
+            _channels.Remove(target);
         }
     }
 
