@@ -28,7 +28,7 @@ public class SoundTester : MonoBehaviour
         
         foreach (var sound in sounds2D)
         {
-            if (!GUILayout.Button(sound.name)) continue;
+            if (!GUILayout.Button(sound.name + ": 2D")) continue;
             
             if (!sound.IsPlaying)
             {
@@ -42,7 +42,7 @@ public class SoundTester : MonoBehaviour
         
         foreach (var sound in sounds3D)
         {
-            if (!GUILayout.Button(sound.name)) continue;
+            if (!GUILayout.Button(sound.name + ": 3D")) continue;
             
             if (!sound.IsPlaying)
             {

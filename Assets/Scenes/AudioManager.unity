@@ -436,15 +436,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac23e2102394ce94d876f6c434633a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
+  sounds3D:
+  - {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
   - {fileID: 11400000, guid: b5efe45b4c671094c934b1513ff080ee, type: 2}
+  - {fileID: 11400000, guid: b10fbe815d12bfa458ab09619d76241c, type: 2}
   - {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
+  sounds2D:
   - {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
+  - {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
   - {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
   - {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
-  - {fileID: 11400000, guid: b10fbe815d12bfa458ab09619d76241c, type: 2}
-  - {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
-  - {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
   showGUI: 1
 --- !u!65 &1849554958
 BoxCollider:
