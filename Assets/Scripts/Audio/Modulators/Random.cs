@@ -3,6 +3,7 @@
 /// <summary>
 /// Shifts a float by a configurable random amount
 /// </summary>
+
 [CreateAssetMenu(fileName = "New Random Modulator", menuName = "Custom/Random Modulator")]
 public class Random : Modulator
 {

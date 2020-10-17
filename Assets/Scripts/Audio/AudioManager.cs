@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
 /// <summary>
 /// Singleton-styled class for starting and stopping audio clips
 /// <para>Lazily creates new AudioSource channels for SFX and music playback</para>
 /// </summary>
+
+//TODO: add more AudioMixer integration, e.g. snapshot blending?!?!??? Its annoying that we cant cache it
+
 public class AudioManager : MonoBehaviour
 {
     [SerializeField, Tooltip("Display the debug window for the AudioManager")] 

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -10,6 +7,9 @@ using UnityEngine.Audio;
 /// <summary>
 /// Playable audio wrapper, can be passed into <see cref="AudioManager"/> for playback.
 /// </summary>
+
+//TODO: find better way to define default values / getters / setters, maybe move away from delegates?
+
 [CreateAssetMenu(fileName = "New Sound", menuName = "Custom/Sound")]
 public class Sound : ScriptableObject
 {
@@ -21,90 +21,110 @@ public class Sound : ScriptableObject
     [SerializeField, Tooltip("Whether or not this sound loops when its finished")]
     private bool looping = false;
 
-    [SerializeField] 
+    [SerializeField, Tooltip("The MixerGroup this sound will be assigned to while it's playing")] 
     private AudioMixerGroup mixerGroup = default;
 
     [Header("Modulated Values")] 
     
-    [SerializeField] 
+    [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
     private ModulatedFloat[] modulatedValues = default;
 
     public AudioClip Clip => clip;
     private bool Looping => looping;
 
-    // Apply a value to this audio source
+    /// <summary>
+    /// Applies a value to this sound's AudioSource
+    /// </summary>
+    /// <param name="value">The value that should be applied</param>
     private delegate void ApplyValue(float value);
-    private ApplyValue[] _applicators;
+    private ApplyValue[] _setters;
 
-    // Get a value from this audio source
+    /// <summary>
+    /// Gets a value from this sound's AudioSource
+    /// </summary>
     private delegate float GetValue();
     private GetValue[] _getters;
-    
-    private AudioSource _source;
+
+    /// <summary>
+    /// The AudioSource currently playing this sound
+    /// </summary>
+    [CanBeNull] private AudioSource _source = null;
 
     private void OnEnable()
     {
-        _applicators = new ApplyValue[]
-        {
-            (val) => _source.volume = val,
-            (val) => _source.pitch = val,
-            (val) => _source.panStereo = val,
-            (val) => _source.maxDistance = val,
-            (val) => _source.minDistance = val,
-        };
-
-        _getters = new GetValue[]
-        {
-            () => _source.volume,
-            () => _source.pitch,
-            () => _source.panStereo,
-            () => _source.maxDistance,
-            () => _source.minDistance
-        };
+        InitializeGetters();
+        InitializeSetters();
     }
 
     /// <summary>
-    /// Applies a sound's parameters to an AudioSource (should be called before playing)
+    /// Applies a sound's modulations to an AudioSource
     /// </summary>
+    /// <remarks>This should be called before the sound is played</remarks>
     /// <param name="source">The AudioSource to apply changes to</param>
-    public IEnumerator ApplyToChannel(AudioSource source)
+    public IEnumerator ApplyToChannel([NotNull] AudioSource source)
     {
         _source = source;
         
-        _source.clip = Clip;
-        _source.loop = Looping;
-        _source.outputAudioMixerGroup = mixerGroup;
+        // Apply the non-modulating values
+        ApplyDefaultValues(source);
+
         var startTime = Time.time;
-        
+
         do
         {
             var elapsedTime = Time.time - startTime;
             
+            // Iterate through the modulated values, and call their modulate method
             foreach (var val in modulatedValues)
             {
                 var index = (int) val.setting;
-                _applicators[index](val.modulator.Modulate(val.value, elapsedTime));
+                _setters[index](val.modulator.Modulate(val.value, elapsedTime));
             }
             yield return new WaitForEndOfFrame();
+            
         } while (source.isPlaying);
 
+        // Set source to null because this source may be re-allocated for another Sound.
+        // This ensures we don't step on the next sound's toes with our modulation.
         _source = null;
     }
-    
-    public void Lerp(SoundSetting setting, float from, float to, float completion)
+
+    /// <summary>
+    /// Applies specified default values to the AudioSource
+    /// </summary>
+    /// <param name="source">The source to apply the values to</param>
+    private void ApplyDefaultValues(AudioSource source)
     {
-        if (_source == null) return;
-        if (!_source.isPlaying) return;
+        source.clip = Clip;
+        source.loop = Looping;
+        source.outputAudioMixerGroup = mixerGroup;
         
-        Debug.Log("lerping");
-        _applicators[(int) setting](Mathf.Lerp(from, to, completion));
+        source.volume = 1f;
+        source.pitch = 1f;
+        source.panStereo = 0f;
+        source.maxDistance = 1f;
+        source.minDistance = 1f;
     }
 
+    /// <summary>
+    /// Linearly interpolates a setting of this Sound.
+    /// </summary>
+    /// <param name="setting">Which aspect of the sound should be changed</param>
+    /// <param name="from">The initial value of the setting</param>
+    /// <param name="to">The final value of the setting</param>
+    /// <param name="completion">A float from 0 to 1 representing completion of the interpolation</param>
+    public void Lerp(SoundSetting setting, float from, float to, float completion)
+    {
+        _setters[(int) setting](Mathf.Lerp(from, to, completion));
+    }
+
+    /// <summary>
+    /// Returns the value associated with a setting on this Sound.
+    /// </summary>
+    /// <param name="setting">The setting to get the value of</param>
+    /// <returns>The value of the specified setting</returns>
     public float GetSetting(SoundSetting setting)
     {
-        if (_source == null)
-            return 0;
-
         return _getters[(int) setting]();
     }
 
@@ -118,4 +138,52 @@ public class Sound : ScriptableObject
         public float value = 1f;
         public Modulator modulator = default;
     }
+    
+    #region initializers
+
+    private void InitializeGetters()
+    {
+        _getters = new GetValue[]
+        {
+            () => 
+            { 
+                if (_source != null) return _source.volume;
+                return 0; 
+            },
+            () =>
+            {
+                if (_source != null) return _source.pitch;
+                return 0;
+            },
+            () =>
+            {
+                if (_source != null) return _source.panStereo;
+                return 0;
+            },
+            () =>
+            {
+                if (_source != null) return _source.maxDistance;
+                return 0;
+            },
+            () =>
+            {
+                if (_source != null) return _source.minDistance;
+                return 0;
+            }
+        };
+    }
+    
+    private void InitializeSetters()
+    {
+        _setters = new ApplyValue[]
+        {
+            val => { if (_source != null) _source.volume = val; },
+            val => { if (_source != null) _source.pitch = val; },
+            val => { if (_source != null) _source.panStereo = val; },
+            val => { if (_source != null) _source.maxDistance = val; },
+            val => { if (_source != null) _source.minDistance = val; }
+        };
+    }
+    
+    #endregion
 }

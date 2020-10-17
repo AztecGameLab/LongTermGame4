@@ -1,12 +1,9 @@
-﻿using System;
-using System.Media;
-using System.Text;
-using Packages.Rider.Editor.UnitTesting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
+
+// A random class I made for testing sounds n stuff - enjoy
+
+// sorry I didnt take the time to clean this one up, its completely unnecessary for anything besides testing
 
 public class TestSounds : MonoBehaviour
 {
@@ -77,14 +74,6 @@ public class TestSounds : MonoBehaviour
         {
             _audioManager.PlayOneShot(arrowHit, gameObject);
         }
-        
-        // if (GUILayout.Button("switch scenes"))
-        // {
-        //     _audioManager.Cleanup();
-        //     
-        //     var toLoad = SceneManager.GetActiveScene().name == "CombinedScene" ? "AudioManager" : "CombinedScene";
-        //     SceneManager.LoadScene(toLoad);
-        // }
 
         if (_playingMusicA != GUILayout.Toggle(_playingMusicA, "music A"))
         {
@@ -114,7 +103,7 @@ public class TestSounds : MonoBehaviour
             }            
         }
         
-        _fadingOut = GUILayout.Toggle(_fadingOut, "fade out");
+        _fadingOut = GUILayout.Toggle(_fadingOut, "fade out B");
         
         if(_fadingOut)
         {

@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Modulates a value along a sine wave with adjustable parameters.
+/// </summary>
+
 [CreateAssetMenu(fileName = "New LFO Modulator", menuName = "Custom/LFO Modulator")]
 public class LFO : Modulator
 {
