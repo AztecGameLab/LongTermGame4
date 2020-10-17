@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
   m_Name: Fire Bow Shot
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: b8a3e6f1418fc6a4f8b8f64d5c892a59, type: 3}
+  clip: {fileID: 8300000, guid: 6761bd55a9aba47c2abf517922c559c9, type: 3}
   looping: 0
   mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}

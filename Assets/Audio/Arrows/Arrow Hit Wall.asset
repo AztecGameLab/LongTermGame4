@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
   m_Name: Arrow Hit Wall
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: d7e0b0c5b6b3e934688e18150a08da41, type: 3}
+  clip: {fileID: 8300000, guid: a542e81cba88447c29ed53ace16387b8, type: 3}
   looping: 0
   mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
