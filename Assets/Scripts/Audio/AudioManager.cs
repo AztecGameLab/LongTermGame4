@@ -9,7 +9,7 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering;
 
 /// <summary>
-/// Singleton-styled class for starting and stopping 2D audio clips
+/// Singleton-styled class for starting and stopping audio clips
 /// <para>Lazily creates new AudioSource channels for SFX and music playback</para>
 /// </summary>
 public class AudioManager : MonoBehaviour
@@ -116,6 +116,16 @@ public class AudioManager : MonoBehaviour
     public void StopLoopable(Sound sound)
     {
         StopLoopable(sound, _globalTarget);
+    }
+
+    /// <summary>
+    /// Updates the mixer's 
+    /// </summary>
+    /// <param name="mixer"></param>
+    /// <param name="volume"></param>
+    public void SetVolume(AudioMixer mixer, float volume)
+    {
+        mixer.SetFloat("MasterVolume", Mathf.Clamp01(volume));
     }
 
     /// <summary>

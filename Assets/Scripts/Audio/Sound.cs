@@ -41,7 +41,6 @@ public class Sound : ScriptableObject
     private GetValue[] _getters;
     
     private AudioSource _source;
-    private bool _isPlaying = false;
 
     private void OnEnable()
     {
@@ -71,7 +70,6 @@ public class Sound : ScriptableObject
     public IEnumerator ApplyToChannel(AudioSource source)
     {
         _source = source;
-        _isPlaying = true;
         
         _source.clip = Clip;
         _source.loop = Looping;
@@ -87,20 +85,29 @@ public class Sound : ScriptableObject
                 var index = (int) val.setting;
                 _applicators[index](val.modulator.Modulate(val.value, elapsedTime));
             }
-
             yield return new WaitForEndOfFrame();
-        } while (_source.isPlaying);
+        } while (source.isPlaying);
 
-        _isPlaying = false;
+        _source = null;
     }
     
     public void Lerp(SoundSetting setting, float from, float to, float completion)
     {
         if (_source == null) return;
+        if (!_source.isPlaying) return;
         
+        Debug.Log("lerping");
         _applicators[(int) setting](Mathf.Lerp(from, to, completion));
     }
-    
+
+    public float GetSetting(SoundSetting setting)
+    {
+        if (_source == null)
+            return 0;
+
+        return _getters[(int) setting]();
+    }
+
     /// <summary>
     /// Exposes a float to the inspector, associates it with a modulator.
     /// </summary>

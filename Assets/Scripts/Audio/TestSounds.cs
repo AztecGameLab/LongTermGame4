@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Media;
+using System.Text;
 using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -13,7 +15,8 @@ public class TestSounds : MonoBehaviour
     [SerializeField] private Sound arrowShootFire = default;
     [SerializeField] private Sound spacialMusic = default;
     [SerializeField] private Sound music = default;
-    
+    [SerializeField] private AudioMixer mixer = default;
+
     [SerializeField] private float spamTime = -1;
     [SerializeField] private Sound spamSound = default;
     
@@ -30,7 +33,7 @@ public class TestSounds : MonoBehaviour
         _audioManager = AudioManager.Instance();
         _playingMusicA = false;
         _lastSpammed = Time.time;
-        _fadeCompletion = 1;
+        _fadeCompletion = 0;
         _fadingOut = false;
     }
 
@@ -45,6 +48,16 @@ public class TestSounds : MonoBehaviour
 
     private void OnGUI()
     {
+        if (GUILayout.Button("mute"))
+        {
+            _audioManager.SetVolume(mixer, 0f);
+        }
+        
+        if (GUILayout.Button("unmute"))
+        {
+            _audioManager.SetVolume(mixer, 1f);
+        }
+        
         if (GUILayout.Button("arrow-hit"))
         {
             _audioManager.PlayOneShot(arrowHit);
@@ -105,16 +118,13 @@ public class TestSounds : MonoBehaviour
         
         if(_fadingOut)
         {
-            _fadeCompletion = Mathf.Clamp01(_fadeCompletion - (Time.deltaTime * 2f));
-        }
-        else
-        {
             _fadeCompletion = Mathf.Clamp01(_fadeCompletion + (Time.deltaTime * 2f));
+            music.Lerp(SoundSetting.Volume, 1, 0, _fadeCompletion);
         }
-
-        spacialMusic.Lerp(SoundSetting.Volume, 0, 1, _fadeCompletion);
-        spacialMusic.Lerp(SoundSetting.Pitch, 0.5f, 1, _fadeCompletion);
-        music.Lerp(SoundSetting.Volume, 0, 1, 1 - _fadeCompletion);
-        music.Lerp(SoundSetting.Pitch, 0.5f, 1, 1- _fadeCompletion);
+        else if (music.GetSetting(SoundSetting.Volume) < 1)
+        {
+            _fadeCompletion = Mathf.Clamp01(_fadeCompletion - (Time.deltaTime * 2f));
+            music.Lerp(SoundSetting.Volume, 1, 0, _fadeCompletion);
+        }
     }
 }
