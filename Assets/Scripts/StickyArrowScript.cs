@@ -29,12 +29,12 @@ public class StickyArrowScript : MonoBehaviour
             //Checks if object is a movable object, will set as parrent as to move with object. 
             if (collision.rigidbody != null)
             {
+                //Still a bug here, in that the arrow will rotate after having it's parent set. Still researching ways around this
                 gameObject.transform.parent = collision.gameObject.transform;
             }
         }
         
     }
-
     private void LateUpdate()
     {
         //grab the last rotation before collision's rotation
