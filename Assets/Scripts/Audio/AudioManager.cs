@@ -119,13 +119,14 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the mixer's 
+    /// Updates the mixer's volume
     /// </summary>
-    /// <param name="mixer"></param>
-    /// <param name="volume"></param>
-    public void SetVolume(AudioMixer mixer, float volume)
+    /// <param name="mixer">The mixer to apply the volume to</param>
+    /// <param name="volume">The desired mixer volume (0 being mute, 1 being full)</param>
+    public static void SetVolume(AudioMixer mixer, float volume)
     {
-        mixer.SetFloat("MasterVolume", Mathf.Clamp01(volume));
+        var trueVolume = Mathf.Clamp(volume, 0.0001f, 1f);
+        mixer.SetFloat("MasterVolume", Mathf.Log10(trueVolume) * 20);
     }
 
     /// <summary>

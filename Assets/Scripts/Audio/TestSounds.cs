@@ -50,12 +50,12 @@ public class TestSounds : MonoBehaviour
     {
         if (GUILayout.Button("mute"))
         {
-            _audioManager.SetVolume(mixer, 0f);
+            AudioManager.SetVolume(mixer, 0f);
         }
         
         if (GUILayout.Button("unmute"))
         {
-            _audioManager.SetVolume(mixer, 1f);
+            AudioManager.SetVolume(mixer, 1f);
         }
         
         if (GUILayout.Button("arrow-hit"))
