@@ -29,8 +29,9 @@ public class Sound : ScriptableObject
     [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
     private ModulatedFloat[] modulatedValues = default;
 
-    public AudioClip Clip => clip;
-    private bool Looping => looping;
+    public AudioClip GetClip => clip;
+    public bool IsLooping => looping;
+    public bool IsPlaying => _source != null;
 
     /// <summary>
     /// Applies a value to this sound's AudioSource
@@ -95,8 +96,8 @@ public class Sound : ScriptableObject
     /// <param name="source">The source to apply the values to</param>
     private void ApplyDefaultValues(AudioSource source)
     {
-        source.clip = Clip;
-        source.loop = Looping;
+        source.clip = GetClip;
+        source.loop = IsLooping;
         source.outputAudioMixerGroup = mixerGroup;
         
         source.volume = 1f;

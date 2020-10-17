@@ -48,15 +48,36 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Start playing a non-loopable 2D sound
+    /// Start playing a selected sound, using its loopable property to determine playback method.
+    /// </summary>
+    /// <param name="sound">The sound to play</param>
+    /// <param name="target">What GameObject this sound should originate from</param>
+    public void PlaySound(Sound sound, GameObject target)
+    {
+        if (sound.IsLooping)
+        {
+            PlayLoopable(sound, target);
+        }
+        else
+        {
+            PlayOneShot(sound, target);
+        }
+    }
+    public void PlaySound(Sound sound)
+    {
+        PlaySound(sound, _globalTarget);
+    }
+
+    /// <summary>
+    /// Start playing a non-loopable sound
     /// </summary>
     /// <param name="sound">The sound that will be played</param>
     /// <param name="target">The GameObject to start playing this sound</param>
-    public void PlayOneShot(Sound sound, GameObject target)
+    private void PlayOneShot(Sound sound, GameObject target)
     {
          // SFX are fine all living on the same channel - if a channel is already 
         // playing this sound, just take it over and interrupt that sound.
-        AudioSource channel = GetCurrentlyPlaying(target, sound.Clip, true);   
+        AudioSource channel = GetCurrentlyPlaying(target, sound.GetClip, true);   
         
         if (!target.Equals(_globalTarget))
         {
@@ -67,19 +88,15 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(sound.ApplyToChannel(channel));
         
         // One-shots cannot loop, but that's OK for SFX.
-        channel.PlayOneShot(sound.Clip);
-    }
-    public void PlayOneShot(Sound sound)
-    {
-        PlayOneShot(sound, _globalTarget);
+        channel.PlayOneShot(sound.GetClip);
     }
 
     /// <summary>
-    /// Start playing a loopable 2D sound
+    /// Start playing a loopable sound
     /// </summary>
     /// <param name="sound">The sound that will be played</param>
     /// <param name="target">The GameObject to start playing this sound</param>
-    public void PlayLoopable(Sound sound, GameObject target)
+    private void PlayLoopable(Sound sound, GameObject target)
     {
         // Loopable sounds probably won't sound good interrupting each other,
         // so for now they each get their own channel.
@@ -94,28 +111,23 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(sound.ApplyToChannel(channel));
         channel.Play();
     }
-    public void PlayLoopable(Sound sound)
-    {
-        PlayLoopable(sound, _globalTarget);        
-    }
 
     /// <summary>
-    /// Stop playing a loopable 2D sound
+    /// Stop playing a loopable sound
     /// </summary>
     /// <param name="sound">The sound that will be stopped, if its playing</param>
     /// <param name="target">The GameObject to stop playing this sound</param>
-    public void StopLoopable(Sound sound, GameObject target)
+    public void StopSound(Sound sound, GameObject target)
     {
         // Try and find the requested sound, if its playing.
-        AudioSource source = GetCurrentlyPlaying(target, sound.Clip);
+        AudioSource source = GetCurrentlyPlaying(target, sound.GetClip);
         
         if (source != null) 
-            // TODO: add more ways to stop loopable music, e.g. fade out or cross-fade, or other cool transitions
             source.Stop();
     }
-    public void StopLoopable(Sound sound)
+    public void StopSound(Sound sound)
     {
-        StopLoopable(sound, _globalTarget);
+        StopSound(sound, _globalTarget);
     }
 
     /// <summary>
