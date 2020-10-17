@@ -17,12 +17,6 @@ MonoBehaviour:
   mixerGroup: {fileID: 2410399164812516821, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
   modulatedValues:
-  - setting: 3
-    value: 29.83
-    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}
-  - setting: 4
-    value: 1.7
-    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}
-  - setting: 0
+  - setting: 1
     value: 1
     modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}

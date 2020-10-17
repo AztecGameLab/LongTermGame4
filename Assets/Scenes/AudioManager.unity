@@ -313,6 +313,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3438913974619587664, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3438913974619587671, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: mouseSenseH
@@ -430,7 +435,8 @@ MonoBehaviour:
   arrowHit: {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
   arrowShootIce: {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
   arrowShootFire: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
-  music: {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
+  spacialMusic: {fileID: 11400000, guid: 848754497d017b449868058198015a58, type: 2}
+  music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
   spamTime: -1
   spamSound: {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
 --- !u!65 &1849554958

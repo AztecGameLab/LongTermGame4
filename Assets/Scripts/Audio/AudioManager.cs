@@ -17,8 +17,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
     private bool showDebug;
 
-    private int SourcesCount => _channels.Values.Sum(channels => channels.Count);
-    private int PlayingChannelCount => _channels.Values.Sum(sources => sources.Sum(channel => channel.isPlaying ? 1 : 0));
+    private int SourcesCount => _channels.Values.Count;
+    private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
+    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.isPlaying ? 1 : 0));
     
     public static AudioManager Instance()
     {
@@ -118,6 +119,19 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Disposes of all non-global GameObjects being tracked.
+    /// <remarks>This should be called before ever changing scenes; when we get
+    ///  an actual scene management system, attach this method to an event it calls</remarks>
+    /// </summary>
+    public void Cleanup()
+    {
+        foreach (var target in _channels.Keys.Reverse())
+        {
+            if (target != _globalTarget) _channels.Remove(target);
+        }
+    }
+
+    /// <summary>
     /// Find an audio channel that isn't currently playing anything
     /// </summary>
     /// <returns>An audio channel that isn't being used</returns>
@@ -174,7 +188,7 @@ public class AudioManager : MonoBehaviour
         
         return result;
     }
-
+    
     #region gui / editor code
 
     private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
@@ -193,8 +207,8 @@ public class AudioManager : MonoBehaviour
             _showSounds.Add(false);
         }
         
-        GUILayout.Label("Channels: " + SourcesCount);
-        GUILayout.Label("Active channels: " + PlayingChannelCount);
+        GUILayout.Label("Sources: " + SourcesCount);
+        GUILayout.Label("Active channels: " + ActiveChannelCount + " / " + TotalChannelCount);
         for (var targetIndex = 0; targetIndex < _channels.Count; targetIndex++)
         {
             var target = _channels.ElementAt(targetIndex);

@@ -4,6 +4,7 @@ using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class TestSounds : MonoBehaviour
 {
@@ -63,6 +64,14 @@ public class TestSounds : MonoBehaviour
         {
             _audioManager.PlayOneShot(arrowHit, gameObject);
         }
+        
+        // if (GUILayout.Button("switch scenes"))
+        // {
+        //     _audioManager.Cleanup();
+        //     
+        //     var toLoad = SceneManager.GetActiveScene().name == "CombinedScene" ? "AudioManager" : "CombinedScene";
+        //     SceneManager.LoadScene(toLoad);
+        // }
 
         if (_playingMusicA != GUILayout.Toggle(_playingMusicA, "music A"))
         {
