@@ -5,7 +5,7 @@
 /// </summary>
 
 [CreateAssetMenu(fileName = "New LFO Modulator", menuName = "Audio Custom/LFO Modulator", order = 3)]
-public class LFO : Modulator
+public class LFOModulator : Modulator
 {
     [Header("LFO Modulation Settings")]
     

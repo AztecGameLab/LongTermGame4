@@ -5,7 +5,7 @@
 /// </summary>
 
 [CreateAssetMenu(fileName = "New Random Modulator", menuName = "Audio Custom/Random Modulator", order = 2)]
-public class Random : Modulator
+public class RandomModulator : Modulator
 {
     [Header("Random Modulation Settings")]
     
