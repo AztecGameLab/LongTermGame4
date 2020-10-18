@@ -1,16 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    [SerializeField] private Sound lightClick = default;
+    [SerializeField] private Sound heavyClick = default;
 
-    // Update is called once per frame
+    private AudioManager _audioManager;
+
+    private void Start()
+    {
+        _audioManager = AudioManager.Instance();
+    }
+
     public void LoadSceneCredits()
     {
         //Insert Credits Implementation here
     }
+    
     public void LoadSceneExit()
     {
 #if UNITY_EDITOR
@@ -20,9 +27,20 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+    
     public void LoadScenePlay()
     {
         SceneManager.LoadScene("Play");
+    }
+
+    public void PlayLightClick()
+    {
+        _audioManager.PlaySound(lightClick);
+    }
+
+    public void PlayHeavyClip()
+    {
+        _audioManager.PlaySound(heavyClick);
     }
 
 }
