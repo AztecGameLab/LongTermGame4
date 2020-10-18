@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Random Bow
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 6761bd55a9aba47c2abf517922c559c9, type: 3}
+  - {fileID: 8300000, guid: eb5b30cc5a1f843f9929a9a4fbea89a7, type: 3}
+  - {fileID: 8300000, guid: 02fd911f3d41a4fff9cad71742975d95, type: 3}
   looping: 0
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
   modulatedValues: []
-  id: 8
+  id: 2
