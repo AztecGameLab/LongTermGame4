@@ -146,7 +146,7 @@ public class AudioManager : MonoBehaviour
     /// <remarks>This should be called before ever changing scenes; when we get
     ///  an actual scene management system, attach this method to an event it calls</remarks>
     /// </summary>
-    public void Cleanup()
+    public void DisposeAll()
     {
         foreach (var target in _channels.Keys.Reverse())
         {
@@ -158,6 +158,18 @@ public class AudioManager : MonoBehaviour
             }
             _channels.Remove(target);
         }
+    }
+    /// <summary>
+    /// Removes a GameObject from the AudioManager system.
+    /// <remarks>This should be called before the object is destroyed so the AudioManager knows to stop updating it</remarks>
+    /// </summary>
+    public void Dispose(GameObject target)
+    {
+        foreach (var channel in _channels[target])
+        {
+            channel.Stop();
+        }
+        _channels.Remove(target);
     }
 
     /// <summary>
