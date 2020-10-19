@@ -446,6 +446,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
   - {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
   - {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
+  - {fileID: 11400000, guid: 0d7e19940330b7141896376d881d6baf, type: 2}
   showGUI: 1
 --- !u!65 &1849554958
 BoxCollider:

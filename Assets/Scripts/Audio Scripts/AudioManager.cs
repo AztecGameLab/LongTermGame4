@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 
     private int SourcesCount => _channels.Values.Count;
     private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
-    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.isPlaying ? 1 : 0));
+    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.Source.isPlaying ? 1 : 0));
     
     public static AudioManager Instance()
     {
@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     }
     private static AudioManager _instance = null;
     private GameObject _globalTarget = null;
-    private Dictionary<GameObject, HashSet<AudioSource>> _channels;
+    private Dictionary<GameObject, HashSet<Channel>> _channels;
     
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         showDebug = Debug.isDebugBuild;
         _globalTarget = new GameObject("Global Target");
         _globalTarget.transform.parent = transform;
-        _channels = new Dictionary<GameObject, HashSet<AudioSource>>();
+        _channels = new Dictionary<GameObject, HashSet<Channel>>();
     }
 
     /// <summary>
@@ -54,62 +54,26 @@ public class AudioManager : MonoBehaviour
     /// <param name="target">What GameObject this sound should originate from</param>
     public void PlaySound(Sound sound, GameObject target)
     {
+        Channel channel;
+        
         if (sound.IsLooping)
         {
-            PlayLoopable(sound, target);
+            channel = GetOpenChannel(target);
         }
         else
         {
-            PlayOneShot(sound, target);
+            channel = GetCurrentlyPlaying(target, sound) ?? GetOpenChannel(target);
         }
+        
+        // Make the sound 3D if its not targeting the global target.
+        if (!target.Equals(_globalTarget))
+            channel.Source.spatialBlend = 1;
+        
+        StartCoroutine(channel.Play(sound));
     }
     public void PlaySound(Sound sound)
     {
         PlaySound(sound, _globalTarget);
-    }
-
-    /// <summary>
-    /// Start playing a non-loopable sound
-    /// </summary>
-    /// <param name="sound">The sound that will be played</param>
-    /// <param name="target">The GameObject to start playing this sound</param>
-    private void PlayOneShot(Sound sound, GameObject target)
-    {
-         // SFX are fine all living on the same channel - if a channel is already 
-        // playing this sound, just take it over and interrupt that sound.
-        AudioSource channel = GetCurrentlyPlaying(target, sound.GetClip, true);   
-        
-        if (!target.Equals(_globalTarget))
-        {
-            channel.spatialBlend = 1;
-        }
-        
-        // Apply the sound's modulation and initial parameters.
-        StartCoroutine(sound.ApplyToChannel(channel));
-        
-        // One-shots cannot loop, but that's OK for SFX.
-        channel.PlayOneShot(sound.GetClip);
-    }
-
-    /// <summary>
-    /// Start playing a loopable sound
-    /// </summary>
-    /// <param name="sound">The sound that will be played</param>
-    /// <param name="target">The GameObject to start playing this sound</param>
-    private void PlayLoopable(Sound sound, GameObject target)
-    {
-        // Loopable sounds probably won't sound good interrupting each other,
-        // so for now they each get their own channel.
-        AudioSource channel = GetOpenChannel(target);
-        
-        if (!target.Equals(_globalTarget))
-        {
-            channel.spatialBlend = 1;
-        }
-        
-        // Apply modulation and initialize audio source.
-        StartCoroutine(sound.ApplyToChannel(channel));
-        channel.Play();
     }
 
     /// <summary>
@@ -119,11 +83,10 @@ public class AudioManager : MonoBehaviour
     /// <param name="target">The GameObject to stop playing this sound</param>
     public void StopSound(Sound sound, GameObject target)
     {
-        // Try and find the requested sound, if its playing.
-        AudioSource source = GetCurrentlyPlaying(target, sound.GetClip);
-        
-        if (source != null) 
-            source.Stop();
+        Channel channel = GetCurrentlyPlaying(target, sound);
+
+        if (channel != null)
+            StartCoroutine(channel.Stop());
     }
     public void StopSound(Sound sound)
     {
@@ -146,7 +109,7 @@ public class AudioManager : MonoBehaviour
     /// <remarks>This should be called before ever changing scenes; when we get
     ///  an actual scene management system, attach this method to an event it calls</remarks>
     /// </summary>
-    public void Cleanup()
+    public void DisposeAll()
     {
         foreach (var target in _channels.Keys.Reverse())
         {
@@ -154,24 +117,37 @@ public class AudioManager : MonoBehaviour
             
             foreach (var channel in _channels[target])
             {
-                channel.Stop();
+                StartCoroutine(channel.Stop());
             }
             _channels.Remove(target);
         }
+    }
+    
+    /// <summary>
+    /// Removes a GameObject from the AudioManager system.
+    /// <remarks>This should be called before the object is destroyed so the AudioManager knows to stop updating it</remarks>
+    /// </summary>
+    public void Dispose(GameObject target)
+    {
+        foreach (var channel in _channels[target])
+        {
+            StartCoroutine(channel.Stop());
+        }
+        _channels.Remove(target);
     }
 
     /// <summary>
     /// Find an audio channel that isn't currently playing anything
     /// </summary>
     /// <returns>An audio channel that isn't being used</returns>
-    private AudioSource GetOpenChannel(GameObject target)
+    private Channel GetOpenChannel(GameObject target)
     {
-        AudioSource result;
+        Channel result;
         try
         {
             var openChannels =
                 from channel in _channels[target]
-                where !channel.isPlaying
+                where channel.IsAvailable
                 select channel;
             
             result = openChannels.First();
@@ -179,45 +155,41 @@ public class AudioManager : MonoBehaviour
         catch (Exception)
         {
             // If no open channels exist, make a new one and return it
-            result = target.AddComponent<AudioSource>();
+            result = new Channel(target.AddComponent<AudioSource>());
 
             if (!_channels.ContainsKey(target))
-            {
-                _channels.Add(target, new HashSet<AudioSource>());
-            }
+                _channels.Add(target, new HashSet<Channel>());
+
             _channels[target].Add(result);
         }
         return result;
     }
 
     /// <summary>
-    /// Find an audio channel that is playing a certain clip
+    /// Find an audio channel that is attached to a Sound
     /// </summary>
-    /// <param name="target">The GameObject to check for this clip</param>
-    /// <param name="clip">The clip to search for</param>
-    /// <param name="getIfNone">Make a new channel if the target is missing</param>
+    /// <param name="target">The GameObject to check for this sound</param>
+    /// <param name="sound">The sound to search for</param>
     /// <returns></returns>
-    private AudioSource GetCurrentlyPlaying(GameObject target, AudioClip clip, bool getIfNone = false)
+    [CanBeNull]
+    private Channel GetCurrentlyPlaying(GameObject target, Sound sound)
     {
-        AudioSource result = null;
+        Channel result = null;
         try
         {
-            var openChannels =
+            var channels =
                 from channel in _channels[target]
-                where channel.clip.Equals(clip)
+                where channel.SoundEquals(sound)
                 select channel;
 
-            result = openChannels.First();
+            result = channels.First();                
         }
-        catch (Exception)
-        {
-            if (getIfNone)
-                result = GetOpenChannel(target);
-        }
-        
+        catch (KeyNotFoundException) { /* We are not tracking the target */ }
+        catch (InvalidOperationException) { /* The target is tracked, but doesn't have the sound */ }
+
         return result;
     }
-    
+
     #region gui / editor code
 
     private Rect _windowRect = new Rect(Screen.width - 300, 0, 250, 75);
@@ -246,7 +218,7 @@ public class AudioManager : MonoBehaviour
             if (!_showSounds[targetIndex]) continue;
             for (var channelIndex = 0; channelIndex < target.Value.Count; channelIndex++)
             {
-                GUILayout.Label($"Channel {channelIndex + 1}: {GetChannelInfo(target.Value.ElementAt(channelIndex))}");
+                GUILayout.Label($"Channel {channelIndex + 1}: {target.Value.ElementAt(channelIndex)}");
             }
         }
 
@@ -259,15 +231,7 @@ public class AudioManager : MonoBehaviour
         GUI.DragWindow();
     }
 
-    private static string GetChannelInfo(AudioSource source)
-    {
-        StringBuilder result = new StringBuilder();
-        result.AppendLine(source.clip.name);
-        result.AppendLine("\tPitch: " + source.pitch);
-        result.AppendLine("\tVolume: " + source.volume);
-        result.AppendLine("\tPan: " + source.panStereo);
-        return result.ToString();
-    }
+    
 
     #endregion
 }
