@@ -5039,31 +5039,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3438913974619587667, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 1087738823850881508, guid: f9032e0d9c5658c42b434ed8b3742d16,
-        type: 3}
-    - target: {fileID: 3438913974619587670, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.827
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438913974619587670, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.285
-      objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953890, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438913975748953891, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: gravity
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953917, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}

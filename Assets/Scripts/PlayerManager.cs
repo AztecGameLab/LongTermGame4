@@ -15,8 +15,15 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public PlayerShooting s_playerShooting;
 
+    private AudioManager audioManager;
+    public Sound pullBow;
+    public Sound shootArrow;
+    public Sound music;
+
     private void Awake()
     {
+        audioManager = AudioManager.Instance();
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -28,25 +35,48 @@ public class PlayerManager : MonoBehaviour
         }
 
         s_playerMovement = GetComponentInChildren<PlayerMovement>();
-        if(!s_playerMovement)
+        if (!s_playerMovement)
             Debug.LogError("PlayerMovement component missing");
 
         s_looking = GetComponentInChildren<Looking>();
-        if(!s_looking)
+        if (!s_looking)
             Debug.LogError("Looking component missing");
 
         s_playerShooting = GetComponentInChildren<PlayerShooting>();
-        if(!s_playerShooting)
+        if (!s_playerShooting)
             Debug.LogError("PlayerShooting component missing");
     }
 
     void Start()
     {
-
+        audioManager.PlaySound(music);
     }
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+            PrimaryActionDown();
 
+        if (Input.GetMouseButton(0))
+            PrimaryActionHold();
+
+        if (Input.GetMouseButtonUp(0))
+            PrimaryActionUp();
+    }
+
+    void PrimaryActionDown()
+    {
+        audioManager.PlaySound(pullBow);
+    }
+
+    void PrimaryActionHold()
+    {
+
+    }
+
+    void PrimaryActionUp()
+    {
+        audioManager.StopSound(pullBow);
+        audioManager.PlaySound(shootArrow);
     }
 }
