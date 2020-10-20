@@ -30,7 +30,13 @@ public class StickyArrowScript : MonoBehaviour
             if (collision.rigidbody != null)
             {
                 //Still a bug here, in that the arrow will rotate after having it's parent set. Still researching ways around this
+                //This only works with objects that have a scale value of (1,1,1)
                 gameObject.transform.parent = collision.gameObject.transform;
+                //To avoid objects being trigured repeatedly by the arrow you can use the following
+                //If you want the arrows to still interact physically with the world.
+                Destroy(arrowRB);
+                //could use the following if you don't mind arrows phasing through solid objects
+                //gameObject.GetComponent<Collider>().enabled = false;
             }
         }
         
