@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 
 // used for quickly testing out sounds and their modulations
 
@@ -30,11 +28,11 @@ public class SoundTester : MonoBehaviour
         {
             if (!GUILayout.Button(sound.name + ": 2D")) continue;
             
-            if (!sound.IsPlaying)
+            if (sound.IsInactive)
             {
                 _audioManager.PlaySound(sound);
             }
-            else if (sound.IsPlaying && sound.IsLooping)
+            else if (!sound.IsInactive && sound.IsLooping)
             {
                 _audioManager.StopSound(sound);
             }
@@ -44,11 +42,11 @@ public class SoundTester : MonoBehaviour
         {
             if (!GUILayout.Button(sound.name + ": 3D")) continue;
             
-            if (!sound.IsPlaying)
+            if (sound.IsInactive)
             {
                 _audioManager.PlaySound(sound, gameObject);
             }
-            else if (sound.IsPlaying && sound.IsLooping)
+            else if (!sound.IsInactive && sound.IsLooping)
             {
                 _audioManager.StopSound(sound, gameObject);
             }

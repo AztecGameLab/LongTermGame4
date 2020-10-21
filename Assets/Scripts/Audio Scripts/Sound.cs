@@ -3,6 +3,7 @@ using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Playable audio wrapper, can be passed into <see cref="AudioManager"/> for playback.
@@ -15,8 +16,8 @@ public class Sound : ScriptableObject
 {
     [Header("Sound Settings")]
     
-    [SerializeField, Tooltip("The audio file to be played")] 
-    private AudioClip clip = default;
+    [SerializeField, Tooltip("The audio file to be played. With multiple clips, a random clip will be chosen")] 
+    private AudioClip[] clip = new AudioClip[1];
     
     [SerializeField, Tooltip("Whether or not this sound loops when its finished")]
     private bool looping = false;
@@ -28,10 +29,16 @@ public class Sound : ScriptableObject
     
     [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
     private ModulatedFloat[] modulatedValues = default;
-
-    public AudioClip GetClip => clip;
+    
+    private AudioClip GetClip() 
+    {
+        return clip[Random.Range(0, clip.Length)];
+    }
     public bool IsLooping => looping;
-    public bool IsPlaying => _source != null;
+    public bool IsInactive { get; set; } = true;
+
+    private static int _nextId = 0;
+    [HideInInspector] public int id;
 
     /// <summary>
     /// Applies a value to this sound's AudioSource
@@ -53,6 +60,10 @@ public class Sound : ScriptableObject
 
     private void OnEnable()
     {
+        id = _nextId;
+        _nextId++;
+        IsInactive = true;
+        
         InitializeGetters();
         InitializeSetters();
     }
@@ -62,17 +73,26 @@ public class Sound : ScriptableObject
     /// </summary>
     /// <remarks>This should be called before the sound is played</remarks>
     /// <param name="source">The AudioSource to apply changes to</param>
-    public IEnumerator ApplyToChannel([NotNull] AudioSource source)
+    public IEnumerator PlayOnSource([NotNull] AudioSource source)
     {
         _source = source;
         
         // Apply the non-modulating values
-        ApplyDefaultValues(source);
+        ApplyDefaultValues(_source);
 
+        if (IsLooping)
+        {
+            source.Play();
+        }
+        else
+        {
+            source.PlayOneShot(GetClip());
+        }
+
+        IsInactive = false;
         var startTime = Time.time;
 
-        do
-        {
+        while (!IsInactive) {
             var elapsedTime = Time.time - startTime;
             
             // Iterate through the modulated values, and call their modulate method
@@ -81,10 +101,12 @@ public class Sound : ScriptableObject
                 var index = (int) val.setting;
                 _setters[index](val.modulator.Modulate(val.value, elapsedTime));
             }
-            yield return new WaitForEndOfFrame();
-            
-        } while (source.isPlaying);
 
+            IsInactive |= !source.isPlaying;
+            yield return new WaitForEndOfFrame();
+        } 
+
+        source.Stop();
         // Set source to null because this source may be re-allocated for another Sound.
         // This ensures we don't step on the next sound's toes with our modulation.
         _source = null;
@@ -96,7 +118,7 @@ public class Sound : ScriptableObject
     /// <param name="source">The source to apply the values to</param>
     private void ApplyDefaultValues(AudioSource source)
     {
-        source.clip = GetClip;
+        source.clip = GetClip();
         source.loop = IsLooping;
         source.outputAudioMixerGroup = mixerGroup;
         
