@@ -119,6 +119,7 @@ public class Holdable : Interactable
 
     private void OnCollisionEnter(Collision other)
     {
+        hitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
         _manager.PlaySound(hitSound, gameObject);
         
         // No prop-climbing here! Sorry, hl2 players

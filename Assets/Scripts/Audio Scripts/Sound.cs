@@ -170,6 +170,16 @@ public class Sound : ScriptableObject
     {
         return _getters[(int) setting]();
     }
+    
+    /// <summary>
+    /// Sets the value of a setting on this Sound.
+    /// </summary>
+    /// <param name="setting">The setting to modify</param>
+    /// <param name="value">The value this setting should have</param>
+    public void SetSetting(SoundSetting setting, float value)
+    {
+        _setters[(int) setting](value);
+    }
 
     /// <summary>
     /// Exposes a float to the inspector, associates it with a modulator.
