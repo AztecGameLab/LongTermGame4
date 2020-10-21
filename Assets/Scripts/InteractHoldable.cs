@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.PlayerLoop;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Holdable : Interactable
+public class InteractHoldable : Interactable
 {
     [SerializeField] private Sound hitSound;
     
