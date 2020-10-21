@@ -5,6 +5,8 @@ using UnityEngine.PlayerLoop;
 [RequireComponent(typeof(Rigidbody))]
 public class Holdable : Interactable
 {
+    [SerializeField] private Sound hitSound;
+    
     [Header("Hold Position Settings")]
     [SerializeField, Tooltip("How far this object should be held from the player.")] 
     private float holdDistance = 2f;
@@ -28,10 +30,12 @@ public class Holdable : Interactable
     private Transform _playerTransform = null;
     private Rigidbody _rigidbody = null;
     private float _curDistance;
+    private AudioManager _manager;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _manager = AudioManager.Instance();
     }
     
     protected override void OnInteract(Transform userTransform)
@@ -115,6 +119,8 @@ public class Holdable : Interactable
 
     private void OnCollisionEnter(Collision other)
     {
+        _manager.PlaySound(hitSound, gameObject);
+        
         // No prop-climbing here! Sorry, hl2 players
         if (other.gameObject.CompareTag("Player"))
         {
