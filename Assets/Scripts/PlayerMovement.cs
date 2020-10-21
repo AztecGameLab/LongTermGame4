@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             if (charController.isGrounded)
             {
                 velocity.y = Mathf.Sqrt(jumpSpeed * 2f * gravity);
+                charController.slopeLimit = 90f;
 
             }
             
@@ -53,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         if (charController.isGrounded && velocity.y < 0)
         {
             velocity.y = 0f;
+            charController.slopeLimit = 45f;
+
         }
         
        
