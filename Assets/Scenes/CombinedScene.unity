@@ -5039,31 +5039,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3438913974619587667, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 1087738823850881508, guid: f9032e0d9c5658c42b434ed8b3742d16,
-        type: 3}
-    - target: {fileID: 3438913974619587670, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.827
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438913974619587670, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.285
-      objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953890, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438913975748953891, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: gravity
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953917, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
@@ -5120,5 +5099,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: DevArrowSelection.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: DevArrowSelection.Array.data[0]
+      value: 
+      objectReference: {fileID: 8531073477740354948, guid: 2a5041ae04ec0214b8b60f48781b43d9,
+        type: 3}
+    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: DevArrowSelection.Array.data[1]
+      value: 
+      objectReference: {fileID: 6237226022821270646, guid: 1c5643d586ebdd64483ab3b4712fb1d0,
+        type: 3}
+    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: DevArrowSelection.Array.data[2]
+      value: 
+      objectReference: {fileID: 2214633947940137220, guid: 3b5b301a1b72fe84ca4ffc5e8efafc9c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf0aa35baf52a6a408d97c37f9458d90, type: 3}
