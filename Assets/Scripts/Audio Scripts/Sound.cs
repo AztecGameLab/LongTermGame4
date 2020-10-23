@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -29,6 +31,8 @@ public class Sound : ScriptableObject
     
     [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
     private ModulatedFloat[] modulatedValues = default;
+
+    private List<SoundSetting> _nonModulatedValues = default;
     
     private AudioClip GetClip() 
     {
@@ -66,6 +70,23 @@ public class Sound : ScriptableObject
         
         InitializeGetters();
         InitializeSetters();
+
+        _nonModulatedValues = new List<SoundSetting>
+        {
+            SoundSetting.Volume,
+            SoundSetting.Pitch,
+            SoundSetting.Pan,
+            SoundSetting.MinRange3D,
+            SoundSetting.MaxRange3D
+        };
+        
+        foreach (var setting in _nonModulatedValues.Reverse<SoundSetting>())
+        {
+            foreach (var value in modulatedValues)
+            {
+                if (value.setting == setting) _nonModulatedValues.Remove(setting);
+            }
+        }
     }
 
     /// <summary>
@@ -121,12 +142,11 @@ public class Sound : ScriptableObject
         source.clip = GetClip();
         source.loop = IsLooping;
         source.outputAudioMixerGroup = mixerGroup;
-        
-        source.volume = 1f;
-        source.pitch = 1f;
-        source.panStereo = 0f;
-        source.maxDistance = 1f;
-        source.minDistance = 1f;
+
+        foreach (var value in _nonModulatedValues)
+        {
+            _setters[(int) value](GetDefaultValue(value));
+        }
     }
 
     /// <summary>
@@ -149,6 +169,16 @@ public class Sound : ScriptableObject
     public float GetSetting(SoundSetting setting)
     {
         return _getters[(int) setting]();
+    }
+    
+    /// <summary>
+    /// Sets the value of a setting on this Sound.
+    /// </summary>
+    /// <param name="setting">The setting to modify</param>
+    /// <param name="value">The value this setting should have</param>
+    public void SetSetting(SoundSetting setting, float value)
+    {
+        _setters[(int) setting](value);
     }
 
     /// <summary>
@@ -207,6 +237,42 @@ public class Sound : ScriptableObject
             val => { if (_source != null) _source.minDistance = val; }
         };
     }
-    
+
+    private float GetDefaultValue(SoundSetting setting)
+    {
+        float result = -1;
+        
+        switch (setting)
+        {
+            case SoundSetting.Volume:
+            {
+                result = 1f;
+                break;
+            }
+            case SoundSetting.Pan:
+            {
+                result = 0f;
+                break;
+            }
+            case SoundSetting.Pitch:
+            {
+                result = 1f;
+                break;
+            }
+            case SoundSetting.MaxRange3D:
+            {
+                result = 500f;
+                break;
+            }
+            case SoundSetting.MinRange3D:
+            {
+                result = 1f;
+                break;
+            }
+        }
+
+        return result;
+    }
+
     #endregion
 }
