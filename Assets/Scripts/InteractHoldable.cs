@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditor;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class InteractHoldable : Interactable
 {
-    [SerializeField] private Sound hitSound;
+    [Header("Audio Settings")]
+    [SerializeField, Tooltip("The sound that is played when this object collides with something.")] 
+    private Sound hitSound = null;
     
     [Header("Hold Position Settings")]
     [SerializeField, Tooltip("How far this object should be held from the player.")] 
@@ -20,8 +24,6 @@ public class InteractHoldable : Interactable
     private float rotateSpeed = 5f;
     [SerializeField, Tooltip("A way to cap the speed that this object can have when thrown")]
     private float maxThrowSpeed = 10f;
-    [SerializeField, Tooltip("The speed at which this object will be forcefully dropped")] 
-    private float maxDistance = 10f;
     
     private bool _isHeld = false;
     private Vector3 _restingPosition = Vector3.zero;
@@ -54,14 +56,16 @@ public class InteractHoldable : Interactable
      
         TurnTowardsOwner();
         MoveTowardsRestingPosition();
-        CheckForDisconnect();
     }
 
-    private void CheckForDisconnect()
+    private void CheckForDisconnect(ContactPoint contact)
     {
-        // Better way to check for disconnecting than checking distance?
-        // I think ray-casting to player would be best, but too expensive. 
-        if (_curDistance > maxDistance)
+        // If the player moves too far away from this object, they will drop it
+        var distanceToPlayer = (transform.position - _playerTransform.position).magnitude;
+        if (distanceToPlayer > holdDistance * 2f) SetHolding(false);
+
+        // No prop-climbing here! Sorry, hl2 players
+        if (contact.otherCollider.CompareTag("Player"))
         {
             SetHolding(false);
         }
@@ -115,15 +119,19 @@ public class InteractHoldable : Interactable
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void PlayHitSound()
     {
         hitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
         _manager.PlaySound(hitSound, gameObject);
-        
-        // No prop-climbing here! Sorry, hl2 players
-        if (other.gameObject.CompareTag("Player"))
-        {
-            SetHolding(false);
-        }
+    }
+
+    private void OnCollisionEnter()
+    {
+        PlayHitSound();    
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (_isHeld) CheckForDisconnect(other.GetContact(0));
     }
 }
