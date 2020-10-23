@@ -83,6 +83,15 @@ public class InteractHoldable : Interactable
 
     private void MoveTowardsRestingPosition()
     {
+        // Checks to make sure the box isn't directly under the player
+        var directionToPlayer = (_playerTransform.position - transform.position).normalized;
+        if (Vector3.Dot(directionToPlayer, Vector3.down) < -0.98f)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            SetHolding(false);
+            return;
+        }
+
         // Calculate a point a certain distance in front of the player to aim for.
         _restingPosition = _playerTransform.position + (_playerTransform.forward * holdDistance);
         _restingPosition += holdPositionOffset;
