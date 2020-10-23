@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -7,7 +6,7 @@ public class InteractHoldable : Interactable
 {
     [Header("Audio Settings")]
     [SerializeField, Tooltip("The sound that is played when this object collides with something.")] 
-    private Sound hitSound = null;
+    [CanBeNull] private Sound hitSound = null;
     
     [Header("Hold Position Settings")]
     [SerializeField, Tooltip("How far this object should be held from the player.")] 
@@ -130,6 +129,8 @@ public class InteractHoldable : Interactable
 
     private void PlayHitSound()
     {
+        if (hitSound == null) return;
+        
         hitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
         _manager.PlaySound(hitSound, gameObject);
     }
