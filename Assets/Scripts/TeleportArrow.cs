@@ -23,10 +23,10 @@ public class TeleportArrow : StickyArrowScript
     public void TeleportPlayer()
     {
         arrowUsed = true;
-        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hitUp);
-        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hitDown);
-        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hitRight);
-        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hitLeft);
+        Physics.Raycast(transform.position, Vector3.up, out hitUp);
+        Physics.Raycast(transform.position, Vector3.down, out hitDown);
+        Physics.Raycast(transform.position, Vector3.right, out hitRight);
+        Physics.Raycast(transform.position, Vector3.left, out hitLeft);
 
         //will not teleport player if there is no ground beneath them, to the left and right
         if (hitDown.collider != null &&
