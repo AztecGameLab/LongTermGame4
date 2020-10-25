@@ -15,6 +15,9 @@ public class HoldableSettings : ScriptableObject
     private Vector3 holdPositionOffset = Vector3.zero;
     [SerializeField, Tooltip("The distance between this object and a target where the velocity will be zero.")] 
     private float deadZone = 0.1f;
+    [SerializeField, Tooltip("How far the object can be underneath the player before it is dropped.\n1 = directly beneath player")]
+    [Range(0, 1)]
+    private float dropDistance = 0.95f;
     
     [Header("Speed Settings")]
     [SerializeField, Tooltip("How fast this object moves to follow the player's direction.")] 
@@ -24,12 +27,13 @@ public class HoldableSettings : ScriptableObject
     [SerializeField, Tooltip("A way to cap the speed that this object can have when thrown")]
     private float maxThrowSpeed = 10f;
     
-    [CanBeNull] 
+    [CanBeNull]
     public Sound HitSound => hitSound;
     
     public float HoldDistance => holdDistance;
     public Vector3 HoldPositionOffset => holdPositionOffset;
     public float DeadZone => deadZone;
+    public float DropDistance => dropDistance;
     public float MoveSpeed => moveSpeed;
     public float RotateSpeed => rotateSpeed;
     public float MaxThrowSpeed => maxThrowSpeed;

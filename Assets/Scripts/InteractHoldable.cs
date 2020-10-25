@@ -66,8 +66,8 @@ public class InteractHoldable : Interactable
     private void MoveTowardsRestingPosition()
     {
         // Checks to make sure the box isn't directly under the player
-        var directionToPlayer = (_playerTransform.position - transform.position).normalized;
-        if (Vector3.Dot(directionToPlayer, Vector3.down) < -0.98f)
+        var directionToPlayer = (transform.position - _playerTransform.position).normalized;
+        if (Vector3.Dot(directionToPlayer, Vector3.down) > settings.DropDistance)
         {
             _rigidbody.velocity = Vector3.zero;
             SetHolding(false);
