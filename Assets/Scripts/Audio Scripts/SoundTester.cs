@@ -23,11 +23,10 @@ public class SoundTester : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && sounds2D.Length > 0) RunSound(sounds2D[0]);
-        if (Input.GetKeyDown(KeyCode.Alpha2) && sounds2D.Length > 1) RunSound(sounds2D[1]);
-        if (Input.GetKeyDown(KeyCode.Alpha3) && sounds2D.Length > 2) RunSound(sounds2D[2]);
-        if (Input.GetKeyDown(KeyCode.Alpha4) && sounds2D.Length > 3) RunSound(sounds2D[3]);
-        if (Input.GetKeyDown(KeyCode.Alpha5) && sounds2D.Length > 4) RunSound(sounds2D[4]);
+        if (Input.GetKeyDown(KeyCode.Alpha1) && sounds2D.Length > 0) Run2DSound(sounds2D[0]);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && sounds2D.Length > 1) Run2DSound(sounds2D[1]);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && sounds3D.Length > 0) Run3DSound(sounds3D[0], gameObject);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && sounds3D.Length > 1) Run3DSound(sounds3D[1], gameObject);
     }
 
     private void OnGUI()
@@ -36,16 +35,16 @@ public class SoundTester : MonoBehaviour
 
         foreach (var sound in sounds2D)
         {
-            if (GUILayout.Button(sound.name + ": 2D")) RunSound(sound);
+            if (GUILayout.Button(sound.name + ": 2D")) Run2DSound(sound);
         }
 
         foreach (var sound in sounds3D)
         {
-            if (GUILayout.Button(sound.name + ": 3D")) RunSound(sound, gameObject);
+            if (GUILayout.Button(sound.name + ": 3D")) Run3DSound(sound, gameObject);
         }
     }
 
-    private void RunSound(Sound sound, GameObject target = null)
+    private void Run2DSound(Sound sound)
     {
         if (sound.IsInactive)
         {
@@ -54,6 +53,18 @@ public class SoundTester : MonoBehaviour
         else if (!sound.IsInactive && sound.IsLooping)
         {
             _audioManager.StopSound(sound);
+        }
+    }
+    
+    private void Run3DSound(Sound sound, GameObject target)
+    {
+        if (sound.IsInactive)
+        {
+            _audioManager.PlaySound(sound, target);
+        }
+        else if (!sound.IsInactive && sound.IsLooping)
+        {
+            _audioManager.StopSound(sound, target);
         }
     }
 }

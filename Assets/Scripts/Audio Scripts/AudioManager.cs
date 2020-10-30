@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="target">What GameObject this sound should originate from</param>
     public void PlaySound(Sound sound, GameObject target)
     {
-        // null check is kinda expensive, but we dont play sounds every frame hopefully
+        // null check is expensive, but we dont play sounds every frame hopefully
         if (sound == null) return;
         
         Channel channel;
