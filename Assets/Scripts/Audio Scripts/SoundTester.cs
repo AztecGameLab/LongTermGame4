@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 // used for quickly testing out sounds and their modulations
 
@@ -23,6 +25,12 @@ public class SoundTester : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.None : CursorLockMode.Locked;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && sounds2D.Length > 0) Run2DSound(sounds2D[0]);
         if (Input.GetKeyDown(KeyCode.Alpha2) && sounds2D.Length > 1) Run2DSound(sounds2D[1]);
         if (Input.GetKeyDown(KeyCode.Alpha3) && sounds3D.Length > 0) Run3DSound(sounds3D[0], gameObject);
