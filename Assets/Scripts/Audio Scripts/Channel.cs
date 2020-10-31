@@ -41,8 +41,7 @@ public class Channel
     public override string ToString()
     {
         StringBuilder result = new StringBuilder();
-        result.AppendLine(_hasSound ? _attachedSound.name : "None");
-        result.AppendLine("\tIs active: " + !IsAvailable);
+        result.AppendLine(_hasSound ? _attachedSound.ToString() : "None");
         return result.ToString();
     }
 }

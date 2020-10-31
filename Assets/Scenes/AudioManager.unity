@@ -918,11 +918,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac23e2102394ce94d876f6c434633a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds3D: []
+  sounds3D:
+  - {fileID: 11400000, guid: 19b882597d7f9364fa5df0319b2574ec, type: 2}
+  - {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
   sounds2D:
-  - {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
+  - {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
   - {fileID: 11400000, guid: e5e42546a95935c41a8fdacb95bafde5, type: 2}
-  - {fileID: 11400000, guid: d9dd2c6f963a15942a685bca3e411b35, type: 2}
   showGUI: 1
 --- !u!1 &255985099
 GameObject:
@@ -5443,7 +5444,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-54178
+  m_Name: pb_Mesh16338
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

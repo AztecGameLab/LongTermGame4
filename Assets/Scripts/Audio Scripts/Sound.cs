@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -32,7 +32,7 @@ public class Sound : ScriptableObject
     [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
     private ModulatedFloat[] modulatedValues = default;
 
-    private List<SoundSetting> _nonModulatedValues = default;
+    private Settings _settings;
     
     private AudioClip GetClip() 
     {
@@ -44,49 +44,12 @@ public class Sound : ScriptableObject
     private static int _nextId = 0;
     [HideInInspector] public int id;
 
-    /// <summary>
-    /// Applies a value to this sound's AudioSource
-    /// </summary>
-    /// <param name="value">The value that should be applied</param>
-    private delegate void ApplyValue(float value);
-    private ApplyValue[] _setters;
-
-    /// <summary>
-    /// Gets a value from this sound's AudioSource
-    /// </summary>
-    private delegate float GetValue();
-    private GetValue[] _getters;
-
-    /// <summary>
-    /// The AudioSource currently playing this sound
-    /// </summary>
-    [CanBeNull] private AudioSource _source = null;
-
     private void OnEnable()
     {
+        IsInactive = true;
         id = _nextId;
         _nextId++;
-        IsInactive = true;
-        
-        InitializeGetters();
-        InitializeSetters();
-
-        _nonModulatedValues = new List<SoundSetting>
-        {
-            SoundSetting.Volume,
-            SoundSetting.Pitch,
-            SoundSetting.Pan,
-            SoundSetting.MinRange3D,
-            SoundSetting.MaxRange3D
-        };
-        
-        foreach (var setting in _nonModulatedValues.Reverse<SoundSetting>())
-        {
-            foreach (var value in modulatedValues)
-            {
-                if (value.setting == setting) _nonModulatedValues.Remove(setting);
-            }
-        }
+        _settings = new Settings(modulatedValues);
     }
 
     /// <summary>
@@ -96,89 +59,91 @@ public class Sound : ScriptableObject
     /// <param name="source">The AudioSource to apply changes to</param>
     public IEnumerator PlayOnSource([NotNull] AudioSource source)
     {
-        _source = source;
+        source.outputAudioMixerGroup = mixerGroup;
+        _settings.ApplyValues(source);
         
-        // Apply the non-modulating values
-        ApplyDefaultValues(_source);
-
         if (IsLooping)
         {
+            source.clip = GetClip();
             source.Play();
         }
         else
         {
             source.PlayOneShot(GetClip());
         }
-
         IsInactive = false;
         var startTime = Time.time;
-
+        
         while (!IsInactive) {
             var elapsedTime = Time.time - startTime;
             
             // Iterate through the modulated values, and call their modulate method
             foreach (var val in modulatedValues)
             {
-                var index = (int) val.setting;
-                _setters[index](val.modulator.Modulate(val.value, elapsedTime));
+                SoundValue value = val.soundValue;
+                float target = val.modulator.Modulate(val.value, elapsedTime);
+                
+                SetValue(value, target);
             }
 
+            _settings.ApplyValues(source);
             IsInactive |= !source.isPlaying;
             yield return new WaitForEndOfFrame();
         } 
 
         source.Stop();
-        // Set source to null because this source may be re-allocated for another Sound.
-        // This ensures we don't step on the next sound's toes with our modulation.
-        _source = null;
-    }
-
-    /// <summary>
-    /// Applies specified default values to the AudioSource
-    /// </summary>
-    /// <param name="source">The source to apply the values to</param>
-    private void ApplyDefaultValues(AudioSource source)
-    {
-        source.clip = GetClip();
-        source.loop = IsLooping;
-        source.outputAudioMixerGroup = mixerGroup;
-
-        foreach (var value in _nonModulatedValues)
-        {
-            _setters[(int) value](GetDefaultValue(value));
-        }
     }
 
     /// <summary>
     /// Linearly interpolates a setting of this Sound.
     /// </summary>
-    /// <param name="setting">Which aspect of the sound should be changed</param>
-    /// <param name="from">The initial value of the setting</param>
-    /// <param name="to">The final value of the setting</param>
+    /// <param name="value">Which aspect of the sound should be changed</param>
+    /// <param name="from">The initial value</param>
+    /// <param name="to">The final value</param>
     /// <param name="completion">A float from 0 to 1 representing completion of the interpolation</param>
-    public void Lerp(SoundSetting setting, float from, float to, float completion)
+    public void Lerp(SoundValue value, float from, float to, float completion)
     {
-        _setters[(int) setting](Mathf.Lerp(from, to, completion));
+        SetValue(value,Mathf.Lerp(from, to, completion));
     }
 
     /// <summary>
     /// Returns the value associated with a setting on this Sound.
     /// </summary>
-    /// <param name="setting">The setting to get the value of</param>
+    /// <param name="value">The setting to get the value of</param>
     /// <returns>The value of the specified setting</returns>
-    public float GetSetting(SoundSetting setting)
+    public float GetValue(SoundValue value)
     {
-        return _getters[(int) setting]();
+        return _settings.Values[(int) value];
     }
     
     /// <summary>
     /// Sets the value of a setting on this Sound.
     /// </summary>
-    /// <param name="setting">The setting to modify</param>
-    /// <param name="value">The value this setting should have</param>
-    public void SetSetting(SoundSetting setting, float value)
+    /// <param name="value">The value to modify</param>
+    /// <param name="target">The new target for this value</param>
+    public void SetValue(SoundValue value, float target)
     {
-        _setters[(int) setting](value);
+        foreach (var val in modulatedValues)
+        {
+            if (val.soundValue == value)
+                val.value = target;
+        }
+        
+        _settings.Values[(int) value] = target;
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append($"{name} ({(IsInactive ? "Inactive" : "Active")})");
+        
+        for (var i = 0; i < _settings.Values.Length; i++)
+        {
+            var setting = _settings.Values[i];
+            builder.Append( "\n" + Enum.GetNames(typeof(SoundValue))[i] + " : "+ setting);
+        }
+
+        return builder.ToString();
     }
 
     /// <summary>
@@ -187,92 +152,41 @@ public class Sound : ScriptableObject
     [Serializable]
     private class ModulatedFloat
     {
-        public SoundSetting setting = default;
+        public SoundValue soundValue = default;
         public float value = 1f;
         public Modulator modulator = default;
     }
     
-    #region initializers
-
-    private void InitializeGetters()
+    /// <summary>
+    /// Different settings that can be modulated and applied to a <see cref="Sound"/>
+    /// </summary>
+    private class Settings
     {
-        _getters = new GetValue[]
-        {
-            () => 
-            { 
-                if (_source != null) return _source.volume;
-                return 0; 
-            },
-            () =>
-            {
-                if (_source != null) return _source.pitch;
-                return 0;
-            },
-            () =>
-            {
-                if (_source != null) return _source.panStereo;
-                return 0;
-            },
-            () =>
-            {
-                if (_source != null) return _source.maxDistance;
-                return 0;
-            },
-            () =>
-            {
-                if (_source != null) return _source.minDistance;
-                return 0;
-            }
-        };
-    }
-    
-    private void InitializeSetters()
-    {
-        _setters = new ApplyValue[]
-        {
-            val => { if (_source != null) _source.volume = val; },
-            val => { if (_source != null) _source.pitch = val; },
-            val => { if (_source != null) _source.panStereo = val; },
-            val => { if (_source != null) _source.maxDistance = val; },
-            val => { if (_source != null) _source.minDistance = val; }
-        };
-    }
-
-    private float GetDefaultValue(SoundSetting setting)
-    {
-        float result = -1;
+        public readonly float[] Values;
         
-        switch (setting)
+        public Settings(IEnumerable<ModulatedFloat> modulatedFloats)
         {
-            case SoundSetting.Volume:
+            Values = new float[Enum.GetNames(typeof(SoundValue)).Length];
+
+            Values[(int) SoundValue.Volume] = 1;
+            Values[(int) SoundValue.Pitch] = 1;
+            Values[(int) SoundValue.Pan] = 0;
+            Values[(int) SoundValue.MaxRange] = 500;
+            Values[(int) SoundValue.MinRange] = 1;
+
+            foreach (var modulated in modulatedFloats)
             {
-                result = 1f;
-                break;
-            }
-            case SoundSetting.Pan:
-            {
-                result = 0f;
-                break;
-            }
-            case SoundSetting.Pitch:
-            {
-                result = 1f;
-                break;
-            }
-            case SoundSetting.MaxRange3D:
-            {
-                result = 500f;
-                break;
-            }
-            case SoundSetting.MinRange3D:
-            {
-                result = 1f;
-                break;
+                Values[(int) modulated.soundValue] = modulated.value;
             }
         }
-
-        return result;
+        
+        public void ApplyValues(AudioSource source)
+        {
+            source.volume = Values[(int) SoundValue.Volume];
+            source.pitch = Values[(int) SoundValue.Pitch];
+            source.panStereo = Values[(int) SoundValue.Pan];
+            source.maxDistance = Values[(int) SoundValue.MaxRange];
+            source.minDistance = Values[(int) SoundValue.MinRange];
+        }
     }
-
-    #endregion
 }
