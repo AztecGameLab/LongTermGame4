@@ -36,7 +36,7 @@ public class ExampleTimerController : MonoBehaviour
         UpdatePlatform(completion);
         UpdateBar(completion);
 
-        if (_timeSinceTick > 1f)
+        if (_timeSinceTick >= 1f)
         {
             PlayTickingSound();
             _timeSinceTick = 0f;
