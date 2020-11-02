@@ -22,6 +22,8 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
+        if (_runTime != 0) return;
+        
         _runTime = 0;
         StartCoroutine(OnTick());
     }
@@ -45,7 +47,7 @@ public class Timer : MonoBehaviour
             yield return new WaitForEndOfFrame();            
         }
 
-        timerEnd.Invoke();
+        StopTimer();
     }
 }
 
