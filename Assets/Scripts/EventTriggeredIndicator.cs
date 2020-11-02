@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
-public class ArrowTriggeredIndicator : MonoBehaviour
+public class EventTriggeredIndicator : MonoBehaviour
 {
     private Renderer ren;
     private void Start()

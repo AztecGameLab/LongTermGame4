@@ -589,6 +589,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
+      propertyPath: tagsToTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
       propertyPath: triggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1382081864}
@@ -606,6 +611,16 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Revert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: tagsToTrigger.Array.data[0]
+      value: arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: useTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290238, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
@@ -1078,6 +1093,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
+      propertyPath: tagsToTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
       propertyPath: triggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 818417039}
@@ -1145,6 +1165,16 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: tagsToTrigger.Array.data[0]
+      value: arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: useTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290238, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
@@ -1338,6 +1368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
+      propertyPath: tagsToTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
       propertyPath: triggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 439122382}
@@ -1420,6 +1455,16 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: useTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: tagsToTrigger.Array.data[0]
+      value: arrow
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290238, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
@@ -2920,6 +2965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958043dc49155364e90b55c6a219d9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagsToTrigger:
+  - arrow
+  useTrigger: 1
   triggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -2946,6 +2994,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   triggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  useCollision: 0
+  collisionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &1260419775
@@ -3667,6 +3722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958043dc49155364e90b55c6a219d9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagsToTrigger:
+  - arrow
+  useTrigger: 1
   triggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -3693,6 +3751,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   triggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  useCollision: 0
+  collisionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &1475638736
@@ -4078,6 +4143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958043dc49155364e90b55c6a219d9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagsToTrigger:
+  - arrow
+  useTrigger: 1
   triggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -4104,6 +4172,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   triggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  useCollision: 0
+  collisionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1612485327
@@ -4276,6 +4351,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958043dc49155364e90b55c6a219d9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagsToTrigger:
+  - arrow
+  useTrigger: 1
   triggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -4302,6 +4380,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   triggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  useCollision: 0
+  collisionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  collisionEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &1841225953
@@ -4765,6 +4850,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
+      propertyPath: tagsToTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
       propertyPath: triggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 672504872}
@@ -4782,6 +4872,16 @@ PrefabInstance:
         type: 3}
       propertyPath: triggerExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Revert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: tagsToTrigger.Array.data[0]
+      value: arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068954815981290236, guid: f6524219028c16d4fa60bcf2a22c099a,
+        type: 3}
+      propertyPath: useTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7068954815981290238, guid: f6524219028c16d4fa60bcf2a22c099a,
         type: 3}
