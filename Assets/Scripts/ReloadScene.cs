@@ -21,9 +21,20 @@ public class ReloadScene : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(sceneName);
-           
+            ReloadTheScene();
+
         }
+
+
+    }
+
+    public void ReloadTheScene()
+    {
+
+      
+            SceneManager.LoadScene(sceneName);
+
+       
 
     }
 }
