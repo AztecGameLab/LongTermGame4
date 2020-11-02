@@ -77,8 +77,6 @@ public class ExampleTimerController : MonoBehaviour
         _timeSinceTick = 1f;
     }
 
-    #region Object Transformations
-
     private void UpdateSpinningThing()
     {
         var oldAngle = spinningThing.eulerAngles;
@@ -94,8 +92,6 @@ public class ExampleTimerController : MonoBehaviour
         bar.transform.localScale = new Vector3(1, completion, 1);
     }
 
-    #endregion
-    
     #region Sounds
 
     public void PlayTickingSound()
