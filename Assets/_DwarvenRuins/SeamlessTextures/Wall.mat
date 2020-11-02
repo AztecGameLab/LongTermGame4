@@ -10,7 +10,7 @@ Material:
   m_Name: Wall
   m_Shader: {fileID: 4800000, guid: c4eb5a30ed536d743bf20ca20d5383bf, type: 3}
   m_ShaderKeywords: _SMOOTHFROMMAPSWITCH_ON
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -101,6 +101,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlbedoDetailStrenth: 0
+    - _AlphaCutoff: 0.5
     - _BVCNormalsScale: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
