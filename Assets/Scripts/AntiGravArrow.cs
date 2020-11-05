@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AntiGravArrow : MonoBehaviour
 {
-    void Start()
+    private AudioManager audioManager;
+    public Sound gravSound;
+    private void Awake()
     {
-
+        audioManager = AudioManager.Instance();
     }
 
     void Update()
@@ -22,10 +24,12 @@ public class AntiGravArrow : MonoBehaviour
             AntiGrav ag = other.gameObject.GetComponent<AntiGrav>();
             if (ag)
             {
+                audioManager.StopSound(gravSound);
                 Destroy(ag);
             }
             else
             {
+                audioManager.PlaySound(gravSound);
                 other.gameObject.AddComponent<AntiGrav>();
             }
         }

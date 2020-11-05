@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8289426155481981959, guid: 2a5041ae04ec0214b8b60f48781b43d9,
+        type: 3}
+      propertyPath: gravSound
+      value: 
+      objectReference: {fileID: 11400000, guid: a268986f95c1e4843aef6b08e6efd88d,
+        type: 2}
     - target: {fileID: 8531073477740354944, guid: 2a5041ae04ec0214b8b60f48781b43d9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 8531073477740354948, guid: 2a5041ae04ec0214b8b60f48781b43d9,
         type: 3}
       propertyPath: m_Name
-      value: ArrowCombined
+      value: AntiGravArrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5041ae04ec0214b8b60f48781b43d9, type: 3}
