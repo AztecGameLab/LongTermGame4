@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
+/// <summary>
+/// A MonoBehavior "Gauntlet" that will listen to a list of EventTriggers and will throw a success event
+/// if every EventTrigger is activated before the EndGauntlet() method is called.
+/// <remarks>Works well in tandem with a Timer, starting and ending the gauntlet after some time has passed</remarks> 
+/// </summary>
 public class GauntletController : MonoBehaviour
 {
-    [SerializeField] private List<EventTrigger> inactiveTargets = default;
+    [Header("Gauntlet Settings")]
     [SerializeField] private UnityEvent onSuccess = default;
     [SerializeField] private UnityEvent onReset = default;
+    [SerializeField] private List<EventTrigger> targets = default;
     
-    private int MaxCharges => inactiveTargets.Count;
-    private List<EventTrigger> _activeTargets = new List<EventTrigger>();
+    private int MaxCharges => targets.Count;
+    private bool Charged => _charges >= MaxCharges;
     private bool _acceptingCharge = false;
-    private bool Charged => charges >= MaxCharges;
-    private int charges;
+    private int _charges;
     
     private void OnEnable()
     {
-        foreach (var target in inactiveTargets)
+        foreach (var target in targets)
         {
             target.collisionStart.AddListener(OnTargetActivate);
         }
@@ -26,7 +29,7 @@ public class GauntletController : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach (var target in inactiveTargets)
+        foreach (var target in targets)
         {
             target.collisionStart.RemoveListener(OnTargetActivate);
         }
@@ -35,7 +38,7 @@ public class GauntletController : MonoBehaviour
     public void StartGauntlet()
     {
         if (Charged) onReset.Invoke();
-        charges = 0;
+        _charges = 0;
         _acceptingCharge = true;
     }
 
@@ -48,7 +51,7 @@ public class GauntletController : MonoBehaviour
     private void OnTargetActivate()
     {
         if (!_acceptingCharge || Charged) return;
-        charges++;
+        _charges++;
         if (Charged) onSuccess.Invoke();
     }
 }
