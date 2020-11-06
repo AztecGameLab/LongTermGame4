@@ -59,6 +59,9 @@ public class GrapplingArrow : MonoBehaviour
                 
                 yield return null;
             }
+            player.s_playerMovement.enabled = true;
+            isPulling = false; //Set bool variables back to default
+            stopPull = false;
             yield break;
         }
         //When player is being pulled, player movement must temporarily be disabled to function properly
@@ -67,13 +70,12 @@ public class GrapplingArrow : MonoBehaviour
         while (!stopPull && Vector3.Distance(player.transform.position, collision.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
             player.transform.position = Vector3.Lerp(player.transform.position, collision.transform.position, moveSpeed * Time.deltaTime);
-         
-            
             yield return null;
         }
         player.s_playerMovement.enabled = true;
         isPulling = false; //Set bool variables back to default
         stopPull = false;
+        Debug.Log(isPulling);
     }
 
 
