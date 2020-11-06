@@ -30,6 +30,7 @@ public class PlayerShooting : MonoBehaviour
         if (arrowObject != null) //if an arrow is currently in the scene, store the isPulling variable
         {
             isPulling = arrowObject.GetComponent<GrapplingArrow>().isPulling;
+            
         }
         if (arrowObject != null && isPulling && arrowPrefab.GetComponent<GrapplingArrow>() && (Input.GetMouseButton(0))) //if arrow isPulling and player left clicks and arrow is grappling arrow, stop pulling
         {
@@ -45,13 +46,17 @@ public class PlayerShooting : MonoBehaviour
             
             if (!disableShoot && Input.GetMouseButton(0))
             {
-                disableShoot = false;
                 timer += Time.deltaTime;
                 timer = Mathf.Clamp(timer, 0, timeToGetToMaxForce);
                 shootingStrength = Mathf.Lerp(minForce, maxForce, timer / timeToGetToMaxForce);
             }
-            else if (!disableShoot && Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0))
             {
+                if (disableShoot)
+                {
+                    disableShoot = false;
+                    return;
+                }
                 arrowObject = Instantiate(arrowPrefab) as GameObject;
                 arrowObject.transform.position = transform.position + transform.forward;
                 arrowObject.transform.forward = transform.forward;
@@ -62,6 +67,7 @@ public class PlayerShooting : MonoBehaviour
                 
             }
             
+
         }
         
         
