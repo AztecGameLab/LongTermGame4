@@ -9,12 +9,18 @@ public class GrapplingArrow : MonoBehaviour
     public float massThreshold = 4;
     public float pullRadiusThreshold = 4;
     Rigidbody arrowRB;
-    bool isPulling = false;
-    bool stopPull = false;
+    public bool isPulling;
+    public bool stopPull = false;
     // Start is called before the first frame update
     void Start()
     {
         arrowRB = GetComponent<Rigidbody>();
+        stopPull = false;
+        isPulling = false;
+    }
+    void Update()
+    {
+        Debug.Log("is Pulling (arrow): " + isPulling);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -48,14 +54,9 @@ public class GrapplingArrow : MonoBehaviour
         {
             while (!stopPull && Vector3.Distance(collision.transform.position, player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
             {
-                if (Input.GetMouseButton(0)) //if player clicks left mouse again (mid pull) set stopPull to true. else, continue with lerp
-                {
-                    stopPull = true;
-                }
-                else
-                {
-                    collision.transform.position = Vector3.Lerp(collision.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-                }
+                
+                collision.transform.position = Vector3.Lerp(collision.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                
                 yield return null;
             }
             yield break;
@@ -65,14 +66,8 @@ public class GrapplingArrow : MonoBehaviour
    
         while (!stopPull && Vector3.Distance(player.transform.position, collision.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
-            if (Input.GetMouseButton(0))//if player clicks left mouse again (mid pull) set stopPull to true. else, continue with lerp
-            {
-                stopPull = true;
-            }
-            else
-            {
-                player.transform.position = Vector3.Lerp(player.transform.position, collision.transform.position, moveSpeed * Time.deltaTime);
-            }
+            player.transform.position = Vector3.Lerp(player.transform.position, collision.transform.position, moveSpeed * Time.deltaTime);
+         
             
             yield return null;
         }
@@ -83,8 +78,5 @@ public class GrapplingArrow : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(Vector3.Distance(this.transform.position, player.transform.position));
-    }
+    
 }
