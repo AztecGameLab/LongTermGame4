@@ -28,6 +28,7 @@ public class GrapplingArrow : MonoBehaviour
             arrowRB.isKinematic = true;
             this.transform.parent = collision.transform; 
             isPulling = true;
+            Destroy(GetComponent<Rigidbody>());
             StartCoroutine(MoveObject(collision));
         
         }
