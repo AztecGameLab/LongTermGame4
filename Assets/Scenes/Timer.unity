@@ -16482,10 +16482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63dcec24cc8d4a57b22c3dc2d6390550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inactiveTargets:
-  - {fileID: 1516893372}
-  - {fileID: 1836190480}
-  - {fileID: 1369140451}
   onSuccess:
     m_PersistentCalls:
       m_Calls:
@@ -16586,6 +16582,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  targets:
+  - {fileID: 1516893372}
+  - {fileID: 1836190480}
+  - {fileID: 1369140451}
 --- !u!4 &1368594262
 Transform:
   m_ObjectHideFlags: 0
