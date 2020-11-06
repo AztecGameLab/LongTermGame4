@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5259,12 +5259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3438913974619587667, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: arrowPrefab
-      value: 
-      objectReference: {fileID: 8531073477740354948, guid: 2a5041ae04ec0214b8b60f48781b43d9,
-        type: 3}
     - target: {fileID: 3438913975748953890, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_Name
@@ -5325,34 +5319,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: DevArrowSelection.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: DevArrowSelection.Array.data[0]
-      value: 
-      objectReference: {fileID: 8531073477740354948, guid: 2a5041ae04ec0214b8b60f48781b43d9,
-        type: 3}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: DevArrowSelection.Array.data[1]
-      value: 
-      objectReference: {fileID: 6237226022821270646, guid: 1c5643d586ebdd64483ab3b4712fb1d0,
-        type: 3}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: DevArrowSelection.Array.data[2]
-      value: 
-      objectReference: {fileID: 2726300047447418399, guid: 29433fa00ea76194b94c8d745aa4a587,
-        type: 3}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: DevArrowSelection.Array.data[3]
-      value: 
-      objectReference: {fileID: 2841423412555271410, guid: 2a689f3e77d39e64884345823134f36a,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf0aa35baf52a6a408d97c37f9458d90, type: 3}
