@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class GauntletController : MonoBehaviour
 {
-    [SerializeField] private List<ArrowTrigger> inactiveTargets = default;
+    [SerializeField] private List<EventTrigger> inactiveTargets = default;
     [SerializeField] private UnityEvent onSuccess = default;
     [SerializeField] private UnityEvent onFail = default;
     
     private int MaxCharges => inactiveTargets.Count;
-    private List<ArrowTrigger> _activeTargets = new List<ArrowTrigger>();
+    private List<EventTrigger> _activeTargets = new List<EventTrigger>();
     private bool _acceptingCharge = false;
     private bool Charged => charges >= MaxCharges;
     private int charges;

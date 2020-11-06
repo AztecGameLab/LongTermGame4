@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 70263e3b788f8c1439c8ef646110d8e1
+<<<<<<< HEAD:Assets/Audio/Arrows/Collisions/Anti-Gravity.meta
+guid: 21bffa87ddc1d3d45b2a863c64760ac6
+=======
+guid: 8af87afd3495a2761b5ad5dbc4d5293e
+>>>>>>> master:Assets/Bow and Arrow.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

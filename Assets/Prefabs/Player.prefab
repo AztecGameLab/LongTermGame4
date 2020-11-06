@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 3438913975748953916}
   - component: {fileID: 3438913975748953891}
   - component: {fileID: 4984713569114710062}
+  - component: {fileID: 2087326524746666265}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -322,6 +323,19 @@ MonoBehaviour:
   pullBow: {fileID: 11400000, guid: b5efe45b4c671094c934b1513ff080ee, type: 2}
   shootArrow: {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
   music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
+  DevArrowSelection: []
+--- !u!114 &2087326524746666265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438913975748953890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924248b2437774e5cb5c1d120abf9363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5231191043416127852
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ Material:
   m_Name: DwarvenRuinesKrystall
   m_Shader: {fileID: 4800000, guid: 64e22165f15883d4c9bf56b78c0ebabd, type: 3}
   m_ShaderKeywords: _EMISSIONSWITCH_ON _SMOOTHFROMMAPSWITCH_ON
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _InnerGlowMask:
-        m_Texture: {fileID: 2800000, guid: ce4ea51875870e34296c316f77191d41, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _InnerHeightMap:
@@ -92,7 +92,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SructureGlowTexture:
-        m_Texture: {fileID: 2800000, guid: e451d922929dcc44da221b6ac55970b5, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -100,6 +100,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
