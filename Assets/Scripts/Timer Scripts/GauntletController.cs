@@ -8,7 +8,7 @@ public class GauntletController : MonoBehaviour
 {
     [SerializeField] private List<EventTrigger> inactiveTargets = default;
     [SerializeField] private UnityEvent onSuccess = default;
-    [SerializeField] private UnityEvent onFail = default;
+    [SerializeField] private UnityEvent onReset = default;
     
     private int MaxCharges => inactiveTargets.Count;
     private List<EventTrigger> _activeTargets = new List<EventTrigger>();
@@ -20,8 +20,7 @@ public class GauntletController : MonoBehaviour
     {
         foreach (var target in inactiveTargets)
         {
-            target.triggerEnter.AddListener(OnTargetActivate);
-            target.triggerExit.AddListener(OnTargetDeactivate);
+            target.collisionStart.AddListener(OnTargetActivate);
         }
     }
 
@@ -29,13 +28,13 @@ public class GauntletController : MonoBehaviour
     {
         foreach (var target in inactiveTargets)
         {
-            target.triggerEnter.RemoveListener(OnTargetActivate);
-            target.triggerExit.RemoveListener(OnTargetDeactivate);
+            target.collisionStart.RemoveListener(OnTargetActivate);
         }
     }
 
     public void StartGauntlet()
     {
+        if (Charged) onReset.Invoke();
         charges = 0;
         _acceptingCharge = true;
     }
@@ -43,7 +42,7 @@ public class GauntletController : MonoBehaviour
     public void EndGauntlet()
     {
         _acceptingCharge = false;
-        if (!Charged) onFail.Invoke();
+        if (!Charged) onReset.Invoke();
     }
 
     private void OnTargetActivate()
@@ -51,11 +50,5 @@ public class GauntletController : MonoBehaviour
         if (!_acceptingCharge || Charged) return;
         charges++;
         if (Charged) onSuccess.Invoke();
-    }
-    
-    private void OnTargetDeactivate()
-    {
-        if (!_acceptingCharge || charges <= 0) return;
-        charges--;
     }
 }
