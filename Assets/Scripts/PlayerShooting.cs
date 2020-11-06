@@ -27,13 +27,18 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (arrowPrefab.GetComponent<GrapplingArrow>() && arrowObject != null) //if an arrow is currently in the scene, store the isPulling variable
         {
-            isPulling = arrowObject.GetComponent<GrapplingArrow>().isPulling;
+            if (arrowObject.GetComponent<GrapplingArrow>())
+            {
+                isPulling = arrowObject.GetComponent<GrapplingArrow>().isPulling;
+            }
+               
             
 
         }
-        if (arrowObject != null && isPulling && arrowPrefab.GetComponent<GrapplingArrow>() && (Input.GetMouseButton(0))) //if arrow isPulling and player left clicks and arrow is grappling arrow, stop pulling
+        if (arrowObject != null && isPulling && arrowObject.GetComponent<GrapplingArrow>() && (Input.GetMouseButton(0))) //if arrow isPulling and player left clicks and arrow is grappling arrow, stop pulling
         {
             //Debug.Log("Entered");
             disableShoot = true;
@@ -56,7 +61,7 @@ public class PlayerShooting : MonoBehaviour
                 if (disableShoot)
                 {
                     disableShoot = false;
-                    Debug.Log("Entered");
+                    //Debug.Log("Entered");
                     return;
                 }
                 arrowObject = Instantiate(arrowPrefab) as GameObject;

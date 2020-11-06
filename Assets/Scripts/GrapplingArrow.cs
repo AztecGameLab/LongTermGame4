@@ -20,7 +20,7 @@ public class GrapplingArrow : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("is Pulling (arrow): " + isPulling);
+        //Debug.Log("is Pulling (arrow): " + isPulling);
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -75,7 +75,7 @@ public class GrapplingArrow : MonoBehaviour
         player.s_playerMovement.enabled = true;
         isPulling = false; //Set bool variables back to default
         stopPull = false;
-        Debug.Log(isPulling);
+        //Debug.Log(isPulling);
     }
 
 
