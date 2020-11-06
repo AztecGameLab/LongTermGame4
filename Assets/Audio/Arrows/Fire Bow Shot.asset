@@ -22,6 +22,6 @@ MonoBehaviour:
     value: 0.5
     modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}
   - soundValue: 2
-    value: 0.5
+    value: 0
     modulator: {fileID: 11400000, guid: b1d3f594a0c334240ad8812da58408ee, type: 2}
-  id: 2
+  id: 1

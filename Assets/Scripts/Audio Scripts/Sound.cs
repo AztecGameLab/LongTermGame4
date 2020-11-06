@@ -89,8 +89,8 @@ public class Sound : ScriptableObject
             _settings.ApplyValues(source);
             IsInactive |= !source.isPlaying;
             yield return new WaitForEndOfFrame();
-        } 
-
+        }
+        
         source.Stop();
     }
 
@@ -113,7 +113,7 @@ public class Sound : ScriptableObject
     /// <returns>The value of the specified setting</returns>
     public float GetValue(SoundValue value)
     {
-        return _settings.Values[(int) value];
+        return _settings.OriginalValues[(int) value];
     }
     
     /// <summary>
@@ -123,13 +123,7 @@ public class Sound : ScriptableObject
     /// <param name="target">The new target for this value</param>
     public void SetValue(SoundValue value, float target)
     {
-        foreach (var val in modulatedValues)
-        {
-            if (val.soundValue == value)
-                val.value = target;
-        }
-        
-        _settings.Values[(int) value] = target;
+        _settings.OriginalValues[(int) value] = target;
     }
 
     public override string ToString()
@@ -137,9 +131,9 @@ public class Sound : ScriptableObject
         var builder = new StringBuilder();
         builder.Append($"{name} ({(IsInactive ? "Inactive" : "Active")})");
         
-        for (var i = 0; i < _settings.Values.Length; i++)
+        for (var i = 0; i < _settings.OriginalValues.Length; i++)
         {
-            var setting = _settings.Values[i];
+            var setting = _settings.OriginalValues[i];
             builder.Append( "\n" + Enum.GetNames(typeof(SoundValue))[i] + " : "+ setting);
         }
 
@@ -162,31 +156,31 @@ public class Sound : ScriptableObject
     /// </summary>
     private class Settings
     {
-        public readonly float[] Values;
+        public readonly float[] OriginalValues;
         
         public Settings(IEnumerable<ModulatedFloat> modulatedFloats)
         {
-            Values = new float[Enum.GetNames(typeof(SoundValue)).Length];
-
-            Values[(int) SoundValue.Volume] = 1;
-            Values[(int) SoundValue.Pitch] = 1;
-            Values[(int) SoundValue.Pan] = 0;
-            Values[(int) SoundValue.MaxRange] = 500;
-            Values[(int) SoundValue.MinRange] = 1;
+            OriginalValues = new float[Enum.GetNames(typeof(SoundValue)).Length];
+            
+            OriginalValues[(int) SoundValue.Volume] = 1;
+            OriginalValues[(int) SoundValue.Pitch] = 1;
+            OriginalValues[(int) SoundValue.Pan] = 0;
+            OriginalValues[(int) SoundValue.MaxRange] = 500;
+            OriginalValues[(int) SoundValue.MinRange] = 1;
 
             foreach (var modulated in modulatedFloats)
             {
-                Values[(int) modulated.soundValue] = modulated.value;
+                OriginalValues[(int) modulated.soundValue] = modulated.value;
             }
         }
         
         public void ApplyValues(AudioSource source)
         {
-            source.volume = Values[(int) SoundValue.Volume];
-            source.pitch = Values[(int) SoundValue.Pitch];
-            source.panStereo = Values[(int) SoundValue.Pan];
-            source.maxDistance = Values[(int) SoundValue.MaxRange];
-            source.minDistance = Values[(int) SoundValue.MinRange];
+            source.volume = OriginalValues[(int) SoundValue.Volume];
+            source.pitch = OriginalValues[(int) SoundValue.Pitch];
+            source.panStereo = OriginalValues[(int) SoundValue.Pan];
+            source.maxDistance = OriginalValues[(int) SoundValue.MaxRange];
+            source.minDistance = OriginalValues[(int) SoundValue.MinRange];
         }
     }
 }
