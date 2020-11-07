@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 10f;
-    public float rotateVerticleSpeed = 4;
-    public float rotateHorizontalSpeed = 4;
+    public float moveSpeed = 5f;
+    public float rotateVerticleSpeed = 5f;
+    public float rotateHorizontalSpeed = 5f;
     public float jumpSpeed = 8f;
     public Rigidbody body;
     public Camera camera;
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(x * 20, 0f, z * 20);
+        Vector3 movement = new Vector3(x, 0f, z) * 10;
         transform.Translate(movement * Time.deltaTime);
 
         //Jump
@@ -51,10 +51,11 @@ public class PlayerMovement : MonoBehaviour
             if (ground == true)
             {
                 body.AddForce(Vector3.up * jumpSpeed * 30);
+                ground = false;
             }
 
         }
-
+        Debug.Log(ground);
     }
 
     void OnCollisionEnter(Collision other)
