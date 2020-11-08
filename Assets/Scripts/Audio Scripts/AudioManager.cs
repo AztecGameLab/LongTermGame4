@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 
     private int SourcesCount => _channels.Values.Count;
     private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
-    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.Source.isPlaying ? 1 : 0));
+    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.MainSource.isPlaying ? 1 : 0));
     
     public static AudioManager Instance()
     {
@@ -70,7 +70,7 @@ public class AudioManager : MonoBehaviour
         
         // Make the sound 3D if its not targeting the global target.
         if (!target.Equals(_globalTarget))
-            channel.Source.spatialBlend = 1;
+            channel.MainSource.spatialBlend = 1;
         
         StartCoroutine(channel.Play(sound));
     }
@@ -158,7 +158,7 @@ public class AudioManager : MonoBehaviour
         catch (Exception)
         {
             // If no open channels exist, make a new one and return it
-            result = new Channel(target.AddComponent<AudioSource>());
+            result = new Channel(target.AddComponent<AudioSource>(), target.AddComponent<AudioSource>());
 
             if (!_channels.ContainsKey(target))
                 _channels.Add(target, new HashSet<Channel>());

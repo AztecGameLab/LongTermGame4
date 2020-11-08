@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f567aeecdfaf49f2a6bcff20c6fbb89c, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  clip:
+  - {fileID: 8300000, guid: f6da116c6425e4f548e042703ee59c44, type: 3}
+  looping: 1
+  mixerGroup: {fileID: 2410399164812516821, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
+  modulatedValues: []
+  id: 1
+  introClip: {fileID: 8300000, guid: c0eed178c9d0a8f49a89fd69ba5d4bc7, type: 3}
+  outroClip: {fileID: 8300000, guid: 3d07e3778dff7b049b2cbdc75d2cf996, type: 3}

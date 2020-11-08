@@ -18,23 +18,23 @@ public class Sound : ScriptableObject
 {
     [Header("Sound Settings")]
     
-    [SerializeField, Tooltip("The audio file to be played. With multiple clips, a random clip will be chosen")] 
-    private AudioClip[] clip = new AudioClip[1];
+    [SerializeField, Tooltip("The audio files to be played.")] 
+    protected AudioClip[] clip = new AudioClip[1];
     
     [SerializeField, Tooltip("Whether or not this sound loops when its finished")]
     private bool looping = false;
 
     [SerializeField, Tooltip("The MixerGroup this sound will be assigned to while it's playing")] 
-    private AudioMixerGroup mixerGroup = default;
+    protected AudioMixerGroup mixerGroup = default;
 
     [Header("Modulated Values")] 
     
     [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
-    private ModulatedFloat[] modulatedValues = default;
+    protected ModulatedFloat[] modulatedValues = default;
 
-    private Settings _settings;
+    protected Settings _settings;
     
-    private AudioClip GetClip() 
+    protected AudioClip GetClip() 
     {
         return clip[Random.Range(0, clip.Length)];
     }
@@ -49,31 +49,32 @@ public class Sound : ScriptableObject
         IsInactive = true;
         id = _nextId;
         _nextId++;
-        _settings = new Settings(modulatedValues);
+        _settings = new Settings(modulatedValues, mixerGroup);
     }
 
     /// <summary>
     /// Applies a sound's modulations to an AudioSource
     /// </summary>
     /// <remarks>This should be called before the sound is played</remarks>
-    /// <param name="source">The AudioSource to apply changes to</param>
-    public IEnumerator PlayOnSource([NotNull] AudioSource source)
+    /// <param name="mainSource">The main AudioSource used for playback</param>
+    /// <param name="schedulingSource">The AudioSource used for scheduling new clips</param>
+    public virtual IEnumerator PlayOnSource([NotNull] AudioSource mainSource, [NotNull] AudioSource schedulingSource)
     {
-        source.outputAudioMixerGroup = mixerGroup;
-        _settings.ApplyValues(source);
-        
+        // Preparing state for playback
+        _settings.ApplyValues(mainSource);
         if (IsLooping)
         {
-            source.clip = GetClip();
-            source.Play();
+            mainSource.clip = GetClip();
+            mainSource.Play();
         }
         else
         {
-            source.PlayOneShot(GetClip());
+            mainSource.PlayOneShot(GetClip());
         }
         IsInactive = false;
         var startTime = Time.time;
         
+        // Updating state while playing back
         while (!IsInactive) {
             var elapsedTime = Time.time - startTime;
             
@@ -86,12 +87,13 @@ public class Sound : ScriptableObject
                 SetValue(value, target);
             }
 
-            _settings.ApplyValues(source);
-            IsInactive |= !source.isPlaying;
+            _settings.ApplyValues(mainSource);
+            IsInactive |= !mainSource.isPlaying;
             yield return new WaitForEndOfFrame();
         }
-        
-        source.Stop();
+
+        // Ending playback
+        mainSource.Stop();
     }
 
     /// <summary>
@@ -144,7 +146,7 @@ public class Sound : ScriptableObject
     /// Exposes a float to the inspector, associates it with a modulator.
     /// </summary>
     [Serializable]
-    private class ModulatedFloat
+    protected class ModulatedFloat
     {
         public SoundValue soundValue = default;
         public float value = 1f;
@@ -154,13 +156,15 @@ public class Sound : ScriptableObject
     /// <summary>
     /// Different settings that can be modulated and applied to a <see cref="Sound"/>
     /// </summary>
-    private class Settings
+    protected class Settings
     {
         public readonly float[] OriginalValues;
+        private readonly AudioMixerGroup _mixerGroup;
         
-        public Settings(IEnumerable<ModulatedFloat> modulatedFloats)
+        public Settings(IEnumerable<ModulatedFloat> modulatedFloats, AudioMixerGroup mixerGroup)
         {
             OriginalValues = new float[Enum.GetNames(typeof(SoundValue)).Length];
+            _mixerGroup = mixerGroup;
             
             OriginalValues[(int) SoundValue.Volume] = 1;
             OriginalValues[(int) SoundValue.Pitch] = 1;
@@ -176,6 +180,8 @@ public class Sound : ScriptableObject
         
         public void ApplyValues(AudioSource source)
         {
+            source.outputAudioMixerGroup = _mixerGroup;
+            
             source.volume = OriginalValues[(int) SoundValue.Volume];
             source.pitch = OriginalValues[(int) SoundValue.Pitch];
             source.panStereo = OriginalValues[(int) SoundValue.Pan];
