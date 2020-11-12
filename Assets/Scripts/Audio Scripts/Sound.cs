@@ -128,6 +128,11 @@ public class Sound : ScriptableObject
         _settings.OriginalValues[(int) value] = target;
     }
 
+    public void SetSpacialBlend(float target)
+    {
+        _settings.SpacialBlend = target;
+    }
+
     public override string ToString()
     {
         var builder = new StringBuilder();
@@ -159,12 +164,15 @@ public class Sound : ScriptableObject
     protected class Settings
     {
         public readonly float[] OriginalValues;
+        public float SpacialBlend;
+        
         private readonly AudioMixerGroup _mixerGroup;
         
         public Settings(IEnumerable<ModulatedFloat> modulatedFloats, AudioMixerGroup mixerGroup)
         {
             OriginalValues = new float[Enum.GetNames(typeof(SoundValue)).Length];
             _mixerGroup = mixerGroup;
+            SpacialBlend = 0f;
             
             OriginalValues[(int) SoundValue.Volume] = 1;
             OriginalValues[(int) SoundValue.Pitch] = 1;
@@ -181,6 +189,7 @@ public class Sound : ScriptableObject
         public void ApplyValues(AudioSource source)
         {
             source.outputAudioMixerGroup = _mixerGroup;
+            source.spatialBlend = SpacialBlend;
             
             source.volume = OriginalValues[(int) SoundValue.Volume];
             source.pitch = OriginalValues[(int) SoundValue.Pitch];
