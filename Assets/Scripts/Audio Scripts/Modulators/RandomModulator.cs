@@ -4,7 +4,7 @@
 /// Shifts a float by a configurable random amount
 /// </summary>
 
-[CreateAssetMenu(fileName = "New Random Modulator", menuName = "Audio Custom/Random Modulator", order = 2)]
+[CreateAssetMenu(fileName = "New Random Modulator", menuName = "Audio Custom/Random Modulator", order = 3)]
 public class RandomModulator : Modulator
 {
     [Header("Random Modulation Settings")]
