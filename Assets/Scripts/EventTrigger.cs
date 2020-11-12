@@ -19,12 +19,20 @@ public class EventTrigger : MonoBehaviour
     public UnityEvent collisionStart;
     public UnityEvent collisionEnd;
 
+    private int numTriggeringTrigger;
+    private int numTriggeringCollider;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (useTrigger && tagsToTrigger.Contains(other.tag))
         {
-            triggerEnter.Invoke();
+            if (numTriggeringTrigger == 0)
+            {
+                triggerEnter.Invoke();
+            }
+            numTriggeringTrigger++;
+
         }
     }
 
@@ -32,7 +40,11 @@ public class EventTrigger : MonoBehaviour
     {
         if (useTrigger && tagsToTrigger.Contains(other.tag))
         {
-            triggerExit.Invoke();
+            numTriggeringTrigger--;
+            if (numTriggeringTrigger == 0)
+            {
+                triggerExit.Invoke();
+            }
         }
     }
 
@@ -40,7 +52,11 @@ public class EventTrigger : MonoBehaviour
     {
         if (useCollision && tagsToTrigger.Contains(collision.gameObject.tag))
         {
-            collisionStart.Invoke();
+            if (numTriggeringCollider == 0)
+            {
+                collisionStart.Invoke();
+            }
+            numTriggeringCollider++;
         }
     }
 
@@ -48,7 +64,11 @@ public class EventTrigger : MonoBehaviour
     {
         if (useCollision && tagsToTrigger.Contains(collision.gameObject.tag))
         {
-            collisionEnd.Invoke();
+            numTriggeringCollider--;
+            if (numTriggeringCollider == 0)
+            {
+                collisionEnd.Invoke();
+            }
         }
     }
 }
