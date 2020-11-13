@@ -24,12 +24,12 @@ public class AntiGravArrow : MonoBehaviour
             AntiGrav ag = other.gameObject.GetComponent<AntiGrav>();
             if (ag)
             {
-                audioManager.StopSound(gravSound);
+                audioManager.StopSound(gravSound, other.gameObject);
                 Destroy(ag);
             }
             else
             {
-                audioManager.PlaySound(gravSound);
+                audioManager.PlaySound(gravSound, other.gameObject);
                 other.gameObject.AddComponent<AntiGrav>();
             }
         }
