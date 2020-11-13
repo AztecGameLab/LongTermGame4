@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class AntiGrav : MonoBehaviour
 {
-    Rigidbody rb;
-
+    private Rigidbody _rb;
+    private AudioManager _audioManager;
+    private Sound _gravitySound;
+    
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
+        _rb = GetComponent<Rigidbody>();
+        _audioManager = AudioManager.Instance();
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector3(0, 9.81f, 0), ForceMode.Acceleration);
+        _rb.AddForce(new Vector3(0, 9.81f, 0), ForceMode.Acceleration);
+    }
+    
+    public void Activate(Sound gravitySound)
+    {
+        _gravitySound = gravitySound;
+        _audioManager.PlaySound(_gravitySound);
+        _rb.useGravity = false;
     }
 
-    private void OnDestroy()
+    public void Deactivate()
     {
-        rb.useGravity = true;
+        _audioManager.StopSound(_gravitySound);
+        _rb.useGravity = true;
+        Destroy(this);
     }
 }
