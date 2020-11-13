@@ -101,11 +101,11 @@ public class GrapplingArrow : MonoBehaviour
         //When player is being pulled, player movement must temporarily be disabled to function properly
         player.s_playerMovement.enabled = false;
    
-        while (!stopPull && Vector3.Distance(player.transform.position, collision.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
+        while (!stopPull && Vector3.Distance(player.transform.position, this.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
-            player.transform.position = Vector3.Lerp(player.transform.position, collision.transform.position, moveSpeed * Time.deltaTime);
+            player.transform.position = Vector3.Lerp(player.transform.position, this.transform.position, moveSpeed * Time.deltaTime);
             points[0] = player.transform.position;
-            points[1] = collision.transform.position;
+            points[1] = this.transform.position;
             line.SetPositions(points); // update line vertices
             yield return null;
         }
