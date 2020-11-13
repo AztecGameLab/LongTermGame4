@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: AntiGrav
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 8300000, guid: ec72803f9fd2f40ffbcf36793aaf8f7d, type: 3}
-  looping: 0
-  mixerGroup: {fileID: 0}
+  - {fileID: 8300000, guid: f6da116c6425e4f548e042703ee59c44, type: 3}
+  looping: 1
+  mixerGroup: {fileID: 2410399164812516821, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
   modulatedValues: []
-  id: 3
+  id: 2
