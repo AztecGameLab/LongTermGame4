@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Audio/Arrows/Collisions/Anti-Gravity.meta
+guid: 09cf5fd1dd77adf4a8d7a6d48c2ffaf7
+=======
 <<<<<<< HEAD
 guid: 17f42c0a91cdc45dfb0963c12a6cd7d1
 =======
 guid: 03857bb9cc6839288bfe842d8c374ab7
 >>>>>>> master
+>>>>>>> 967b3c9cdf1321d6a81dd923a6683880b1854a61:Assets/Textures/UI.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
