@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
+  m_Script: {fileID: 11500000, guid: f567aeecdfaf49f2a6bcff20c6fbb89c, type: 3}
   m_Name: AntiGrav
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 8300000, guid: f6da116c6425e4f548e042703ee59c44, type: 3}
+  - {fileID: 8300000, guid: c10dbb64d8009c14d9ea9bc15317dc7e, type: 3}
   looping: 1
-  mixerGroup: {fileID: 2410399164812516821, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
   modulatedValues: []
-  id: 2
+  id: 4
+  introClip: {fileID: 8300000, guid: 4337a05388edf004280a114e83ec5259, type: 3}
+  outroClip: {fileID: 8300000, guid: 609b4e0b1172be64bad97c3599280ee9, type: 3}
+  crossfadeDuration: 1
