@@ -22,7 +22,11 @@ public class EventTrigger : MonoBehaviour
     private int numTriggeringTrigger;
     private int numTriggeringCollider;
 
-
+    private void Start()
+    {
+        numTriggeringCollider = 0;
+        numTriggeringTrigger = 0;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (useTrigger && tagsToTrigger.Contains(other.tag))
