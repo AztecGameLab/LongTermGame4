@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 118714197}
   - component: {fileID: 118714202}
   - component: {fileID: 118714203}
+  - component: {fileID: 118714204}
   m_Layer: 0
   m_Name: GrappleTarget1
   m_TagString: Untagged
@@ -370,6 +371,18 @@ MonoBehaviour:
   collisionEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &118714204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118714196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106e0cedb4e355468f9e9e259e5f01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &156049046
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +583,7 @@ GameObject:
   - component: {fileID: 433216318}
   - component: {fileID: 433216323}
   - component: {fileID: 433216324}
+  - component: {fileID: 433216325}
   m_Layer: 0
   m_Name: GrappleTarget2
   m_TagString: Untagged
@@ -720,6 +734,18 @@ MonoBehaviour:
   collisionEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &433216325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433216317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106e0cedb4e355468f9e9e259e5f01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &475856348
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +958,7 @@ GameObject:
   - component: {fileID: 1170317062}
   - component: {fileID: 1170317067}
   - component: {fileID: 1170317068}
+  - component: {fileID: 1170317069}
   m_Layer: 0
   m_Name: GrappleTarget3
   m_TagString: Untagged
@@ -1082,6 +1109,18 @@ MonoBehaviour:
   collisionEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1170317069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170317061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106e0cedb4e355468f9e9e259e5f01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1189161823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1740,7 @@ GameObject:
   - component: {fileID: 1865831992}
   - component: {fileID: 1865831997}
   - component: {fileID: 1865831998}
+  - component: {fileID: 1865831999}
   m_Layer: 0
   m_Name: GrappleTarget4
   m_TagString: Untagged
@@ -1851,6 +1891,18 @@ MonoBehaviour:
   collisionEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1865831999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865831991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1106e0cedb4e355468f9e9e259e5f01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2062320712
 PrefabInstance:
   m_ObjectHideFlags: 0
