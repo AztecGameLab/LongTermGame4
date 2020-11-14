@@ -20,11 +20,14 @@ public class PlayerManager : MonoBehaviour
     public Sound shootArrow;
     public Sound music;
 
+    Animator bowAnimator;
+
     public GameObject[] DevArrowSelection;
 
     private void Awake()
     {
         audioManager = AudioManager.Instance();
+        bowAnimator = GetComponentInChildren<Animator>();
 
         if (_instance != null && _instance != this)
         {
@@ -71,6 +74,7 @@ public class PlayerManager : MonoBehaviour
     void PrimaryActionDown()
     {
         audioManager.PlaySound(pullBow);
+        bowAnimator.SetTrigger("Draw");
     }
 
     void PrimaryActionHold()
@@ -82,6 +86,7 @@ public class PlayerManager : MonoBehaviour
     {
         audioManager.StopSound(pullBow);
         audioManager.PlaySound(shootArrow);
+        bowAnimator.SetTrigger("Shoot");
     }
 
     void DevArrows()
