@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerManager : MonoBehaviour
     public Looking s_looking;
     [HideInInspector]
     public PlayerShooting s_playerShooting;
+    [HideInInspector]
+    public PlayerInteract s_playerInteract;
 
     private AudioManager audioManager;
     public Sound pullBow;
@@ -23,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     Animator bowAnimator;
 
     public GameObject[] DevArrowSelection;
+    public GameObject loreDisplay;
 
     private void Awake()
     {
@@ -50,6 +54,10 @@ public class PlayerManager : MonoBehaviour
         s_playerShooting = GetComponentInChildren<PlayerShooting>();
         if (!s_playerShooting)
             Debug.LogError("PlayerShooting component missing");
+
+        s_playerInteract = GetComponentInChildren<PlayerInteract>();
+        if (!s_playerInteract)
+            Debug.LogError("PlayerInteract component missing");
     }
 
     void Start()
@@ -60,57 +68,78 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         DevArrows();
+        GetInput();
 
+
+    }
+
+    void GetInput()
+    {
         if (Input.GetMouseButtonDown(0))
-            PrimaryActionDown();
+        {
+            audioManager.PlaySound(pullBow);
+            bowAnimator.SetTrigger("Draw");
+        }
 
-        if (Input.GetMouseButton(0))
-            PrimaryActionHold();
 
         if (Input.GetMouseButtonUp(0))
-            PrimaryActionUp();
+        {
+            audioManager.StopSound(pullBow);
+            audioManager.PlaySound(shootArrow);
+            bowAnimator.SetTrigger("Shoot");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!loreDisplay.activeSelf)
+                s_playerInteract.TryInteract();
+            else
+                HideLore();
+        }
     }
 
-    void PrimaryActionDown()
+
+    public void DisplayLore(string text)
     {
-        audioManager.PlaySound(pullBow);
-        bowAnimator.SetTrigger("Draw");
+        loreDisplay.SetActive(true);
+        loreDisplay.GetComponentInChildren<TextMeshProUGUI>().SetText(text);
+
+        s_playerMovement.enabled = false;
+        s_looking.enabled = false;
+        s_playerShooting.enabled = false;
     }
 
-    void PrimaryActionHold()
+    public void HideLore()
     {
+        loreDisplay.SetActive(false);
 
-    }
-
-    void PrimaryActionUp()
-    {
-        audioManager.StopSound(pullBow);
-        audioManager.PlaySound(shootArrow);
-        bowAnimator.SetTrigger("Shoot");
+        s_playerMovement.enabled = true;
+        s_looking.enabled = true;
+        s_playerShooting.enabled = true;
     }
 
     void DevArrows()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
             s_playerShooting.ArrowPrefab = DevArrowSelection[0];
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
             s_playerShooting.ArrowPrefab = DevArrowSelection[1];
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
             s_playerShooting.ArrowPrefab = DevArrowSelection[2];
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
             s_playerShooting.ArrowPrefab = DevArrowSelection[3];
-        if(Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
             s_playerShooting.ArrowPrefab = DevArrowSelection[4];
-        if(Input.GetKeyDown(KeyCode.Alpha5))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
             s_playerShooting.ArrowPrefab = DevArrowSelection[5];
-        if(Input.GetKeyDown(KeyCode.Alpha6))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
             s_playerShooting.ArrowPrefab = DevArrowSelection[6];
-        if(Input.GetKeyDown(KeyCode.Alpha7))
+        if (Input.GetKeyDown(KeyCode.Alpha7))
             s_playerShooting.ArrowPrefab = DevArrowSelection[7];
-        if(Input.GetKeyDown(KeyCode.Alpha8))
+        if (Input.GetKeyDown(KeyCode.Alpha8))
             s_playerShooting.ArrowPrefab = DevArrowSelection[8];
-        if(Input.GetKeyDown(KeyCode.Alpha9))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
             s_playerShooting.ArrowPrefab = DevArrowSelection[9];
-            
+
     }
 }
