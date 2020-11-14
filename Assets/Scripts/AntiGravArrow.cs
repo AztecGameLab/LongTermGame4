@@ -19,7 +19,7 @@ public class AntiGravArrow : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        if (rb && !rb.isKinematic)
+        if (rb && !rb.isKinematic && other.gameObject.tag != "Player")
         {
             AntiGrav ag = other.gameObject.GetComponent<AntiGrav>();
             if (ag)
