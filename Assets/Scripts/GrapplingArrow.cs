@@ -9,6 +9,7 @@ public class GrapplingArrow : MonoBehaviour
     public float massThreshold = 4;
     public float pullRadiusThreshold = 4;
     Rigidbody arrowRB;
+    Rigidbody playerRigid;
     public bool isPulling;
     public bool stopPull = false;
     private bool destroyLine = false;
@@ -18,6 +19,7 @@ public class GrapplingArrow : MonoBehaviour
     void Start()
     {
         arrowRB = GetComponent<Rigidbody>();
+        playerRigid = player.GetComponent<Rigidbody>();
         stopPull = false;
         isPulling = false;
         LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>(); //Creates the LineRenderer component and sets defaults
@@ -99,8 +101,9 @@ public class GrapplingArrow : MonoBehaviour
             yield break;
         }
         //When player is being pulled, player movement must temporarily be disabled to function properly
-        player.s_playerMovement.enabled = false;
-   
+        playerRigid.useGravity = false;
+
+
         while (!stopPull && Vector3.Distance(player.transform.position, this.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
             player.transform.position = Vector3.Lerp(player.transform.position, this.transform.position, moveSpeed * Time.deltaTime);
@@ -109,7 +112,7 @@ public class GrapplingArrow : MonoBehaviour
             line.SetPositions(points); // update line vertices
             yield return null;
         }
-        player.s_playerMovement.enabled = true;
+        playerRigid.useGravity = true;
         isPulling = false; //Set bool variables back to default
         stopPull = false;
         Destroy(line);
