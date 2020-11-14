@@ -14,6 +14,7 @@ public class GrapplingArrow : MonoBehaviour
     public bool stopPull = false;
     private bool destroyLine = false;
     private bool isDestroyed = false;
+    public Material ArrowRopeMaterial;
    
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class GrapplingArrow : MonoBehaviour
         stopPull = false;
         isPulling = false;
         LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>(); //Creates the LineRenderer component and sets defaults
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default")); //ADD YOUR MATERIALS HERE @ARTISTS
+        lineRenderer.material = ArrowRopeMaterial == null ? new Material(Shader.Find("Sprites/Default")) : ArrowRopeMaterial; //ADD YOUR MATERIALS HERE @ARTISTS
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
         var points = new Vector3[2];
@@ -35,7 +36,7 @@ public class GrapplingArrow : MonoBehaviour
     void Update()
     {
         //Debug.Log("is Pulling (arrow): " + isPulling);
-        print(isDestroyed);
+        
         if (!isDestroyed) //If arrow has been shot and rendere not destroyed, update line vertices
         {
             LineRenderer line = GetComponent<LineRenderer>();
@@ -62,7 +63,7 @@ public class GrapplingArrow : MonoBehaviour
             return;
             
         }
-        if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
+        else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
             arrowRB.isKinematic = true;
             this.transform.parent = collision.transform; 
