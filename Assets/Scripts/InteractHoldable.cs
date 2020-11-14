@@ -34,6 +34,8 @@ public class InteractHoldable : Interactable
 
     private void FixedUpdate()
     {
+        _lastHit += Time.deltaTime;
+        
         if (!_isHeld) return;
      
         TurnTowardsOwner();
@@ -110,11 +112,16 @@ public class InteractHoldable : Interactable
         }
     }
 
+    private float _lastHit = 0;
+    
     private void PlayHitSound()
     {
         if (settings.HitSound == null) return;
-        
-        settings.HitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
+
+        if (_lastHit < 0.3f) return;
+
+        _lastHit = 0;
+        settings.HitSound.SetValue(SoundValue.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 2, 1));
         _manager.PlaySound(settings.HitSound, gameObject);
     }
 
