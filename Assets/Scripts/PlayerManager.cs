@@ -87,25 +87,25 @@ public class PlayerManager : MonoBehaviour
     void DevArrows()
     {
         if(Input.GetKeyDown(KeyCode.Alpha0))
-            s_playerShooting.arrowPrefab = DevArrowSelection[0];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[0];
         if(Input.GetKeyDown(KeyCode.Alpha1))
-            s_playerShooting.arrowPrefab = DevArrowSelection[1];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[1];
         if(Input.GetKeyDown(KeyCode.Alpha2))
-            s_playerShooting.arrowPrefab = DevArrowSelection[2];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[2];
         if(Input.GetKeyDown(KeyCode.Alpha3))
-            s_playerShooting.arrowPrefab = DevArrowSelection[3];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[3];
         if(Input.GetKeyDown(KeyCode.Alpha4))
-            s_playerShooting.arrowPrefab = DevArrowSelection[4];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[4];
         if(Input.GetKeyDown(KeyCode.Alpha5))
-            s_playerShooting.arrowPrefab = DevArrowSelection[5];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[5];
         if(Input.GetKeyDown(KeyCode.Alpha6))
-            s_playerShooting.arrowPrefab = DevArrowSelection[6];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[6];
         if(Input.GetKeyDown(KeyCode.Alpha7))
-            s_playerShooting.arrowPrefab = DevArrowSelection[7];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[7];
         if(Input.GetKeyDown(KeyCode.Alpha8))
-            s_playerShooting.arrowPrefab = DevArrowSelection[8];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[8];
         if(Input.GetKeyDown(KeyCode.Alpha9))
-            s_playerShooting.arrowPrefab = DevArrowSelection[9];
+            s_playerShooting.ArrowPrefab = DevArrowSelection[9];
             
     }
 }
