@@ -24,21 +24,26 @@ public class GrapplingArrow : MonoBehaviour
         isPulling = false;
         LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>(); //Creates the LineRenderer component and sets defaults
         lineRenderer.material = new Material(Shader.Find("Sprites/Default")); //ADD YOUR MATERIALS HERE @ARTISTS
-        lineRenderer.widthMultiplier = 0.2f;
+        lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
-        
+        var points = new Vector3[2];
+        points[0] = player.transform.position;
+        points[1] = this.transform.position;
+        lineRenderer.SetPositions(points);
+
     }
     void Update()
     {
         //Debug.Log("is Pulling (arrow): " + isPulling);
-        if (!isDestroyed && Mathf.Abs(player.transform.position.x - this.transform.position.x) > 1) //If arrow has been shot and rendere not destroyed, update line vertices
+        print(isDestroyed);
+        if (!isDestroyed) //If arrow has been shot and rendere not destroyed, update line vertices
         {
             LineRenderer line = GetComponent<LineRenderer>();
             var points = new Vector3[2];
             points[0] = player.transform.position;
             points[1] = this.transform.position;
             line.SetPositions(points);
-            if (destroyLine)
+            if (destroyLine || Input.GetMouseButton(0))
             {
                 isDestroyed = true;
                 Destroy(line);
@@ -82,7 +87,9 @@ public class GrapplingArrow : MonoBehaviour
         //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
         if (collision.rigidbody.mass < massThreshold)
         {
-            
+
+            collision.rigidbody.velocity = Vector3.zero;
+            collision.rigidbody.useGravity = false;
             while (!stopPull && Vector3.Distance(collision.transform.position, player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
             {
                 
@@ -96,6 +103,7 @@ public class GrapplingArrow : MonoBehaviour
             
             isPulling = false; //Set bool variables back to default
             stopPull = false;
+            collision.rigidbody.useGravity = true;
             Destroy(line);
             isDestroyed = true; // destroy line renderer when arrow has no more use
             yield break;
