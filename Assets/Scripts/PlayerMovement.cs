@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        body.velocity = new Vector3(0, body.velocity.y, 0);//This is kains very dumb line but it works so shhhhh
+
         //Looking
         Vector3 cameraAngle = camera.transform.rotation.eulerAngles;
         float rotateVertical = Input.GetAxis("Mouse Y") * rotateVerticleSpeed;
@@ -45,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         inputX = Input.GetAxis("Horizontal");
         inputZ = Input.GetAxis("Vertical");
 
-    
+
         //Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
