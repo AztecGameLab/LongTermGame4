@@ -14,10 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool ground = true;
 
+    float inputX;
+    float inputZ;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,40 +41,47 @@ public class PlayerMovement : MonoBehaviour
         float rotateHorizontal = Input.GetAxis("Mouse X") * rotateHorizontalSpeed;
         transform.Rotate(0f, rotateHorizontal, 0f);
 
-        //Movement
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        //Movement Input
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(x, 0f, z) * 10;
-        transform.Translate(movement * Time.deltaTime);
-
+    
         //Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (ground == true)
+            if (ground)
             {
-                body.AddForce(Vector3.up * jumpSpeed * 30);
-                ground = false;
+                body.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             }
 
         }
-        Debug.Log(ground);
+        //Debug.Log(ground);
     }
 
-    void OnCollisionEnter(Collision other)
+    private void FixedUpdate()
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            ground = true;
-        }
+        //Movement
+        body.position += (transform.forward * inputZ + transform.right * inputX) * moveSpeed * Time.deltaTime;
+
+        //ground check
+        RaycastHit hit;
+        ground = Physics.SphereCast(transform.position, 0.35f, Vector3.down, out hit, 0.1f);
     }
 
-    void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            ground = false;
-        }
-    }
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.gameObject.CompareTag("Ground"))
+    //     {
+    //         ground = true;
+    //     }
+    // }
+
+    // void OnCollisionExit(Collision other)
+    // {
+    //     if (other.gameObject.CompareTag("Ground"))
+    //     {
+    //         ground = false;
+    //     }
+    // }
 
 }

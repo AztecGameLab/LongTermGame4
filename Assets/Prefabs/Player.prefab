@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3438913974526681111}
   - component: {fileID: 3438913974526681105}
   - component: {fileID: 3438913974526681104}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3438913974526681110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.62, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.89578134, z: 0.5}
   m_Children: []
   m_Father: {fileID: 3438913975748953917}
   m_RootOrder: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3438913974619587664}
   - component: {fileID: 3438913974619587667}
   - component: {fileID: 5293679182961493656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3438913974619587669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.893, z: -0.095}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3438913975748953917}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2087326524746666265}
   - component: {fileID: -3999755900801018967}
   - component: {fileID: 5992930675825432687}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotateVerticleSpeed: 5
   rotateHorizontalSpeed: 5
-  jumpSpeed: 8
+  jumpSpeed: 6
   body: {fileID: -3999755900801018967}
   camera: {fileID: 3438913974619587666}
 --- !u!114 &4984713569114710062
@@ -345,13 +345,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3438913975748953890}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 50a5950c143b74f42b042ae6f307a0ca, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 2.29
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &5231191043416127852
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7077472916351884437}
   - component: {fileID: 9148738732498435}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera Direction
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5231191043416127852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.827, z: 0.285}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3438913975748953917}
