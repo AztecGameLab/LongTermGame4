@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -13,7 +13,10 @@ public class InteractHoldable : Interactable
     private Rigidbody _rigidbody = null;
     private float _curDistance;
     private AudioManager _manager;
-    
+
+    private bool _wantsToToggle = false;
+    private bool _isCanceled = false;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -40,6 +43,17 @@ public class InteractHoldable : Interactable
      
         TurnTowardsOwner();
         MoveTowardsRestingPosition();
+    }
+
+    private void LateUpdate()
+    {
+        if (_isCanceled)
+        {
+            _wantsToToggle = false;
+            _isCanceled = false;
+        }
+
+        if (_wantsToToggle) ToggleHolding();
     }
 
     private void CheckForDisconnect(ContactPoint contact)
@@ -99,17 +113,34 @@ public class InteractHoldable : Interactable
     
     private void SetHolding(bool holding)
     {
-        // If we are holding something, all of these should be true; otherwise, false
-        _isHeld = holding;
-        _rigidbody.freezeRotation = holding;
-        _rigidbody.useGravity = !holding;
+        if (holding != _isHeld)
+        {
+            _wantsToToggle = true;
+        }
+    }
 
-        if (!holding)
+    public void SetCanceled(bool canceled)
+    {
+        _isCanceled = canceled;
+    }
+
+    private void ToggleHolding()
+    {
+        var isHeld = _isHeld;
+        _wantsToToggle = false;
+        
+        // If we are holding something, all of these should be true; otherwise, false
+        _isHeld = !isHeld;
+        _rigidbody.freezeRotation = !isHeld;
+        _rigidbody.useGravity = isHeld;
+
+        if (isHeld)
         {
             // Updates the velocity of the object before it is thrown to comply with the defined max
             var velocity = _rigidbody.velocity;
             _rigidbody.velocity = velocity.normalized * Mathf.Min(velocity.magnitude, settings.MaxThrowSpeed);
         }
+
     }
 
     private float _lastHit = 0;

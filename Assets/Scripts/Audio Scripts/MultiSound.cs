@@ -15,8 +15,12 @@ public class MultiSound : Sound
     [SerializeField, Tooltip("How long this MultiSound will take to crossfade")]
     private float crossfadeDuration = 1;
 
-    private State _currentState = State.Inactive;
-    
+    private MultiSoundState _state = MultiSoundState.Inactive;
+
+    public MultiSoundState State => _state;
+    public double IntroDuration => (double) introClip.samples / introClip.frequency;
+    public double OutroDuration => (double) outroClip.samples / outroClip.frequency;
+
     public override IEnumerator PlayOnSource(AudioSource mainSource, AudioSource schedulingSource)
     {
         IsInactive = false;
@@ -29,25 +33,24 @@ public class MultiSound : Sound
     // This stage cannot be canceled programatically: it will always play to completion
     private IEnumerator PlayIntro(AudioSource intro, AudioSource looping)
     {
-        _currentState = State.Intro;
+        _state = MultiSoundState.Intro;
     
         // Prepare both AudioSources for playback
         _settings.ApplyValues(intro);
         _settings.ApplyValues(looping);
         intro.clip = introClip;
         looping.clip = GetClip();
-        double introDuration = (double) introClip.samples / introClip.frequency;
         
         // Play the intro, and crossfade the looping clip in right before the intro finishes
         intro.PlayScheduled(AudioSettings.dspTime + 0.1);
-        yield return new WaitForSecondsRealtime((float) (0.1 + introDuration - crossfadeDuration));
+        yield return new WaitForSecondsRealtime((float) (0.1 + IntroDuration - crossfadeDuration));
         yield return Crossfade(looping, intro);
     }
 
     // This stage can be canceled programatically by setting IsInactive to true
     private IEnumerator PlayLooping(AudioSource looping)
     {
-        _currentState = State.Looping;
+        _state = MultiSoundState.Looping;
 
         // Standard modulation code for the looping source, taken from base Sound class
         var startTime = Time.time;
@@ -77,23 +80,21 @@ public class MultiSound : Sound
         _settings.ApplyValues(outro);
         _settings.ApplyValues(looping); 
         outro.clip = outroClip;
-        double outroDuration = (double) outroClip.samples / outroClip.frequency;
         
         yield return Crossfade(outro, looping);
 
         // Wait for the outro to finish playing
-        _currentState = State.Outro;
-        yield return new WaitForSecondsRealtime((float) (0.1 + outroDuration - crossfadeDuration));
+        _state = MultiSoundState.Outro;
+        yield return new WaitForSecondsRealtime((float) (0.1 + OutroDuration - crossfadeDuration));
         
         // Make sure the outro has finished and reset state
-        _currentState = State.Inactive;
+        _state = MultiSoundState.Inactive;
         outro.Stop();
         IsInactive = true;
     }
 
     private IEnumerator Crossfade(AudioSource fadeIn, AudioSource fadeOut)
     {
-        _currentState = State.Crossfading;
         // Prepare the AudioSources for the crossfade after a short delay.
         // (The delay is added to ensure that everything is happening at the same time)
         _settings.ApplyValues(fadeIn);
@@ -116,15 +117,14 @@ public class MultiSound : Sound
 
     public override string ToString()
     {
-        return base.ToString() + "\nMultiSound State: " + _currentState;
+        return base.ToString() + $"\nMultiSound State: {_state}\nLooping: {IsLooping}";
     }
 
-    private enum State
+    public enum MultiSoundState
     {
         Intro,
         Looping,
         Outro,
-        Crossfading,
         Inactive
     }
 }

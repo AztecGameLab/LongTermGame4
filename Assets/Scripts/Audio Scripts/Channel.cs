@@ -11,7 +11,7 @@ public class Channel
     [CanBeNull] private Sound _attachedSound;
     private bool _hasSound = false;
 
-    public bool IsAvailable => !MainSource.isPlaying;
+    public bool IsAvailable => !MainSource.isPlaying && !SchedulingSource.isPlaying;
     public bool SoundEquals(Sound other) => _attachedSound != null && _attachedSound.id == other.id;
     
     public Channel(AudioSource mainSource, AudioSource schedulingSource, Sound sound = null)

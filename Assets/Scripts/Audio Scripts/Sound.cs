@@ -49,7 +49,7 @@ public class Sound : ScriptableObject
         IsInactive = true;
         id = _nextId;
         _nextId++;
-        _settings = new Settings(modulatedValues, mixerGroup);
+        _settings = new Settings(modulatedValues, mixerGroup, looping);
     }
 
     /// <summary>
@@ -166,13 +166,15 @@ public class Sound : ScriptableObject
         public readonly float[] OriginalValues;
         public float SpacialBlend;
         
+        private readonly bool _looping;
         private readonly AudioMixerGroup _mixerGroup;
         
-        public Settings(IEnumerable<ModulatedFloat> modulatedFloats, AudioMixerGroup mixerGroup)
+        public Settings(IEnumerable<ModulatedFloat> modulatedFloats, AudioMixerGroup mixerGroup, bool looping)
         {
             OriginalValues = new float[Enum.GetNames(typeof(SoundValue)).Length];
             _mixerGroup = mixerGroup;
             SpacialBlend = 0f;
+            _looping = looping;
             
             OriginalValues[(int) SoundValue.Volume] = 1;
             OriginalValues[(int) SoundValue.Pitch] = 1;
@@ -188,9 +190,11 @@ public class Sound : ScriptableObject
         
         public void ApplyValues(AudioSource source)
         {
+            source.rolloffMode = AudioRolloffMode.Linear;
             source.outputAudioMixerGroup = _mixerGroup;
             source.spatialBlend = SpacialBlend;
-            
+            source.loop = _looping;
+
             source.volume = OriginalValues[(int) SoundValue.Volume];
             source.pitch = OriginalValues[(int) SoundValue.Pitch];
             source.panStereo = OriginalValues[(int) SoundValue.Pan];

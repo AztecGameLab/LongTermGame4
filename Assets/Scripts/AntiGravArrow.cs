@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AntiGravArrow : MonoBehaviour
 {
-    [SerializeField] private Sound gravSound;
+    [SerializeField] private MultiSound gravSound;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -18,8 +18,8 @@ public class AntiGravArrow : MonoBehaviour
         }
         else
         {
-            other.gameObject.AddComponent<AntiGrav>();
-            ag.Activate(gravSound);
+            other.gameObject.AddComponent<AntiGrav>().Activate(gravSound);
         }
+        Destroy(gameObject);
     }
 }
