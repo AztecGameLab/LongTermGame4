@@ -484,6 +484,7 @@ MonoBehaviour:
   s_playerMovement: {fileID: 0}
   s_looking: {fileID: 0}
   s_playerShooting: {fileID: 0}
+  s_playerInteract: {fileID: 0}
   pullBow: {fileID: 11400000, guid: b5efe45b4c671094c934b1513ff080ee, type: 2}
   shootArrow: {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
   music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
