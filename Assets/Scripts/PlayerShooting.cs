@@ -1,85 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
-    
-    public GameObject arrowPrefab;
-    
+
+    public GameObject ArrowPrefab;
+    public Image ShotPowerFill;
+
     public float minForce = 0f;
-    public float maxForce = 50f; 
+    public float maxForce = 50f;
     public float timeToGetToMaxForce = 2.5f;
 
     public float shootingStrength = 0f;
 
     public float timer = 0f;
-    bool isPulling;
-    bool disableShoot;
-    GameObject arrowObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        disableShoot = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (arrowPrefab.GetComponent<GrapplingArrow>() && arrowObject != null) //if an arrow is currently in the scene, store the isPulling variable
+        if (Input.GetMouseButton(0))
         {
-            if (arrowObject.GetComponent<GrapplingArrow>())
-            {
-                isPulling = arrowObject.GetComponent<GrapplingArrow>().isPulling;
-            }
-               
-            
-
+            timer += Time.deltaTime;
+            timer = Mathf.Clamp(timer, 0, timeToGetToMaxForce);
         }
-        if (arrowObject != null && isPulling && arrowObject.GetComponent<GrapplingArrow>() && (Input.GetMouseButton(0))) //if arrow isPulling and player left clicks and arrow is grappling arrow, stop pulling
+        else if (Input.GetMouseButtonUp(0))
         {
-            //Debug.Log("Entered");
-            disableShoot = true;
-            arrowObject.GetComponent<GrapplingArrow>().stopPull = true;
-            return;
-            
+            GameObject arrowObject = Instantiate(ArrowPrefab) as GameObject;
+            arrowObject.transform.position = transform.position + transform.forward;
+            arrowObject.transform.forward = transform.forward;
+            arrowObject.GetComponent<Rigidbody>().AddForce(transform.forward * shootingStrength, ForceMode.Impulse);
 
+            timer = 0;
+            shootingStrength = minForce;
         }
-        else
-        {
-            
-            if (!disableShoot && Input.GetMouseButton(0))
-            {
-                timer += Time.deltaTime;
-                timer = Mathf.Clamp(timer, 0, timeToGetToMaxForce);
-                shootingStrength = Mathf.Lerp(minForce, maxForce, timer / timeToGetToMaxForce);
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                if (disableShoot)
-                {
-                    disableShoot = false;
-                    //Debug.Log("Entered");
-                    return;
-                }
-                arrowObject = Instantiate(arrowPrefab) as GameObject;
-                arrowObject.transform.position = transform.position + transform.forward;
-                arrowObject.transform.forward = transform.forward;
-                arrowObject.GetComponent<Rigidbody>().AddForce(transform.forward * shootingStrength, ForceMode.Impulse);
 
-                timer = minForce;
-                shootingStrength = minForce;
-                
-            }
-            
-
-        }
-        
-        
-
-        //Debug.Log(shootingStrength);
+        ShotPowerFill.fillAmount = timer / timeToGetToMaxForce;
+        shootingStrength = Mathf.Lerp(minForce, maxForce, timer / timeToGetToMaxForce);
 
     }
 }

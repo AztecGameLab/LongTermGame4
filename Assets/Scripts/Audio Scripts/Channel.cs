@@ -35,10 +35,7 @@ public class Channel
         
     public IEnumerator Stop()
     {
-        if (_hasSound)
-        {
-            _attachedSound.IsInactive = true;
-        }
+        if (_hasSound) _attachedSound.IsInactive = true;
         yield return new WaitForEndOfFrame();
     }
 

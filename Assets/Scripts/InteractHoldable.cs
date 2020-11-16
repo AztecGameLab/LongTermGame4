@@ -39,8 +39,6 @@ public class InteractHoldable : Interactable
 
     private void FixedUpdate()
     {
-        _lastHit += Time.deltaTime;
-        
         if (!_isHeld) return;
      
         TurnTowardsOwner();
@@ -142,19 +140,13 @@ public class InteractHoldable : Interactable
             var velocity = _rigidbody.velocity;
             _rigidbody.velocity = velocity.normalized * Mathf.Min(velocity.magnitude, settings.MaxThrowSpeed);
         }
-
     }
 
-    private float _lastHit = 0;
-    
     private void PlayHitSound()
     {
         if (settings.HitSound == null) return;
-
-        if (_lastHit < 0.3f) return;
-
-        _lastHit = 0;
-        _hitSound.SetValue(SoundValue.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude, 1));
+        
+        _hitSound.SetValue(SoundValue.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
         _manager.PlaySound(_hitSound, gameObject);
     }
 

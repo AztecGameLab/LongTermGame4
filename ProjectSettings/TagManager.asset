@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Ground
   - arrow
-  - Box
+  - puzzle_object
   layers:
   - Default
   - TransparentFX
@@ -16,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Arrow
+  - Player
   - 
   - 
   - 

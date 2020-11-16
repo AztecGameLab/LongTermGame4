@@ -18,7 +18,10 @@ MonoBehaviour:
   mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
   modulatedValues:
-  - soundValue: 1
+  - setting: 0
+    value: 0.15
+    modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
+  - setting: 1
     value: 1
     modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
-  id: 1
+  id: 0
