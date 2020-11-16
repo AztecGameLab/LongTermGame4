@@ -20,12 +20,19 @@ public class PlayerManager : MonoBehaviour
     public Sound shootArrow;
     public Sound music;
 
+    private SoundInstance pullBowInstance;
+    private SoundInstance shootArrowInstance;
+    private SoundInstance musicInstance;
+    
     public GameObject[] DevArrowSelection;
 
     private void Awake()
     {
         audioManager = AudioManager.Instance();
-
+        pullBowInstance = pullBow.GenerateInstance();
+        shootArrowInstance = shootArrow.GenerateInstance();
+        musicInstance= music.GenerateInstance();
+        
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -51,7 +58,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        audioManager.PlaySound(music);
+        audioManager.PlaySound(musicInstance);
     }
 
     void Update()
@@ -70,7 +77,7 @@ public class PlayerManager : MonoBehaviour
 
     void PrimaryActionDown()
     {
-        audioManager.PlaySound(pullBow);
+        audioManager.PlaySound(pullBowInstance);
     }
 
     void PrimaryActionHold()
@@ -80,8 +87,8 @@ public class PlayerManager : MonoBehaviour
 
     void PrimaryActionUp()
     {
-        audioManager.StopSound(pullBow);
-        audioManager.PlaySound(shootArrow);
+        audioManager.StopSound(pullBowInstance);
+        audioManager.PlaySound(shootArrowInstance);
     }
 
     void DevArrows()

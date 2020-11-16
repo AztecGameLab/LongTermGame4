@@ -1,10 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AntiGravArrow : MonoBehaviour
 {
-    [SerializeField] private MultiSound gravSound;
+    [SerializeField] private MultiSound gravSound = default;
+    private MultiSoundInstance _gravSound;
+    
+    private void OnEnable()
+    {
+        _gravSound = gravSound.GenerateInstance();
+    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -18,7 +25,7 @@ public class AntiGravArrow : MonoBehaviour
         }
         else
         {
-            other.gameObject.AddComponent<AntiGrav>().Activate(gravSound);
+            other.gameObject.AddComponent<AntiGrav>().Activate(_gravSound);
         }
         Destroy(gameObject);
     }

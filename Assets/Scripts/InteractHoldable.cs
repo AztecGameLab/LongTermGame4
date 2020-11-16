@@ -13,6 +13,7 @@ public class InteractHoldable : Interactable
     private Rigidbody _rigidbody = null;
     private float _curDistance;
     private AudioManager _manager;
+    private SoundInstance _hitSound;
 
     private bool _wantsToToggle = false;
     private bool _isCanceled = false;
@@ -21,6 +22,7 @@ public class InteractHoldable : Interactable
     {
         _rigidbody = GetComponent<Rigidbody>();
         _manager = AudioManager.Instance();
+        _hitSound = settings.HitSound != null ? settings.HitSound.GenerateInstance() : null;
     }
     
     protected override void OnInteract(Transform userTransform)
@@ -152,8 +154,8 @@ public class InteractHoldable : Interactable
         if (_lastHit < 0.3f) return;
 
         _lastHit = 0;
-        settings.HitSound.SetValue(SoundValue.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 2, 1));
-        _manager.PlaySound(settings.HitSound, gameObject);
+        _hitSound.SetValue(SoundValue.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude, 1));
+        _manager.PlaySound(_hitSound, gameObject);
     }
 
     private void OnCollisionEnter()

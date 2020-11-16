@@ -4,7 +4,7 @@ public class AntiGrav : Interactable
 {
     private Rigidbody _rb;
     private AudioManager _audioManager;
-    private MultiSound _gravitySound;
+    private MultiSoundInstance _gravitySound;
     private InteractHoldable _holdable;
     
     void Start()
@@ -18,19 +18,19 @@ public class AntiGrav : Interactable
     {
         switch (_gravitySound.State)
         {
-            case MultiSound.MultiSoundState.Intro:
+            case MultiSoundState.Intro:
                 _rb.velocity = new Vector3(0, 0.25f, 0);
                 break;
-            case MultiSound.MultiSoundState.Looping:
+            case MultiSoundState.Looping:
                 _rb.AddForce(new Vector3(0, 5, 0), ForceMode.Acceleration);
                 break;
-            case MultiSound.MultiSoundState.Outro:
+            case MultiSoundState.Outro:
                 _rb.velocity = new Vector3(0, -0.25f, 0);
                 break;
         }
     }
     
-    public void Activate(MultiSound gravitySound)
+    public void Activate(MultiSoundInstance gravitySound)
     {
         CameraFX.instance.AddTrauma(0.5f);
         _rb = GetComponent<Rigidbody>();
@@ -65,7 +65,7 @@ public class AntiGrav : Interactable
 
     protected override void OnInteract(Transform userTransform)
     {
-        if (_holdable != null && _gravitySound.State != MultiSound.MultiSoundState.Inactive)
+        if (_holdable != null && _gravitySound.State != MultiSoundState.Inactive)
         {
             _holdable.SetCanceled(true);
         }

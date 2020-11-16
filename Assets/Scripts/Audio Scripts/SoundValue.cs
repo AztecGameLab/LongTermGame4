@@ -4,5 +4,6 @@
     Pitch,
     Pan,
     MaxRange,
-    MinRange
+    MinRange,
+    SpacialBlend
 }

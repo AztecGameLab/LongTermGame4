@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound to play</param>
     /// <param name="target">What GameObject this sound should originate from</param>
-    public void PlaySound(Sound sound, GameObject target)
+    public void PlaySound(SoundInstance sound, GameObject target)
     {
         // null check is expensive, but we dont play sounds every frame hopefully
         if (sound == null) return;
@@ -69,11 +69,11 @@ public class AudioManager : MonoBehaviour
         }
         
         // Make the sound 3D if its not targeting the global target.
-        sound.SetSpacialBlend(target.Equals(_globalTarget) ? 0f : 1f);
+        sound.SetValue(SoundValue.SpacialBlend, target.Equals(_globalTarget) ? 0f : 1f);
 
         StartCoroutine(channel.Play(sound));
     }
-    public void PlaySound(Sound sound)
+    public void PlaySound(SoundInstance sound)
     {
         PlaySound(sound, _globalTarget);
     }
@@ -83,14 +83,14 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound that will be stopped, if its playing</param>
     /// <param name="target">The GameObject to stop playing this sound</param>
-    public void StopSound(Sound sound, GameObject target)
+    public void StopSound(SoundInstance sound, GameObject target)
     {
         Channel channel = GetCurrentlyPlaying(target, sound);
 
         if (channel != null)
             StartCoroutine(channel.Stop());
     }
-    public void StopSound(Sound sound)
+    public void StopSound(SoundInstance sound)
     {
         StopSound(sound, _globalTarget);
     }
@@ -174,14 +174,14 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound">The sound to search for</param>
     /// <returns></returns>
     [CanBeNull]
-    private Channel GetCurrentlyPlaying(GameObject target, Sound sound)
+    private Channel GetCurrentlyPlaying(GameObject target, SoundInstance sound)
     {
         Channel result = null;
         try
         {
             var channels =
                 from channel in _channels[target]
-                where channel.SoundEquals(sound)
+                where channel.HasSound(sound)
                 select channel;
 
             result = channels.First();                
