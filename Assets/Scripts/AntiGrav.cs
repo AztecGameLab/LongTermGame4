@@ -22,7 +22,7 @@ public class AntiGrav : Interactable
                 _rb.velocity = new Vector3(0, 0.25f, 0);
                 break;
             case MultiSoundState.Looping:
-                _rb.AddForce(new Vector3(0, 5, 0), ForceMode.Acceleration);
+                _rb.velocity += new Vector3(0, 0.25f, 0); 
                 break;
             case MultiSoundState.Outro:
                 _rb.velocity = new Vector3(0, -0.25f, 0);
