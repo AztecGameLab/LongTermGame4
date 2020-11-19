@@ -1,10 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AntiGrav : Interactable
 {
     private float riseTime = 2.5f;
-    private float fallTime = 2.5f;
+    private float fallTime = 0.9f;
 
     private bool _ending;
     private float _timeSpentRising, _timeSpentFalling;
@@ -13,65 +12,68 @@ public class AntiGrav : Interactable
     private MultiSoundInstance _gravitySound;
     private InteractHoldable _holdable;
     
-    void Start()
-    {
-        _timeSpentRising = 0;
-        _holdable = GetComponent<InteractHoldable>();
-        _rb = GetComponent<Rigidbody>();
-        _audioManager = AudioManager.Instance();
-    }
-
     private void FixedUpdate()
     {
         if (_gravitySound.State == MultiSoundState.Intro && _timeSpentRising < riseTime)
         {
+            // apply slow-rise while in intro state
             _rb.velocity = new Vector3(0, 0.25f, 0);
             _timeSpentRising += Time.fixedDeltaTime;
         }
         else if (_gravitySound.State == MultiSoundState.Outro && _timeSpentFalling < fallTime)
         {
+            // apply slow-fall while in outro state
             _rb.velocity = new Vector3(0, -0.25f, 0);
             _timeSpentFalling += Time.fixedDeltaTime;
         }
-        else if (_gravitySound.State != MultiSoundState.Outro)
+        else if (_timeSpentRising >= riseTime && _timeSpentFalling == 0)
         {
+            // apply reversed gravity while in loop
             _rb.velocity += new Vector3(0, 0.25f, 0); 
         }
     }
 
     public void Activate(MultiSoundInstance gravitySound)
     {
-        _ending = false;
-        _timeSpentRising = 0;
-        _timeSpentFalling = 0;
-        CameraFX.instance.AddTrauma(0.5f);
+        // get component references
         _rb = GetComponent<Rigidbody>();
+        _holdable = GetComponent<InteractHoldable>();
         _audioManager = AudioManager.Instance();
-        _gravitySound = gravitySound;
-        _audioManager.PlaySound(_gravitySound, gameObject);
+        
+        // initialize floating rigidbody settings
         _rb.useGravity = false;
         _rb.velocity = Vector3.zero;
         _rb.constraints = RigidbodyConstraints.FreezeRotation;
+        
+        // finish preparing script for activation
+        _ending = false;
+        _timeSpentRising = 0;
+        _timeSpentFalling = 0;
+        CameraFX.instance.AddTrauma(0.25f);
+        _gravitySound = gravitySound;
+        _audioManager.PlaySound(_gravitySound, gameObject);
+        
     }
 
     public void Deactivate()
     {
+        // Reduce velocity of floating boxes that are shot (more controllable when shot)
         var velo = _rb.velocity;
         velo *= 0.25f;
         velo.y = -1;
         _rb.velocity = velo;
         
+        // Make sure the box is in the correct state to be ended (Invokes incorrectly otherwise)
         if (_ending || _gravitySound.State != MultiSoundState.Looping) return;
         _ending = true;
-        Debug.Log("deactivate");
-        CameraFX.instance.AddTrauma(1f);
+        CameraFX.instance.AddTrauma(0.25f);
         _audioManager.StopSound(_gravitySound, gameObject);
         
-        // Cleanup stuff after outro has finished playing
-        Invoke(nameof(ResetState), (float) _gravitySound.OutroDuration + 0.1f);
+        // Destroy this script after outro has finished playing
+        Invoke(nameof(DestroyScript), (float) _gravitySound.OutroDuration + 0.1f - fallTime);
     }
 
-    private void ResetState()
+    private void DestroyScript()
     {
         _audioManager.Dispose(gameObject);
         _rb.useGravity = true;
