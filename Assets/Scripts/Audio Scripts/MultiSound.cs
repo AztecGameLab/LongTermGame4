@@ -53,6 +53,8 @@ public class MultiSoundInstance : SoundInstance
     
         // Prepare both AudioSources for playback.PlayOnSource(intro);
         _settings.ApplyToSource(intro, _introClip);
+        intro.loop = false;
+        
         _settings.ApplyToSource(looping);
         
         // Play the intro, and crossfade the looping clip in right before the intro finishes
@@ -92,16 +94,16 @@ public class MultiSoundInstance : SoundInstance
     {
         // Prepare both AudioSources for playback
         _settings.ApplyToSource(outro, _outroClip);
+        outro.loop = false;
 
         yield return Crossfade(outro, looping);
 
         // Wait for the outro to finish playing
         _state = MultiSoundState.Outro;
-        yield return new WaitForSecondsRealtime((float) (0.1 + OutroDuration - _crossfadeDuration));
+        yield return new WaitWhile(() => outro.isPlaying);
         
         // Make sure the outro has finished and reset state
         _state = MultiSoundState.Inactive;
-        outro.Stop();
         IsInactive = true;
     }
 

@@ -27,6 +27,5 @@ public class AntiGravArrow : MonoBehaviour
         {
             other.gameObject.AddComponent<AntiGrav>().Activate(_gravSound);
         }
-        Destroy(gameObject);
     }
 }

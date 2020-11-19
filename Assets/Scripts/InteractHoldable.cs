@@ -16,7 +16,7 @@ public class InteractHoldable : Interactable
     private SoundInstance _hitSound;
 
     private bool _wantsToToggle = false;
-    private bool _isCanceled = false;
+    private int _isCanceled = 0;
 
     private void Awake()
     {
@@ -47,10 +47,10 @@ public class InteractHoldable : Interactable
 
     private void LateUpdate()
     {
-        if (_isCanceled)
+        if (_isCanceled > 0)
         {
             _wantsToToggle = false;
-            _isCanceled = false;
+            _isCanceled = 0;
         }
 
         if (_wantsToToggle) ToggleHolding();
@@ -121,7 +121,7 @@ public class InteractHoldable : Interactable
 
     public void SetCanceled(bool canceled)
     {
-        _isCanceled = canceled;
+        _isCanceled += canceled ? 1 : -1;
     }
 
     private void ToggleHolding()

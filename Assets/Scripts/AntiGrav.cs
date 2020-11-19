@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class AntiGrav : Interactable
 {
+    private float riseTime = 2.5f;
+    private float fallTime = 2.5f;
+
+    private bool _ending;
+    private float _timeSpentRising, _timeSpentFalling;
     private Rigidbody _rb;
     private AudioManager _audioManager;
     private MultiSoundInstance _gravitySound;
@@ -9,6 +15,7 @@ public class AntiGrav : Interactable
     
     void Start()
     {
+        _timeSpentRising = 0;
         _holdable = GetComponent<InteractHoldable>();
         _rb = GetComponent<Rigidbody>();
         _audioManager = AudioManager.Instance();
@@ -16,22 +23,27 @@ public class AntiGrav : Interactable
 
     private void FixedUpdate()
     {
-        switch (_gravitySound.State)
+        if (_gravitySound.State == MultiSoundState.Intro && _timeSpentRising < riseTime)
         {
-            case MultiSoundState.Intro:
-                _rb.velocity = new Vector3(0, 0.25f, 0);
-                break;
-            case MultiSoundState.Looping:
-                _rb.velocity += new Vector3(0, 0.25f, 0); 
-                break;
-            case MultiSoundState.Outro:
-                _rb.velocity = new Vector3(0, -0.25f, 0);
-                break;
+            _rb.velocity = new Vector3(0, 0.25f, 0);
+            _timeSpentRising += Time.fixedDeltaTime;
+        }
+        else if (_gravitySound.State == MultiSoundState.Outro && _timeSpentFalling < fallTime)
+        {
+            _rb.velocity = new Vector3(0, -0.25f, 0);
+            _timeSpentFalling += Time.fixedDeltaTime;
+        }
+        else if (_gravitySound.State != MultiSoundState.Outro)
+        {
+            _rb.velocity += new Vector3(0, 0.25f, 0); 
         }
     }
-    
+
     public void Activate(MultiSoundInstance gravitySound)
     {
+        _ending = false;
+        _timeSpentRising = 0;
+        _timeSpentFalling = 0;
         CameraFX.instance.AddTrauma(0.5f);
         _rb = GetComponent<Rigidbody>();
         _audioManager = AudioManager.Instance();
@@ -44,12 +56,16 @@ public class AntiGrav : Interactable
 
     public void Deactivate()
     {
-        CameraFX.instance.AddTrauma(1f);
-        _audioManager.StopSound(_gravitySound, gameObject);
         var velo = _rb.velocity;
         velo *= 0.25f;
         velo.y = -1;
         _rb.velocity = velo;
+        
+        if (_ending || _gravitySound.State != MultiSoundState.Looping) return;
+        _ending = true;
+        Debug.Log("deactivate");
+        CameraFX.instance.AddTrauma(1f);
+        _audioManager.StopSound(_gravitySound, gameObject);
         
         // Cleanup stuff after outro has finished playing
         Invoke(nameof(ResetState), (float) _gravitySound.OutroDuration + 0.1f);
