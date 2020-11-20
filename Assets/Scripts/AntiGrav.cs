@@ -11,6 +11,7 @@ public class AntiGrav : Interactable
     private AudioManager _audioManager;
     private MultiSoundInstance _gravitySound;
     private InteractHoldable _holdable;
+    private bool IsHoldable => _holdable != null;
     
     private void FixedUpdate()
     {
@@ -47,7 +48,8 @@ public class AntiGrav : Interactable
         CameraFX.instance.AddTrauma(0.25f);
         _gravitySound = gravitySound;
         _audioManager.PlaySound(_gravitySound, gameObject);
-        if(_holdable.IsHeld) _holdable.ToggleHolding();
+        
+        if(IsHoldable && _holdable.IsHeld) _holdable.ToggleHolding();
         
         // initialize floating rigidbody settings
         _rb.useGravity = false;
@@ -64,7 +66,7 @@ public class AntiGrav : Interactable
         _rb.velocity = velo;
         
         // Make sure the box is in the correct state to be ended (Invokes incorrectly otherwise)
-        if (_ending || _gravitySound.State != MultiSoundState.Looping) return;
+        if (_ending || _gravitySound.State == MultiSoundState.Outro) return;
         _ending = true;
         CameraFX.instance.AddTrauma(0.25f);
         _audioManager.StopSound(_gravitySound, gameObject);
@@ -83,7 +85,7 @@ public class AntiGrav : Interactable
 
     protected override void OnInteract(Transform userTransform)
     {
-        if (_holdable != null && _gravitySound.State != MultiSoundState.Inactive)
+        if (IsHoldable && _gravitySound.State != MultiSoundState.Inactive)
         {
             _holdable.SetCanceled(true);
         }
