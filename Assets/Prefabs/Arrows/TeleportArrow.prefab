@@ -80,7 +80,7 @@ PrefabInstance:
       value: TeleportArrow
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: -6785735657325182645, guid: 2a5041ae04ec0214b8b60f48781b43d9, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2a5041ae04ec0214b8b60f48781b43d9, type: 3}
 --- !u!1 &2841423412555271410 stripped
 GameObject:
