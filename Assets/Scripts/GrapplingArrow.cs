@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrapplingArrow : MonoBehaviour
 {
+    public static GrapplingArrow currentArrow;
     PlayerManager player = PlayerManager.instance;
     public float moveSpeed = 1;
     public float massThreshold = 4;
@@ -15,10 +16,12 @@ public class GrapplingArrow : MonoBehaviour
     private bool destroyLine = false;
     private bool isDestroyed = false;
     public Material ArrowRopeMaterial;
-   
+    LineRenderer line;
+
     // Start is called before the first frame update
     void Start()
     {
+        currentArrow = this;
         arrowRB = GetComponent<Rigidbody>();
         playerRigid = player.GetComponent<Rigidbody>();
         stopPull = false;
@@ -39,7 +42,7 @@ public class GrapplingArrow : MonoBehaviour
         
         if (!isDestroyed) //If arrow has been shot and rendere not destroyed, update line vertices
         {
-            LineRenderer line = GetComponent<LineRenderer>();
+            line = GetComponent<LineRenderer>();
             var points = new Vector3[2];
             points[0] = player.transform.position;
             points[1] = this.transform.position;
@@ -53,19 +56,25 @@ public class GrapplingArrow : MonoBehaviour
         }
         
     }
+    bool collided;
     void OnCollisionEnter(Collision collision)
     {
+        if(collided)//so it can only collide once
+            return;
+
         //if the collided object DOES have a rigid body, then the grapple will work on it
-        
+
         if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>()) //If object is not grappable, destroy line renderer on arrow and return
         {
             destroyLine = true;
+            Destroy(line);
+            Destroy(this);
             return;
             
         }
         else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
-            arrowRB.isKinematic = true;
+            collided = true;
             this.transform.parent = collision.transform; 
             isPulling = true;
             Destroy(GetComponent<Rigidbody>());
@@ -91,13 +100,14 @@ public class GrapplingArrow : MonoBehaviour
 
             collision.rigidbody.velocity = Vector3.zero;
             collision.rigidbody.useGravity = false;
-            while (!stopPull && Vector3.Distance(collision.transform.position, player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
+            while (currentArrow == this && !stopPull && Vector3.Distance(collision.transform.position, player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
             {
                 
                 collision.transform.position = Vector3.Lerp(collision.transform.position, player.transform.position, moveSpeed * 2 * Time.deltaTime);
                 points[0] = player.transform.position;
-                points[1] = collision.transform.position;
-                line.SetPositions(points); // update line vertices
+                points[1] = transform.position;
+                if(line)
+                    line.SetPositions(points); // update line vertices
 
                 yield return null;
             }
@@ -113,12 +123,13 @@ public class GrapplingArrow : MonoBehaviour
         playerRigid.useGravity = false;
 
 
-        while (!stopPull && Vector3.Distance(player.transform.position, this.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
+        while (currentArrow == this && !stopPull && Vector3.Distance(player.transform.position, this.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
             player.transform.position = Vector3.Lerp(player.transform.position, this.transform.position, moveSpeed * Time.deltaTime);
             points[0] = player.transform.position;
             points[1] = this.transform.position;
-            line.SetPositions(points); // update line vertices
+            if(line)
+                line.SetPositions(points); // update line vertices
             yield return null;
         }
         playerRigid.useGravity = true;
@@ -127,7 +138,11 @@ public class GrapplingArrow : MonoBehaviour
         Destroy(line);
         isDestroyed = true; // destroy line renderer when arrow has no more use
         //Debug.Log(isPulling);
+
+        currentArrow = null;
     }
+
+    
 
 
     // Update is called once per frame
