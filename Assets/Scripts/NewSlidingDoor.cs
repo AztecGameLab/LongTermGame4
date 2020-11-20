@@ -6,6 +6,7 @@ public class NewSlidingDoor : MonoBehaviour
 {
     public Vector3 closedPosition;
     public Vector3 openPosition;
+    public bool AnimateOnStart;
 
     bool isOpen;
     float t;
@@ -13,7 +14,11 @@ public class NewSlidingDoor : MonoBehaviour
 
     private void Start()
     {
-        t = isOpen ? 1 : 0;
+        if (!AnimateOnStart)
+            t = isOpen ? 1 : 0;
+        else
+            t = isOpen ? 0 : 1;
+
     }
 
     private void Update()
