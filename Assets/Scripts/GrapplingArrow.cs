@@ -55,18 +55,24 @@ public class GrapplingArrow : MonoBehaviour
         }
         
     }
+    bool collided;
     void OnCollisionEnter(Collision collision)
     {
+        if(collided)//so it can only collide once
+            return;
+
         //if the collided object DOES have a rigid body, then the grapple will work on it
-        
+
         if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>()) //If object is not grappable, destroy line renderer on arrow and return
         {
             destroyLine = true;
+            Destroy(this);
             return;
             
         }
         else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
+            collided = true;
             this.transform.parent = collision.transform; 
             isPulling = true;
             Destroy(GetComponent<Rigidbody>());
