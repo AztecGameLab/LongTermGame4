@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorActivator : MonoBehaviour
 {
     public bool StartOpen;
+    public bool AnimateOnStart;
     public float animationTime;
     public float cameraShakeAmount;
     bool isOpen;
@@ -18,6 +19,7 @@ public class DoorActivator : MonoBehaviour
         {
             door.SetDoor(isOpen);
             door.animationTime = animationTime;
+            door.AnimateOnStart = AnimateOnStart;
         }
     }
 
@@ -57,8 +59,8 @@ public class DoorActivator : MonoBehaviour
 
         foreach (var door in tempDoors)
             if (StartOpen)
-                door.transform.localPosition = door.openPosition;
+                door.transform.localPosition = AnimateOnStart ? door.closedPosition : door.openPosition;
             else
-                door.transform.localPosition = door.closedPosition;
+                door.transform.localPosition = AnimateOnStart ? door.openPosition : door.closedPosition;
     }
 }
