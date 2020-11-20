@@ -26,7 +26,14 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (GrapplingArrow.currentArrow != null)
+            {
+                GrapplingArrow.currentArrow = null;
+            }
+        }
+        else if (Input.GetMouseButton(0))
         {
             timer += Time.deltaTime;
             timer = Mathf.Clamp(timer, 0, timeToGetToMaxForce);
