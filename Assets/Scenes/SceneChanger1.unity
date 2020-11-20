@@ -809,6 +809,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneChangerExit
       objectReference: {fileID: 0}
+    - target: {fileID: 3566603370124513652, guid: d04032536e3c6114c80c9fa4a40a7b97,
+        type: 3}
+      propertyPath: nextSceneName
+      value: NextSceneName
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d04032536e3c6114c80c9fa4a40a7b97, type: 3}
 --- !u!1001 &6164139558354325461
