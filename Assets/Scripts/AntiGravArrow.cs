@@ -19,17 +19,17 @@ public class AntiGravArrow : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        if (rb && !rb.isKinematic)
+        if (rb && !rb.isKinematic && other.gameObject.tag != "Player")
         {
             AntiGrav ag = other.gameObject.GetComponent<AntiGrav>();
             if (ag)
             {
-                audioManager.StopSound(gravSound, other.gameObject);
+                audioManager.StopSound(gravSound);
                 Destroy(ag);
             }
             else
             {
-                audioManager.PlaySound(gravSound, other.gameObject);
+                audioManager.PlaySound(gravSound);
                 other.gameObject.AddComponent<AntiGrav>();
             }
         }

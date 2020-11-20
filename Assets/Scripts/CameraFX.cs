@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 public class CameraFX : MonoBehaviour
 {
@@ -92,10 +96,16 @@ public class CameraFX : MonoBehaviour
     // controls the visibility of stuff like this?
     private void OnGUI()
     {
-        var text = $"Trauma: {(int) (Trauma * 100)}\nShake: {(int) (Shake * 100)}\nFreeze Time: {freezeTime}";
-        var rect = new Rect(150, 0, 100, 55);
-        GUI.Box(rect, text);
-        // GUI.Label(rect, text);
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, h * 2 / 100);
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = Color.white;
+        string text = string.Format("Trauma: {0}\nShake: {1}\nFreeze Time: {2}", (int) (Trauma * 100), (int) (Shake * 100), freezeTime);
+        GUI.Label(rect, text, style);
     }
 #endif
 }

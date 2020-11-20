@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 
     private int SourcesCount => _channels.Values.Count;
     private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
-    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.MainSource.isPlaying ? 1 : 0));
+    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.Source.isPlaying ? 1 : 0));
     
     public static AudioManager Instance()
     {
@@ -54,9 +54,6 @@ public class AudioManager : MonoBehaviour
     /// <param name="target">What GameObject this sound should originate from</param>
     public void PlaySound(Sound sound, GameObject target)
     {
-        // null check is expensive, but we dont play sounds every frame hopefully
-        if (sound == null) return;
-        
         Channel channel;
         
         if (sound.IsLooping)
@@ -69,8 +66,9 @@ public class AudioManager : MonoBehaviour
         }
         
         // Make the sound 3D if its not targeting the global target.
-        sound.SetSpacialBlend(target.Equals(_globalTarget) ? 0f : 1f);
-
+        if (!target.Equals(_globalTarget))
+            channel.Source.spatialBlend = 1;
+        
         StartCoroutine(channel.Play(sound));
     }
     public void PlaySound(Sound sound)
@@ -157,7 +155,7 @@ public class AudioManager : MonoBehaviour
         catch (Exception)
         {
             // If no open channels exist, make a new one and return it
-            result = new Channel(target.AddComponent<AudioSource>(), target.AddComponent<AudioSource>());
+            result = new Channel(target.AddComponent<AudioSource>());
 
             if (!_channels.ContainsKey(target))
                 _channels.Add(target, new HashSet<Channel>());
@@ -232,6 +230,8 @@ public class AudioManager : MonoBehaviour
 
         GUI.DragWindow();
     }
+
     
+
     #endregion
 }
