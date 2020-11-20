@@ -16,7 +16,8 @@ public class GrapplingArrow : MonoBehaviour
     private bool destroyLine = false;
     private bool isDestroyed = false;
     public Material ArrowRopeMaterial;
-   
+    LineRenderer line;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +42,7 @@ public class GrapplingArrow : MonoBehaviour
         
         if (!isDestroyed) //If arrow has been shot and rendere not destroyed, update line vertices
         {
-            LineRenderer line = GetComponent<LineRenderer>();
+            line = GetComponent<LineRenderer>();
             var points = new Vector3[2];
             points[0] = player.transform.position;
             points[1] = this.transform.position;
@@ -55,18 +56,25 @@ public class GrapplingArrow : MonoBehaviour
         }
         
     }
+    bool collided;
     void OnCollisionEnter(Collision collision)
     {
+        if(collided)//so it can only collide once
+            return;
+
         //if the collided object DOES have a rigid body, then the grapple will work on it
-        
+
         if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>()) //If object is not grappable, destroy line renderer on arrow and return
         {
             destroyLine = true;
+            Destroy(line);
+            Destroy(this);
             return;
             
         }
         else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
+            collided = true;
             this.transform.parent = collision.transform; 
             isPulling = true;
             Destroy(GetComponent<Rigidbody>());
