@@ -40,11 +40,6 @@ public class AntiGrav : Interactable
         _holdable = GetComponent<InteractHoldable>();
         _audioManager = AudioManager.Instance();
         
-        // initialize floating rigidbody settings
-        _rb.useGravity = false;
-        _rb.velocity = Vector3.zero;
-        _rb.constraints = RigidbodyConstraints.FreezeRotation;
-        
         // finish preparing script for activation
         _ending = false;
         _timeSpentRising = 0;
@@ -52,7 +47,12 @@ public class AntiGrav : Interactable
         CameraFX.instance.AddTrauma(0.25f);
         _gravitySound = gravitySound;
         _audioManager.PlaySound(_gravitySound, gameObject);
+        if(_holdable.IsHeld) _holdable.ToggleHolding();
         
+        // initialize floating rigidbody settings
+        _rb.useGravity = false;
+        _rb.velocity = Vector3.zero;
+        _rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public void Deactivate()

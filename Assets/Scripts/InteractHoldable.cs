@@ -6,7 +6,9 @@ public class InteractHoldable : Interactable
 {
     [SerializeField, Tooltip("The settings that will applied to this object.")]
     private HoldableSettings settings = default;
-    
+
+    public bool IsHeld => _isHeld;
+
     private bool _isHeld = false;
     private Vector3 _restingPosition = Vector3.zero;
     private Transform _playerTransform = null;
@@ -124,7 +126,7 @@ public class InteractHoldable : Interactable
         _isCanceled += canceled ? 1 : -1;
     }
 
-    private void ToggleHolding()
+    public void ToggleHolding()
     {
         var isHeld = _isHeld;
         _wantsToToggle = false;
