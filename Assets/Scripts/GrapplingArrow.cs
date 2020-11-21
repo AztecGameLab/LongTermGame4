@@ -28,6 +28,7 @@ public class GrapplingArrow : MonoBehaviour
         isPulling = false;
         LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>(); //Creates the LineRenderer component and sets defaults
         lineRenderer.material = ArrowRopeMaterial == null ? new Material(Shader.Find("Sprites/Default")) : ArrowRopeMaterial; //ADD YOUR MATERIALS HERE @ARTISTS
+        lineRenderer.textureMode = LineTextureMode.Tile;
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.positionCount = 2;
         var points = new Vector3[2];
