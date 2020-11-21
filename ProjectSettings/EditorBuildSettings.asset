@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneChanger2.unity
     guid: 35998c00c6ab6494296aa1e23099ff9c
+  - enabled: 1
+    path: Assets/Scenes/MainMenuCredits.unity
+    guid: 11b5e9d7a5518804684cfb4963c1d427
   m_configObjects: {}
