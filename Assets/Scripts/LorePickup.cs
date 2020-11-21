@@ -8,6 +8,7 @@ public class LorePickup : Interactable
     public string text;
     protected override void OnInteract(Transform userTransform)
     {
+        print("yppp");
         PlayerManager.instance.DisplayLore(text);
     }
 
