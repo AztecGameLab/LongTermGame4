@@ -45,7 +45,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.02956657
-  m_Height: 0.8058282
+  m_Height: 0.71
   m_Direction: 2
   m_Center: {x: 0.0013941824, y: 0.0016821399, z: 0.015529215}
 --- !u!54 &2214633947940137219
@@ -331,6 +331,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.010833612
       objectReference: {fileID: 0}
+    - target: {fileID: 2345534518620552718, guid: 9545ba00e45fe753dbaaa556723e3541,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b283f8bce080a741a1f5bb40a2f6741, type: 2}
+    - target: {fileID: 2345534518620552718, guid: 9545ba00e45fe753dbaaa556723e3541,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4a353dd86e7709449a3b7eb05c5a6843, type: 2}
+    - target: {fileID: 2345534518620552718, guid: 9545ba00e45fe753dbaaa556723e3541,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8af7f69d11270704aacc215cc4d0d5d7, type: 2}
     - target: {fileID: 5978687928787046523, guid: 9545ba00e45fe753dbaaa556723e3541,
         type: 3}
       propertyPath: m_LocalPosition.z
