@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   massThreshold: 4
+  pullRadiusThreshold: 4
+  isPulling: 0
+  stopPull: 0
+  ArrowRopeMaterial: {fileID: 2100000, guid: 8330e56d7a8641d4b9b203106dc566b7, type: 2}
 --- !u!1001 &6455761322496615826
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,19 +1,16 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private float maxDistance = 1f;
 
     public delegate void Interact([CanBeNull] Transform target, [NotNull] Transform player);
     public static event Interact OnInteract;
-    
-    private void Update()
-    {
-        if (!Input.GetKeyDown(KeyCode.E)) return;
 
+    public void TryInteract()
+    {
         // Raycast to check if we are looking at something within the interactable range
         var playerTransform = transform;
         Physics.Raycast(playerTransform.position, playerTransform.forward, out RaycastHit hit, maxDistance);

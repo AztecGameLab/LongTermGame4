@@ -1,29 +1,11 @@
-﻿using System;
-using UnityEditor;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class InteractHoldable : Interactable
 {
-    [Header("Audio Settings")]
-    [SerializeField, Tooltip("The sound that is played when this object collides with something.")] 
-    private Sound hitSound = null;
-    
-    [Header("Hold Position Settings")]
-    [SerializeField, Tooltip("How far this object should be held from the player.")] 
-    private float holdDistance = 2f;
-    [SerializeField, Tooltip("A way to adjust the precise position at which this object is held (good for weird pivots)")] 
-    private Vector3 holdPositionOffset = Vector3.zero;
-    [SerializeField, Tooltip("The distance between this object and a target where the velocity will be zero.")] 
-    private float deadZone = 0.1f;
-    
-    [Header("Speed Settings")]
-    [SerializeField, Tooltip("How fast this object moves to follow the player's direction.")] 
-    private float moveSpeed = 10f;
-    [SerializeField, Tooltip("How fast this object will rotate itself")]
-    private float rotateSpeed = 5f;
-    [SerializeField, Tooltip("A way to cap the speed that this object can have when thrown")]
-    private float maxThrowSpeed = 10f;
+    [SerializeField, Tooltip("The settings that will applied to this object.")]
+    private HoldableSettings settings = default;
     
     private bool _isHeld = false;
     private Vector3 _restingPosition = Vector3.zero;
@@ -62,7 +44,7 @@ public class InteractHoldable : Interactable
     {
         // If the player moves too far away from this object, they will drop it
         var distanceToPlayer = (transform.position - _playerTransform.position).magnitude;
-        if (distanceToPlayer > holdDistance * 2f) SetHolding(false);
+        if (distanceToPlayer > settings.HoldDistance * 2f) SetHolding(false);
 
         // No prop-climbing here! Sorry, hl2 players
         if (contact.otherCollider.CompareTag("Player"))
@@ -78,20 +60,29 @@ public class InteractHoldable : Interactable
         newRotation.y = 0;
         
         // Smoothly move towards this target rotation
-        transform.forward = Vector3.MoveTowards(transform.forward, newRotation, Time.deltaTime * rotateSpeed);
+        transform.forward = Vector3.MoveTowards(transform.forward, newRotation, Time.deltaTime * settings.RotateSpeed);
     }
 
     private void MoveTowardsRestingPosition()
     {
+        // Checks to make sure the box isn't directly under the player
+        var directionToPlayer = (transform.position - _playerTransform.position).normalized;
+        if (Vector3.Dot(directionToPlayer, Vector3.down) > settings.DropDistance)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            SetHolding(false);
+            return;
+        }
+
         // Calculate a point a certain distance in front of the player to aim for.
-        _restingPosition = _playerTransform.position + (_playerTransform.forward * holdDistance);
-        _restingPosition += holdPositionOffset;
+        _restingPosition = _playerTransform.position + (_playerTransform.forward * settings.HoldDistance);
+        _restingPosition += settings.HoldPositionOffset;
         
         // Calculate how close this object is to the point we are aiming at.
         _curDistance = Vector3.Distance(_restingPosition, transform.position);
 
         // If we are in the dead-zone, kill the velocity to stop micro-movements.
-        if (_curDistance <= deadZone)
+        if (_curDistance <= settings.DeadZone)
         {
             _rigidbody.velocity = Vector3.zero;
         }
@@ -100,7 +91,7 @@ public class InteractHoldable : Interactable
             // Find the direction towards the target position, and scale it by how distant the target it.
             // Multiplying by curDistance makes it move faster for longer distances, and reach a smooth stop for close ones.
             var towardsTarget = (_restingPosition - transform.position).normalized * _curDistance;
-            _rigidbody.velocity = towardsTarget * moveSpeed;
+            _rigidbody.velocity = towardsTarget * settings.MoveSpeed;
         }
     }
     
@@ -115,14 +106,16 @@ public class InteractHoldable : Interactable
         {
             // Updates the velocity of the object before it is thrown to comply with the defined max
             var velocity = _rigidbody.velocity;
-            _rigidbody.velocity = velocity.normalized * Mathf.Min(velocity.magnitude, maxThrowSpeed);
+            _rigidbody.velocity = velocity.normalized * Mathf.Min(velocity.magnitude, settings.MaxThrowSpeed);
         }
     }
 
     private void PlayHitSound()
     {
-        hitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
-        _manager.PlaySound(hitSound, gameObject);
+        if (settings.HitSound == null) return;
+        
+        settings.HitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
+        _manager.PlaySound(settings.HitSound, gameObject);
     }
 
     private void OnCollisionEnter()
