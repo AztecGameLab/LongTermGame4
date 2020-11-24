@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartOpen: 0
+  AnimateOnStart: 0
   animationTime: 3
   cameraShakeAmount: 0.3
 --- !u!1 &7778305884420839260
@@ -473,6 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedPosition: {x: 0, y: 0, z: 0}
   openPosition: {x: 1.7, y: 0, z: 0}
+  AnimateOnStart: 0
   animationTime: 1
 --- !u!1 &7778305885184529992
 GameObject:
@@ -615,6 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedPosition: {x: 0, y: 0, z: 0}
   openPosition: {x: -1.7, y: 0, z: 0}
+  AnimateOnStart: 0
   animationTime: 1
 --- !u!1 &7778305886056585882
 GameObject:
@@ -674,7 +677,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8771166627424403242, guid: f9af2ca951ca19b4aa41713cb3c0c890, type: 3}
+  - {fileID: 2100000, guid: 3bc02414ef26b5c489508222bdd8c4ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
