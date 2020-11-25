@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialText : MonoBehaviour
+public class TutorialUI : MonoBehaviour
 {
     public GameObject TutorialBackground;
     public GameObject Player;
