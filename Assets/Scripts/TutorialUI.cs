@@ -23,7 +23,7 @@ public class TutorialUI : MonoBehaviour
     }
     public void CompleteTutorial()
     {
-        TutorialBackground.SetActive(false);
+        HideTutorial();
         this.enabled = false;
     }
     
