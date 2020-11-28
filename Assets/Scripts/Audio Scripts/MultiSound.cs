@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using AmplifyShaderEditor;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 [CreateAssetMenu(fileName = "New MultiSound", menuName = "Audio Custom/MultiSound", order = 2)]
 public class MultiSound : Sound
@@ -42,8 +44,8 @@ public class MultiSoundInstance : SoundInstance
         IsInactive = false;
 
         yield return PlayIntro(mainSource, schedulingSource);
-        yield return PlayLooping(schedulingSource);
-        yield return PlayOutro(mainSource, schedulingSource);
+        if (_state != MultiSoundState.Inactive) yield return PlayLooping(schedulingSource);
+        if (_state != MultiSoundState.Inactive) yield return PlayOutro(mainSource, schedulingSource);
     }
     
     // This stage cannot be canceled programatically: it will always play to completion
@@ -59,7 +61,14 @@ public class MultiSoundInstance : SoundInstance
         
         // Play the intro, and crossfade the looping clip in right before the intro finishes
         intro.PlayScheduled(AudioSettings.dspTime + 0.1);
-        yield return new WaitForSecondsRealtime((float) (0.1 + IntroDuration - _crossfadeDuration));
+
+        var elapsed = 0f;
+        while (elapsed < 0.1 + IntroDuration - _crossfadeDuration)
+        {
+            if (IsInactive) break;
+            elapsed += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         yield return Crossfade(looping, intro);
     }
 
@@ -120,6 +129,12 @@ public class MultiSoundInstance : SoundInstance
         // Over the crossfadeDuration, fadeIn gets louder as fadeOut gets quieter
         while (Time.time - startTime <= _crossfadeDuration)
         {
+            if (fadeIn.clip != _outroClip && IsInactive)
+            {
+                yield return PlayOutro(fadeOut, fadeIn);
+                break;
+            }
+            
             float percentComplete = (Time.time - startTime) / _crossfadeDuration;
             fadeIn.volume = GetValue(SoundValue.Volume) * percentComplete;
             fadeOut.volume = GetValue(SoundValue.Volume) * (1 - percentComplete);
