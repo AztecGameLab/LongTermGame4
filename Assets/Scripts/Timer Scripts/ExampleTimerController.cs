@@ -19,6 +19,9 @@ public class ExampleTimerController : MonoBehaviour
     [SerializeField] private Sound tickSound = default;
     [SerializeField] private Sound endSound = default;
     private AudioManager _manager;
+    private SoundInstance _startSoundInstance;
+    private SoundInstance _tickSoundInstance;
+    private SoundInstance _endSoundInstance;
     private float _timeSinceTick = 1f;
 
     private void OnEnable()
@@ -28,6 +31,9 @@ public class ExampleTimerController : MonoBehaviour
         _endPos = endPosition.position;
         _angle = spinningThing.eulerAngles;
         _manager = AudioManager.Instance();
+        _startSoundInstance = startSound.GenerateInstance();
+        _tickSoundInstance = tickSound.GenerateInstance();
+        _endSoundInstance = endSound.GenerateInstance();
     }
 
     public void UpdateTimerObjects(float completion)
@@ -96,17 +102,17 @@ public class ExampleTimerController : MonoBehaviour
 
     public void PlayTickingSound()
     {
-        _manager.PlaySound(tickSound, bar);
+        _manager.PlaySound(_tickSoundInstance, bar);
     }
 
     public void PlayEndSound()
     {
-        _manager.PlaySound(startSound, bar);
+        _manager.PlaySound(_startSoundInstance, bar);
     }
     
     public void PlayStartSound()
     {
-        _manager.PlaySound(endSound, bar);
+        _manager.PlaySound(_endSoundInstance, bar);
     }
 
     #endregion
