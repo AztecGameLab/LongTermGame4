@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1352089023575942756, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3545766692709189681, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
         type: 3}
       propertyPath: isEntrance
@@ -87,6 +92,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4213807590856601928, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910492426813311331, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5620265176920239238, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -101,6 +116,16 @@ PrefabInstance:
         type: 3}
       propertyPath: AnimateOnStart
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874664008851196905, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 11.922555
+      objectReference: {fileID: 0}
+    - target: {fileID: 5874664008851196905, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1b69f49d2bab2649a39e0c6e587ee5b, type: 3}
