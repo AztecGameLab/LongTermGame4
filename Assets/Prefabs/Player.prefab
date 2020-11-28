@@ -489,10 +489,10 @@ MonoBehaviour:
   shootArrow: {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
   music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
   DevArrowSelection:
+  - {fileID: 2841423412555271410, guid: 2a689f3e77d39e64884345823134f36a, type: 3}
   - {fileID: 8531073477740354948, guid: 2a5041ae04ec0214b8b60f48781b43d9, type: 3}
   - {fileID: 6237226022821270646, guid: 1c5643d586ebdd64483ab3b4712fb1d0, type: 3}
   - {fileID: 2726300047447418399, guid: 29433fa00ea76194b94c8d745aa4a587, type: 3}
-  - {fileID: 2841423412555271410, guid: 2a689f3e77d39e64884345823134f36a, type: 3}
   loreDisplay: {fileID: 7674144383529920765}
 --- !u!114 &2087326524746666265
 MonoBehaviour:
