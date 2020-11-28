@@ -131,7 +131,7 @@ public class MultiSoundInstance : SoundInstance
         {
             if (fadeIn.clip != _outroClip && IsInactive)
             {
-                yield return PlayOutro(fadeOut, fadeIn);
+                yield return PlayOutro(fadeIn,fadeOut);
                 break;
             }
             
