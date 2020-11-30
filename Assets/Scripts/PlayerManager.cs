@@ -32,6 +32,12 @@ public class PlayerManager : MonoBehaviour
     public GameObject[] DevArrowSelection;
     public GameObject loreDisplay;
 
+    private static string arrowTypeMessage;
+    private bool regArrow = true;
+    private bool grappleArrow = false;
+    private bool gravArrow = false;
+    
+
     private void Awake()
     {
         audioManager = AudioManager.Instance();
@@ -81,6 +87,16 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    void OnGUI()
+    {
+        if (regArrow)
+            arrowTypeMessage = GUI.TextField(new Rect((Screen.width / 2 - 40), (Screen.height - 22), 88, 22), "Regular Arrow");
+        else if (grappleArrow)
+            arrowTypeMessage = GUI.TextField(new Rect((Screen.width / 2 - 40), (Screen.height - 22), 88, 22), "Grapple Arrow");
+        else
+            arrowTypeMessage = GUI.TextField(new Rect((Screen.width / 2 - 40), (Screen.height - 22), 88, 22), "Gravity Arrow");
+    }
+
     void GetInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -126,22 +142,46 @@ public class PlayerManager : MonoBehaviour
         s_playerShooting.enabled = true;
     }
 
+    
+    void setRegArrow()
+    {
+        regArrow = true;
+        grappleArrow = false;
+        gravArrow = false;
+    }
+    void setGrappleArrow()
+    {
+        regArrow = false;
+        grappleArrow = true;
+        gravArrow = false;
+    }
+    void setGravArrow()
+    {
+        regArrow = false;
+        grappleArrow = false;
+        gravArrow = true;
+    }
+    
+
     void DevArrows()
     {
         // Right-click to get next arrow
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonDown(1))
         {
             if (s_playerShooting.ArrowPrefab == DevArrowSelection[1])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[2];
+                setGrappleArrow();
             }
             else if (s_playerShooting.ArrowPrefab == DevArrowSelection[2])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[3];
+                setGravArrow();
             }
             else if (s_playerShooting.ArrowPrefab == DevArrowSelection[3])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[1];
+                setRegArrow();
             }
         }
 
@@ -151,14 +191,17 @@ public class PlayerManager : MonoBehaviour
             if (s_playerShooting.ArrowPrefab == DevArrowSelection[1])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[3];
+                setGravArrow();
             }
             else if (s_playerShooting.ArrowPrefab == DevArrowSelection[2])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[1];
+                setRegArrow();
             }
             else if (s_playerShooting.ArrowPrefab == DevArrowSelection[3])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[2];
+                setGrappleArrow();
             }
         }
         else if (Input.mouseScrollDelta.y < 0)
@@ -166,14 +209,17 @@ public class PlayerManager : MonoBehaviour
             if (s_playerShooting.ArrowPrefab == DevArrowSelection[1])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[2];
+                setGrappleArrow();
             }
             else if (s_playerShooting.ArrowPrefab == DevArrowSelection[2])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[3];
+                setGravArrow();
             }
             else if (s_playerShooting.ArrowPrefab == DevArrowSelection[3])
             {
                 s_playerShooting.ArrowPrefab = DevArrowSelection[1];
+                setRegArrow();
             }
         }
 
@@ -182,23 +228,32 @@ public class PlayerManager : MonoBehaviour
               s_playerShooting.ArrowPrefab = DevArrowSelection[0];
         */
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             s_playerShooting.ArrowPrefab = DevArrowSelection[1];
+            setRegArrow();
+        }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             s_playerShooting.ArrowPrefab = DevArrowSelection[2];
+            setGrappleArrow();
+        }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
             s_playerShooting.ArrowPrefab = DevArrowSelection[3];
-      /*if (Input.GetKeyDown(KeyCode.Alpha4))
-            s_playerShooting.ArrowPrefab = DevArrowSelection[4];
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            s_playerShooting.ArrowPrefab = DevArrowSelection[5];
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-            s_playerShooting.ArrowPrefab = DevArrowSelection[6];
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-            s_playerShooting.ArrowPrefab = DevArrowSelection[7];
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-            s_playerShooting.ArrowPrefab = DevArrowSelection[8];
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-            s_playerShooting.ArrowPrefab = DevArrowSelection[9];
-      */
+            setGravArrow();
+        }
+        /*if (Input.GetKeyDown(KeyCode.Alpha4))
+              s_playerShooting.ArrowPrefab = DevArrowSelection[4];
+          if (Input.GetKeyDown(KeyCode.Alpha5))
+              s_playerShooting.ArrowPrefab = DevArrowSelection[5];
+          if (Input.GetKeyDown(KeyCode.Alpha6))
+              s_playerShooting.ArrowPrefab = DevArrowSelection[6];
+          if (Input.GetKeyDown(KeyCode.Alpha7))
+              s_playerShooting.ArrowPrefab = DevArrowSelection[7];
+          if (Input.GetKeyDown(KeyCode.Alpha8))
+              s_playerShooting.ArrowPrefab = DevArrowSelection[8];
+          if (Input.GetKeyDown(KeyCode.Alpha9))
+              s_playerShooting.ArrowPrefab = DevArrowSelection[9];
+        */
     }
 }
