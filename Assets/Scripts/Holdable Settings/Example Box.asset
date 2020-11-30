@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Example Box
   m_EditorClassIdentifier: 
   hitSound: {fileID: 11400000, guid: 19b882597d7f9364fa5df0319b2574ec, type: 2}
-  holdDistance: 2
+  holdDistance: 1.75
   holdPositionOffset: {x: 0, y: 0, z: 0}
   deadZone: 0.1
+  dropDistance: 0.95
   moveSpeed: 10
   rotateSpeed: 5
-  maxThrowSpeed: 10
+  maxThrowSpeed: 4

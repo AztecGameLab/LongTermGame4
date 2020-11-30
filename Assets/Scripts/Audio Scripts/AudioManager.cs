@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 
     private int SourcesCount => _channels.Values.Count;
     private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
-    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.Source.isPlaying ? 1 : 0));
+    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.MainSource.isPlaying ? 1 : 0));
     
     public static AudioManager Instance()
     {
@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound to play</param>
     /// <param name="target">What GameObject this sound should originate from</param>
-    public void PlaySound(Sound sound, GameObject target)
+    public void PlaySound(SoundInstance sound, GameObject target)
     {
         Channel channel;
         
@@ -66,12 +66,11 @@ public class AudioManager : MonoBehaviour
         }
         
         // Make the sound 3D if its not targeting the global target.
-        if (!target.Equals(_globalTarget))
-            channel.Source.spatialBlend = 1;
-        
+        sound.SetValue(SoundValue.SpacialBlend, target.Equals(_globalTarget) ? 0f : 1f);
+
         StartCoroutine(channel.Play(sound));
     }
-    public void PlaySound(Sound sound)
+    public void PlaySound(SoundInstance sound)
     {
         PlaySound(sound, _globalTarget);
     }
@@ -81,14 +80,14 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="sound">The sound that will be stopped, if its playing</param>
     /// <param name="target">The GameObject to stop playing this sound</param>
-    public void StopSound(Sound sound, GameObject target)
+    public void StopSound(SoundInstance sound, GameObject target)
     {
         Channel channel = GetCurrentlyPlaying(target, sound);
 
         if (channel != null)
             StartCoroutine(channel.Stop());
     }
-    public void StopSound(Sound sound)
+    public void StopSound(SoundInstance sound)
     {
         StopSound(sound, _globalTarget);
     }
@@ -155,7 +154,7 @@ public class AudioManager : MonoBehaviour
         catch (Exception)
         {
             // If no open channels exist, make a new one and return it
-            result = new Channel(target.AddComponent<AudioSource>());
+            result = new Channel(target.AddComponent<AudioSource>(), target.AddComponent<AudioSource>());
 
             if (!_channels.ContainsKey(target))
                 _channels.Add(target, new HashSet<Channel>());
@@ -172,14 +171,14 @@ public class AudioManager : MonoBehaviour
     /// <param name="sound">The sound to search for</param>
     /// <returns></returns>
     [CanBeNull]
-    private Channel GetCurrentlyPlaying(GameObject target, Sound sound)
+    private Channel GetCurrentlyPlaying(GameObject target, SoundInstance sound)
     {
         Channel result = null;
         try
         {
             var channels =
                 from channel in _channels[target]
-                where channel.SoundEquals(sound)
+                where channel.HasSound(sound)
                 select channel;
 
             result = channels.First();                
@@ -230,8 +229,6 @@ public class AudioManager : MonoBehaviour
 
         GUI.DragWindow();
     }
-
     
-
     #endregion
 }
