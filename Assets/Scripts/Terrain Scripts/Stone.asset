@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12b779a84e355c469ba280e05a7dbfb, type: 3}
+  m_Name: Stone
+  m_EditorClassIdentifier: 
+  walkSound: {fileID: 11400000, guid: 84ac58062bc37724f90a2a4b38ff08fe, type: 2}
+  arrowHitSound: {fileID: 11400000, guid: 1743adeefdf92c8418b3d69c8a74bc8b, type: 2}
+  arrowHitEffect: {fileID: 3403110522493912495, guid: 2911911c9cfd13c4daf11b8c5cab0097,
+    type: 3}

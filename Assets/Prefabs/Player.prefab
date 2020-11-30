@@ -480,6 +480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bbaf561f7c422ebf9cfa2eb6d0f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepTime: 0.4
+  defaultTerrain: {fileID: 11400000, guid: dc89ef9080fda1d409f2f0b333dc8a23, type: 2}
   moveSpeed: 6
   rotateVerticleSpeed: 5
   rotateHorizontalSpeed: 5

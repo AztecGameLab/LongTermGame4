@@ -2,7 +2,6 @@
 
 public class StickyArrowScript : MonoBehaviour
 {
-    [SerializeField] private Sound arrowHitSound = default;
     [SerializeField] private GameObject arrowHitEffectPrefab = default;
     private SoundInstance _arrowHitSound;
     private AudioManager _audioManager;
@@ -12,10 +11,7 @@ public class StickyArrowScript : MonoBehaviour
 
     private void Start()
     {
-        // initialize the hit sound
-        _arrowHitSound = arrowHitSound.GenerateInstance();
         _audioManager = AudioManager.Instance();
-        
         arrowRB = GetComponent<Rigidbody>();
     }
 
@@ -47,7 +43,8 @@ public class StickyArrowScript : MonoBehaviour
                 //could use the following if you don't mind arrows phasing through solid objects
                 //gameObject.GetComponent<Collider>().enabled = false;
             }
-            
+
+            _arrowHitSound = PlayerManager.instance.s_playerMovement.Terrain.ArrowHitSound.GenerateInstance(); 
             _audioManager.PlaySound(_arrowHitSound, gameObject);
             // create the particle effect
             var effect = 

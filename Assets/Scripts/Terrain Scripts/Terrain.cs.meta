@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: a22bbaf561f7c422ebf9cfa2eb6d0f31
+guid: f2d8bc924791c3a49b5d46d345c4a0f6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - _terrain: {fileID: 11400000, guid: dc89ef9080fda1d409f2f0b333dc8a23, type: 2}
-  - body: {instanceID: 0}
-  - camera: {instanceID: 0}
+  - terrainType: {fileID: 11400000, guid: dc89ef9080fda1d409f2f0b333dc8a23, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
