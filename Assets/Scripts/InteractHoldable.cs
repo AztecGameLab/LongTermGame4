@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,18 +6,25 @@ public class InteractHoldable : Interactable
 {
     [SerializeField, Tooltip("The settings that will applied to this object.")]
     private HoldableSettings settings = default;
-    
+
+    public bool IsHeld => _isHeld;
+
     private bool _isHeld = false;
     private Vector3 _restingPosition = Vector3.zero;
     private Transform _playerTransform = null;
     private Rigidbody _rigidbody = null;
     private float _curDistance;
     private AudioManager _manager;
-    
+    private SoundInstance _hitSound;
+
+    private bool _wantsToToggle = false;
+    private int _isCanceled = 0;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _manager = AudioManager.Instance();
+        _hitSound = settings.HitSound != null ? settings.HitSound.GenerateInstance() : null;
     }
     
     protected override void OnInteract(Transform userTransform)
@@ -38,6 +45,17 @@ public class InteractHoldable : Interactable
      
         TurnTowardsOwner();
         MoveTowardsRestingPosition();
+    }
+
+    private void LateUpdate()
+    {
+        if (_isCanceled > 0)
+        {
+            _wantsToToggle = false;
+            _isCanceled = 0;
+        }
+
+        if (_wantsToToggle) ToggleHolding();
     }
 
     private void CheckForDisconnect(ContactPoint contact)
@@ -97,12 +115,28 @@ public class InteractHoldable : Interactable
     
     private void SetHolding(bool holding)
     {
-        // If we are holding something, all of these should be true; otherwise, false
-        _isHeld = holding;
-        _rigidbody.freezeRotation = holding;
-        _rigidbody.useGravity = !holding;
+        if (holding != _isHeld)
+        {
+            _wantsToToggle = true;
+        }
+    }
 
-        if (!holding)
+    public void SetCanceled(bool canceled)
+    {
+        _isCanceled += canceled ? 1 : -1;
+    }
+
+    public void ToggleHolding()
+    {
+        var isHeld = _isHeld;
+        _wantsToToggle = false;
+        
+        // If we are holding something, all of these should be true; otherwise, false
+        _isHeld = !isHeld;
+        _rigidbody.freezeRotation = !isHeld;
+        _rigidbody.useGravity = isHeld;
+
+        if (isHeld)
         {
             // Updates the velocity of the object before it is thrown to comply with the defined max
             var velocity = _rigidbody.velocity;
@@ -114,8 +148,8 @@ public class InteractHoldable : Interactable
     {
         if (settings.HitSound == null) return;
         
-        settings.HitSound.SetSetting(SoundSetting.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
-        _manager.PlaySound(settings.HitSound, gameObject);
+        _hitSound.SetValue(SoundValue.Volume, 0.15f * Mathf.Min(_rigidbody.velocity.magnitude / 5, 1));
+        _manager.PlaySound(_hitSound, gameObject);
     }
 
     private void OnCollisionEnter()
