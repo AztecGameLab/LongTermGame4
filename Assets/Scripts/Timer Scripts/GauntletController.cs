@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +19,7 @@ public class GauntletController : MonoBehaviour
     private bool Charged => _charges >= MaxCharges;
     private bool _acceptingCharge = false;
     private int _charges;
+    private Timer _currentTimer;
     
     private void OnEnable()
     {
@@ -35,23 +37,32 @@ public class GauntletController : MonoBehaviour
         }
     }
 
-    public void StartGauntlet()
+    public void StartGauntlet(Timer timer)
     {
         if (Charged) onReset.Invoke();
         _charges = 0;
         _acceptingCharge = true;
+        _currentTimer = timer;
     }
 
     public void EndGauntlet()
     {
         _acceptingCharge = false;
-        if (!Charged) onReset.Invoke();
+        if (!Charged)
+        {
+            onReset.Invoke();
+        }
     }
 
     private void OnTargetActivate()
     {
         if (!_acceptingCharge || Charged) return;
         _charges++;
-        if (Charged) onSuccess.Invoke();
+        if (Charged)
+        {
+            onSuccess.Invoke();
+            Debug.Log("success");
+            _currentTimer.StopTimer(true);
+        }
     }
 }

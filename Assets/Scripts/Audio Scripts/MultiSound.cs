@@ -26,14 +26,14 @@ public class MultiSoundInstance : SoundInstance
     private MultiSoundState _state = MultiSoundState.Inactive;
     public MultiSoundState State => _state;
 
-    private AudioClip _introClip, _outroClip;
+    public AudioClip IntroClip, OutroClip;
     private float _crossfadeDuration;
-    public double IntroDuration => (double) _introClip.samples / _introClip.frequency;
-    public double OutroDuration => (double) _outroClip.samples / _outroClip.frequency;
+    public double IntroDuration => (double) IntroClip.samples / IntroClip.frequency;
+    public double OutroDuration => (double) OutroClip.samples / OutroClip.frequency;
     public MultiSoundInstance(MultiSound sound) : base(sound)
     {
-        _introClip = sound.introClip;
-        _outroClip = sound.outroClip;
+        IntroClip = sound.introClip;
+        OutroClip = sound.outroClip;
         _crossfadeDuration = sound.crossfadeDuration;
     }
     
@@ -52,7 +52,7 @@ public class MultiSoundInstance : SoundInstance
         _state = MultiSoundState.Intro;
     
         // Prepare both AudioSources for playback.PlayOnSource(intro);
-        _settings.ApplyToSource(intro, _introClip);
+        _settings.ApplyToSource(intro, IntroClip);
         intro.loop = false;
         
         _settings.ApplyToSource(looping);
@@ -100,7 +100,7 @@ public class MultiSoundInstance : SoundInstance
     private IEnumerator PlayOutro(AudioSource outro, AudioSource looping)
     {
         // Prepare both AudioSources for playback
-        _settings.ApplyToSource(outro, _outroClip);
+        _settings.ApplyToSource(outro, OutroClip);
         outro.loop = false;
 
         yield return Crossfade(outro, looping);
@@ -127,7 +127,7 @@ public class MultiSoundInstance : SoundInstance
         // Over the crossfadeDuration, fadeIn gets louder as fadeOut gets quieter
         while (Time.time - startTime <= _crossfadeDuration)
         {
-            if (fadeIn.clip != _outroClip && IsInactive)
+            if (fadeIn.clip != OutroClip && IsInactive)
             {
                 yield return PlayOutro(fadeIn,fadeOut);
                 break;
