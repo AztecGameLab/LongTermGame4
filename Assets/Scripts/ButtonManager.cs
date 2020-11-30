@@ -56,7 +56,7 @@ public class ButtonManager : MonoBehaviour
         Debug.Log("stop");
         _audioManager.StopSound(_mainMusic);
         _playingMusic = false;
-        SceneManager.LoadScene("Play");
+        SceneManager.LoadScene(2);
     }
 
     public void LoadSceneMainMenu()

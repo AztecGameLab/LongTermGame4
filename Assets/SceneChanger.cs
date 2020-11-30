@@ -36,9 +36,6 @@ public class SceneChanger : MonoBehaviour
 
 
 
-        if (nextSceneName != "")
-            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
-        else
-            print("SceneChanger needs next scene name");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

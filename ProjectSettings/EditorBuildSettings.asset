@@ -18,24 +18,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzles/ArrowTriggerTutorial.unity
     guid: 6fd5a5d95e6e32a499128ec5b1ae69d6
   - enabled: 1
-    path: Assets/Scenes/Puzzles/AntiGravLevels.unity
-    guid: 483ee1c3a3d335f4eb0f41ca398f99b3
+    path: Assets/Scenes/Puzzles/GauntletTutorial.unity
+    guid: 5567b894d3ea12d4b966b7c72bbdac1b
   - enabled: 1
-    path: Assets/Scenes/Puzzles/AntiGravTutorial.unity
-    guid: d820e5ea8e650184ea373453738f32e3
-  - enabled: 1
-    path: Assets/Scenes/Puzzles/Chad-Test Scene.unity
-    guid: 41c3bd94ee3d94936af94d6df584d170
+    path: Assets/Scenes/Puzzles/GrapplePullTutorial.unity
+    guid: 2b1397e5a1fe7a84f865a7c21cc233bf
   - enabled: 1
     path: Assets/Scenes/Puzzles/EasyGrapplePuzzle.unity
     guid: 029c3ddbb3562ac4f97ad96825ca2c9c
   - enabled: 1
-    path: Assets/Scenes/Puzzles/ElevatorPuzzle.unity
-    guid: 53235c322f5d7094d885688f471c97fe
-  - enabled: 1
     path: Assets/Scenes/Puzzles/GrappleGauntlet.unity
     guid: d62ae5ef76ca00545a2b93ff059db112
   - enabled: 1
-    path: Assets/Scenes/Puzzles/GrapplePullTutorial.unity
-    guid: 2b1397e5a1fe7a84f865a7c21cc233bf
+    path: Assets/Scenes/Puzzles/AntiGravTutorial.unity
+    guid: d820e5ea8e650184ea373453738f32e3
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/AntiGravLevels.unity
+    guid: 483ee1c3a3d335f4eb0f41ca398f99b3
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/Chad-Test Scene.unity
+    guid: 41c3bd94ee3d94936af94d6df584d170
   m_configObjects: {}
