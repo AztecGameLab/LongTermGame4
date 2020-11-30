@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed198453cb4c14c47a9ca9ffdb245fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchSound: {fileID: 11400000, guid: 76951b71e4d989146b04c8d953d9e43b, type: 2}
+  hitSound: {fileID: 11400000, guid: 9316650816036b3489b4ab196a2aa936, type: 2}
+  snapSound: {fileID: 11400000, guid: a7ebc9138fcd60c4491f38ca52fc2484, type: 2}
+  fallSound: {fileID: 11400000, guid: 17ef30490c4b5a04f99ae0e1d82c08c6, type: 2}
   moveSpeed: 1
   massThreshold: 4
   pullRadiusThreshold: 4

@@ -1,9 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GrapplingArrow : MonoBehaviour
 {
+    [Header("Grapple Sound Settings")]
+    [SerializeField] private Sound launchSound = default;
+    [SerializeField] private Sound hitSound = default;
+    [SerializeField] private Sound snapSound = default;
+    [SerializeField] private Sound fallSound = default;
+    
+    private SoundInstance _launchSound;
+    private SoundInstance _hitSound;
+    private SoundInstance _snapSound;
+    private SoundInstance _fallSound;
+    private AudioManager _audioManager;
+
     public static GrapplingArrow currentArrow;
     PlayerManager player = PlayerManager.instance;
     public float moveSpeed = 1;
@@ -21,6 +33,15 @@ public class GrapplingArrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initialize sounds
+        _audioManager = AudioManager.Instance();
+        _launchSound = launchSound.GenerateInstance();
+        _hitSound = hitSound.GenerateInstance();
+        _snapSound = snapSound.GenerateInstance();
+        _fallSound = fallSound.GenerateInstance();
+        
+        _audioManager.PlaySound(_launchSound);
+        
         currentArrow = this;
         arrowRB = GetComponent<Rigidbody>();
         playerRigid = player.GetComponent<Rigidbody>();
@@ -37,6 +58,7 @@ public class GrapplingArrow : MonoBehaviour
         lineRenderer.SetPositions(points);
 
     }
+
     void Update()
     {
         //Debug.Log("is Pulling (arrow): " + isPulling);
@@ -50,28 +72,25 @@ public class GrapplingArrow : MonoBehaviour
             line.SetPositions(points);
             if (destroyLine || Input.GetMouseButton(0))
             {
+                _audioManager.PlaySound(_snapSound);
                 isDestroyed = true;
                 Destroy(line);
             }
-            
         }
-        
     }
     bool collided;
     void OnCollisionEnter(Collision collision)
     {
         if(collided)//so it can only collide once
             return;
-
+        
         //if the collided object DOES have a rigid body, then the grapple will work on it
 
         if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>()) //If object is not grappable, destroy line renderer on arrow and return
         {
+            _audioManager.PlaySound(_fallSound, gameObject);
             destroyLine = true;
-            Destroy(line);
-            Destroy(this);
-            return;
-            
+            Invoke(nameof(DestroyThis), 1f);
         }
         else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
@@ -80,19 +99,14 @@ public class GrapplingArrow : MonoBehaviour
             isPulling = true;
             Destroy(GetComponent<Rigidbody>());
             StartCoroutine(MoveObject(collision));
-        
         }
         
-
         //Debug.Log(collision.rigidbody.mass);
-        
-       
-
-        
     }
 
     IEnumerator MoveObject(Collision collision)
     {
+        _audioManager.PlaySound(_hitSound, gameObject);
         LineRenderer line = GetComponent<LineRenderer>();
         var points = new Vector3[2];
         //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
@@ -118,6 +132,7 @@ public class GrapplingArrow : MonoBehaviour
             collision.rigidbody.useGravity = true;
             Destroy(line);
             isDestroyed = true; // destroy line renderer when arrow has no more use
+            Invoke(nameof(DisposeAudio), 2f);
             yield break;
         }
         //When player is being pulled, player movement must temporarily be disabled to function properly
@@ -133,6 +148,7 @@ public class GrapplingArrow : MonoBehaviour
                 line.SetPositions(points); // update line vertices
             yield return null;
         }
+
         playerRigid.useGravity = true;
         isPulling = false; //Set bool variables back to default
         stopPull = false;
@@ -141,11 +157,17 @@ public class GrapplingArrow : MonoBehaviour
         //Debug.Log(isPulling);
 
         currentArrow = null;
+        Invoke(nameof(DisposeAudio), 2f);
     }
 
-    
+    private void DestroyThis()
+    {
+        DisposeAudio();
+        Destroy(this);
+    }
 
-
-    // Update is called once per frame
-    
+    private void DisposeAudio()
+    {
+        _audioManager.Dispose(gameObject);
+    }
 }

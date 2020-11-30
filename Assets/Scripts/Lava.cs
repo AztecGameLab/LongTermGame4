@@ -34,11 +34,6 @@ public class Lava : MonoBehaviour
         _audioManager.PlaySound(_lavaAmbientSound, gameObject);
     }
 
-    private void OnDestroy()
-    {
-        _audioManager.Dispose(gameObject);
-    }
-
     private void Update()
     {
         _timeSincePop += Time.deltaTime;
