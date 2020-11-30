@@ -1,14 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StickyArrowScript : MonoBehaviour
 {
+    [SerializeField] private Sound arrowHitSound = default;
+    [SerializeField] private GameObject arrowHitEffectPrefab = default;
+    private SoundInstance _arrowHitSound;
+    private AudioManager _audioManager;
+    
     Rigidbody arrowRB;
     Quaternion arrowRotation;
 
     private void Start()
     {
+        // initialize the hit sound
+        _arrowHitSound = arrowHitSound.GenerateInstance();
+        _audioManager = AudioManager.Instance();
+        
         arrowRB = GetComponent<Rigidbody>();
     }
 
@@ -19,13 +26,15 @@ public class StickyArrowScript : MonoBehaviour
         //To keep players from stacking arrows oddly, and to test if the arrow should bounce, should not stick to player
         if (!collision.gameObject.CompareTag("arrow") && script == null &&  !collision.gameObject.CompareTag("Player"))
         {
+            var contact = collision.GetContact(0);
+
             //changing collision detection mode to avoid warning from unity
             arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
             //Make sure the arrow is pointing in the right dirrection using last known rotation before collision.
             gameObject.transform.rotation = arrowRotation;
             //Object sticks to where it first made contact, sinks in just enough to be embedded. 
-            gameObject.transform.position = collision.GetContact(0).point + transform.forward * -.4f;
+            gameObject.transform.position = contact.point + transform.forward * -.4f;
             //Checks if object is a movable object, will set as parrent as to move with object. 
             if (collision.rigidbody != null)
             {
@@ -38,9 +47,23 @@ public class StickyArrowScript : MonoBehaviour
                 //could use the following if you don't mind arrows phasing through solid objects
                 //gameObject.GetComponent<Collider>().enabled = false;
             }
+            
+            _audioManager.PlaySound(_arrowHitSound, gameObject);
+            // create the particle effect
+            var effect = 
+                Instantiate(arrowHitEffectPrefab, contact.point, Quaternion.FromToRotation(Vector3.forward, -transform.forward));
+            // destroy it once it finishes playing
+            var particleSystemDuration = effect.GetComponent<ParticleSystem>().main.duration;
+            Destroy(effect, particleSystemDuration);
+            Invoke(nameof(DisposeAudio), particleSystemDuration);
         }
-        
     }
+
+    private void DisposeAudio()
+    {
+        _audioManager.Dispose(gameObject);
+    }
+    
     private void LateUpdate()
     {
         //grab the last rotation before collision's rotation
