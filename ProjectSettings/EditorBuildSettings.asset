@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PickupObjects.unity
+    guid: 545f589274b75c24787995f995268cd3
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
@@ -14,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Play.unity
     guid: 63fc6f76aac53974a822163a9beecacf
+  - enabled: 1
+    path: Assets/Scenes/SceneChanger1.unity
+    guid: e0b5ff59a8f8cc74c88281d15565f909
+  - enabled: 1
+    path: Assets/Scenes/SceneChanger2.unity
+    guid: 35998c00c6ab6494296aa1e23099ff9c
+  - enabled: 1
+    path: Assets/Scenes/MainMenuCredits.unity
+    guid: 11b5e9d7a5518804684cfb4963c1d427
   m_configObjects: {}

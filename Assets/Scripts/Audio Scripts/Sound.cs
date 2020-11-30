@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Media;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -8,205 +11,202 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Playable audio wrapper, can be passed into <see cref="AudioManager"/> for playback.
 /// </summary>
-
-//TODO: find better way to define default values / getters / setters, maybe move away from delegates?
-
 [CreateAssetMenu(fileName = "New Sound", menuName = "Audio Custom/Sound", order = 1)]
 public class Sound : ScriptableObject
 {
     [Header("Sound Settings")]
     
-    [SerializeField, Tooltip("The audio file to be played. With multiple clips, a random clip will be chosen")] 
-    private AudioClip[] clip = new AudioClip[1];
+    [Tooltip("The audio files to be played.")] 
+    public AudioClip[] clip = new AudioClip[1];
     
-    [SerializeField, Tooltip("Whether or not this sound loops when its finished")]
-    private bool looping = false;
+    [Tooltip("Whether or not this sound loops when its finished")]
+    public bool looping = false;
 
-    [SerializeField, Tooltip("The MixerGroup this sound will be assigned to while it's playing")] 
-    private AudioMixerGroup mixerGroup = default;
+    [Tooltip("The MixerGroup this sound will be assigned to while it's playing")] 
+    public AudioMixerGroup mixerGroup = default;
 
     [Header("Modulated Values")] 
     
-    [SerializeField, Tooltip("Values that will override certain aspects of the original AudioClip")] 
-    private ModulatedFloat[] modulatedValues = default;
+    [Tooltip("Values that will override certain aspects of the original AudioClip")] 
+    public ModulatedFloat[] modulatedValues = default;
     
-    private AudioClip GetClip() 
+    public SoundInstance GenerateInstance()
     {
-        return clip[Random.Range(0, clip.Length)];
+        return new SoundInstance(this);
     }
-    public bool IsLooping => looping;
-    public bool IsInactive { get; set; } = true;
+}
 
-    private static int _nextId = 0;
-    [HideInInspector] public int id;
+public class SoundInstance
+{
+    protected readonly InstanceSettings _settings;
+    private readonly string _name;
 
-    /// <summary>
-    /// Applies a value to this sound's AudioSource
-    /// </summary>
-    /// <param name="value">The value that should be applied</param>
-    private delegate void ApplyValue(float value);
-    private ApplyValue[] _setters;
+    public bool IsInactive { get; set; }
+    public string Name => _name;
+    public bool IsLooping => _settings.Looping;
 
-    /// <summary>
-    /// Gets a value from this sound's AudioSource
-    /// </summary>
-    private delegate float GetValue();
-    private GetValue[] _getters;
-
-    /// <summary>
-    /// The AudioSource currently playing this sound
-    /// </summary>
-    [CanBeNull] private AudioSource _source = null;
-
-    private void OnEnable()
+    public SoundInstance(Sound sound)
     {
-        id = _nextId;
-        _nextId++;
+        _name = sound.name;
+        _settings = new InstanceSettings(sound);
         IsInactive = true;
-        
-        InitializeGetters();
-        InitializeSetters();
     }
-
+    
     /// <summary>
     /// Applies a sound's modulations to an AudioSource
     /// </summary>
     /// <remarks>This should be called before the sound is played</remarks>
-    /// <param name="source">The AudioSource to apply changes to</param>
-    public IEnumerator PlayOnSource([NotNull] AudioSource source)
+    /// <param name="mainSource">The main AudioSource used for playback</param>
+    /// <param name="schedulingSource">The AudioSource used for scheduling new clips</param>
+    public virtual IEnumerator PlayOnSource([NotNull] AudioSource mainSource, [NotNull] AudioSource schedulingSource)
     {
-        _source = source;
+        // Apply values to the AudioSource and start playing the sound
+        _settings.ApplyToSource(mainSource);
+        _settings.PlayOnSource(mainSource);
         
-        // Apply the non-modulating values
-        ApplyDefaultValues(_source);
-
-        if (IsLooping)
-        {
-            source.Play();
-        }
-        else
-        {
-            source.PlayOneShot(GetClip());
-        }
-
         IsInactive = false;
         var startTime = Time.time;
-
+    
+        // Updating state while playing back
         while (!IsInactive) {
             var elapsedTime = Time.time - startTime;
-            
+        
             // Iterate through the modulated values, and call their modulate method
-            foreach (var val in modulatedValues)
+            foreach (var val in _settings.ModulatedValues)
             {
-                var index = (int) val.setting;
-                _setters[index](val.modulator.Modulate(val.value, elapsedTime));
+                SoundValue value = val.soundValue;
+                float target = val.modulator.Modulate(val.value, elapsedTime);
+            
+                SetValue(value, target);
             }
 
-            IsInactive |= !source.isPlaying;
+            _settings.ApplyToSource(mainSource);
+            IsInactive |= !mainSource.isPlaying;
             yield return new WaitForEndOfFrame();
-        } 
+        }
 
-        source.Stop();
-        // Set source to null because this source may be re-allocated for another Sound.
-        // This ensures we don't step on the next sound's toes with our modulation.
-        _source = null;
+        // Ending playback
+        mainSource.Stop();
     }
-
-    /// <summary>
-    /// Applies specified default values to the AudioSource
-    /// </summary>
-    /// <param name="source">The source to apply the values to</param>
-    private void ApplyDefaultValues(AudioSource source)
-    {
-        source.clip = GetClip();
-        source.loop = IsLooping;
-        source.outputAudioMixerGroup = mixerGroup;
-        
-        source.volume = 1f;
-        source.pitch = 1f;
-        source.panStereo = 0f;
-        source.maxDistance = 1f;
-        source.minDistance = 1f;
-    }
-
-    /// <summary>
-    /// Linearly interpolates a setting of this Sound.
-    /// </summary>
-    /// <param name="setting">Which aspect of the sound should be changed</param>
-    /// <param name="from">The initial value of the setting</param>
-    /// <param name="to">The final value of the setting</param>
-    /// <param name="completion">A float from 0 to 1 representing completion of the interpolation</param>
-    public void Lerp(SoundSetting setting, float from, float to, float completion)
-    {
-        _setters[(int) setting](Mathf.Lerp(from, to, completion));
-    }
-
+    
     /// <summary>
     /// Returns the value associated with a setting on this Sound.
     /// </summary>
-    /// <param name="setting">The setting to get the value of</param>
+    /// <param name="value">The setting to get the value of</param>
     /// <returns>The value of the specified setting</returns>
-    public float GetSetting(SoundSetting setting)
+    public float GetValue(SoundValue value)
     {
-        return _getters[(int) setting]();
+        return _settings.OriginalValues[(int) value];
     }
 
     /// <summary>
-    /// Exposes a float to the inspector, associates it with a modulator.
+    /// Sets the value of a setting on this Sound.
     /// </summary>
-    [Serializable]
-    private class ModulatedFloat
+    /// <param name="value">The value to modify</param>
+    /// <param name="target">The new target for this value</param>
+    public void SetValue(SoundValue value, float target)
     {
-        public SoundSetting setting = default;
-        public float value = 1f;
-        public Modulator modulator = default;
+        _settings.OriginalValues[(int) value] = target;
     }
     
-    #region initializers
+    /// <summary>
+    /// Linearly interpolates a setting of this Sound.
+    /// </summary>
+    /// <param name="value">Which aspect of the sound should be changed</param>
+    /// <param name="from">The initial value</param>
+    /// <param name="to">The final value</param>
+    /// <param name="completion">A float from 0 to 1 representing completion of the interpolation</param>
+    public void Lerp(SoundValue value, float from, float to, float completion)
+    {
+        SetValue(value,Mathf.Lerp(from, to, completion));
+    }
+    
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append($"{_name} ({(IsInactive ? "Inactive" : "Active")})");
+    
+        for (var i = 0; i < _settings.OriginalValues.Length; i++)
+        {
+            var setting = _settings.OriginalValues[i];
+            builder.Append( "\n" + Enum.GetNames(typeof(SoundValue))[i] + " : "+ setting);
+        }
 
-    private void InitializeGetters()
+        return builder.ToString();
+    }
+    
+    /// <summary>
+    /// Different settings that can be modulated and applied to a <see cref="Sound"/>
+    /// </summary>
+    protected class InstanceSettings
     {
-        _getters = new GetValue[]
+        public readonly float[] OriginalValues;
+        public readonly ModulatedFloat[] ModulatedValues;
+        public readonly AudioClip[] Clips;
+        
+        public readonly bool Looping;
+        private readonly AudioMixerGroup _mixerGroup;
+        
+        public InstanceSettings(Sound sound)
         {
-            () => 
-            { 
-                if (_source != null) return _source.volume;
-                return 0; 
-            },
-            () =>
+            OriginalValues = new float[Enum.GetNames(typeof(SoundValue)).Length];
+            ModulatedValues = sound.modulatedValues;
+            Clips = sound.clip;
+            
+            sound.modulatedValues.CopyTo(ModulatedValues, 0);
+            
+            _mixerGroup = sound.mixerGroup;
+            Looping = sound.looping;
+            
+            OriginalValues[(int) SoundValue.Volume] = 1;
+            OriginalValues[(int) SoundValue.Pitch] = 1;
+            OriginalValues[(int) SoundValue.Pan] = 0;
+            OriginalValues[(int) SoundValue.MaxRange] = 500;
+            OriginalValues[(int) SoundValue.MinRange] = 1;
+            OriginalValues[(int) SoundValue.SpacialBlend] = 0;
+            
+            foreach (var modulated in ModulatedValues)
             {
-                if (_source != null) return _source.pitch;
-                return 0;
-            },
-            () =>
-            {
-                if (_source != null) return _source.panStereo;
-                return 0;
-            },
-            () =>
-            {
-                if (_source != null) return _source.maxDistance;
-                return 0;
-            },
-            () =>
-            {
-                if (_source != null) return _source.minDistance;
-                return 0;
+                OriginalValues[(int) modulated.soundValue] = modulated.value;
             }
-        };
-    }
-    
-    private void InitializeSetters()
-    {
-        _setters = new ApplyValue[]
+        }
+        
+        public void ApplyToSource(AudioSource source, AudioClip clip = null)
         {
-            val => { if (_source != null) _source.volume = val; },
-            val => { if (_source != null) _source.pitch = val; },
-            val => { if (_source != null) _source.panStereo = val; },
-            val => { if (_source != null) _source.maxDistance = val; },
-            val => { if (_source != null) _source.minDistance = val; }
-        };
+            source.clip = clip == null ? Clips[Random.Range(0, Clips.Length)] : clip;
+            source.rolloffMode = AudioRolloffMode.Linear;
+            source.outputAudioMixerGroup = _mixerGroup;
+            source.loop = Looping;
+
+            source.volume = OriginalValues[(int) SoundValue.Volume];
+            source.pitch = OriginalValues[(int) SoundValue.Pitch];
+            source.panStereo = OriginalValues[(int) SoundValue.Pan];
+            source.maxDistance = OriginalValues[(int) SoundValue.MaxRange];
+            source.minDistance = OriginalValues[(int) SoundValue.MinRange];
+            source.spatialBlend = OriginalValues[(int) SoundValue.SpacialBlend];
+        }
+
+        public void PlayOnSource(AudioSource source)
+        {
+            if (Looping)
+            {
+                source.Play();
+            }
+            else
+            {
+                source.PlayOneShot(Clips[Random.Range(0, Clips.Length)]);
+            }
+        }
     }
-    
-    #endregion
+}
+
+/// <summary>
+/// Exposes a float to the inspector, associates it with a modulator.
+/// </summary>
+[Serializable]
+public class ModulatedFloat
+{
+    public SoundValue soundValue = default;
+    public float value = 1f;
+    public Modulator modulator = default;
 }

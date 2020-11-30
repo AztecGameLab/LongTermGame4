@@ -15,7 +15,7 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadSceneCredits()
     {
-        //Insert Credits Implementation here
+        SceneManager.LoadScene("MainMenuCredits");
     }
     
     public void LoadSceneExit()
@@ -31,6 +31,11 @@ public class ButtonManager : MonoBehaviour
     public void LoadScenePlay()
     {
         SceneManager.LoadScene("Play");
+    }
+
+    public void LoadSceneMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PlayLightClick()

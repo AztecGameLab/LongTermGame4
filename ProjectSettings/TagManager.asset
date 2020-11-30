@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - arrow
+  - puzzle_object
+  - LavaCollider
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Arrow
+  - Player
+  - LavaCollider
   - 
   - 
   - 
