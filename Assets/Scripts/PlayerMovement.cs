@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _audioManager = AudioManager.Instance();
         _currentTerrain = defaultTerrain;
+        _footstepSound = Terrain.WalkSound.GenerateInstance();
     }
 
     // Update is called once per frame
@@ -75,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 // if the terrain changed, update the sound and terrain variables
                 var raycastTerrain = hit.transform.GetComponent<Terrain>();
-                if (raycastTerrain != null && raycastTerrain.terrainType == Terrain)
+                if (raycastTerrain != null && raycastTerrain.terrainType != Terrain)
                 {
                     _currentTerrain = raycastTerrain.terrainType;
                     _footstepSound = Terrain.WalkSound.GenerateInstance();
                 }
-                else
+                else if (raycastTerrain == null)
                 {
                     _currentTerrain = defaultTerrain;
                     _footstepSound = Terrain.WalkSound.GenerateInstance();

@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using AmplifyShaderEditor;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 [CreateAssetMenu(fileName = "New MultiSound", menuName = "Audio Custom/MultiSound", order = 2)]
 public class MultiSound : Sound

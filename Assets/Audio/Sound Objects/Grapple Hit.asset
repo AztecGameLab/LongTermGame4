@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
-  m_Name: Random Bow
+  m_Name: Grapple Hit
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 8300000, guid: 6761bd55a9aba47c2abf517922c559c9, type: 3}
-  - {fileID: 8300000, guid: eb5b30cc5a1f843f9929a9a4fbea89a7, type: 3}
-  - {fileID: 8300000, guid: 02fd911f3d41a4fff9cad71742975d95, type: 3}
+  - {fileID: 8300000, guid: 488c8b6102e002c4297994d5bcbe9817, type: 3}
+  - {fileID: 8300000, guid: b1795744a33b1d445a97dd22cc10f97d, type: 3}
+  - {fileID: 8300000, guid: 09c3946218619af47ade4331b0d2ad51, type: 3}
   looping: 0
   mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
-  modulatedValues: []
-  id: 2
+  modulatedValues:
+  - soundValue: 3
+    value: 10
+    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}
+  - soundValue: 4
+    value: 0
+    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}

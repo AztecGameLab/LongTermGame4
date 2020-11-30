@@ -2,7 +2,7 @@
 
 public class StickyArrowScript : MonoBehaviour
 {
-    [SerializeField] private GameObject arrowHitEffectPrefab = default;
+    private ParticleSystem _arrowHitEffect;
     private SoundInstance _arrowHitSound;
     private AudioManager _audioManager;
     
@@ -44,11 +44,21 @@ public class StickyArrowScript : MonoBehaviour
                 //gameObject.GetComponent<Collider>().enabled = false;
             }
 
-            _arrowHitSound = PlayerManager.instance.s_playerMovement.Terrain.ArrowHitSound.GenerateInstance(); 
+            var targetTerrain = collision.transform.GetComponent<Terrain>();
+            if (targetTerrain != null)
+            {
+                _arrowHitSound = targetTerrain.terrainType.ArrowHitSound.GenerateInstance();
+                _arrowHitEffect = targetTerrain.terrainType.ArrowHitEffect;
+            }
+            else
+            {
+                _arrowHitSound = PlayerManager.instance.s_playerMovement.Terrain.ArrowHitSound.GenerateInstance();
+                _arrowHitEffect = PlayerManager.instance.s_playerMovement.Terrain.ArrowHitEffect;
+            }
             _audioManager.PlaySound(_arrowHitSound, gameObject);
             // create the particle effect
             var effect = 
-                Instantiate(arrowHitEffectPrefab, contact.point, Quaternion.FromToRotation(Vector3.forward, -transform.forward));
+                Instantiate(_arrowHitEffect, contact.point, Quaternion.FromToRotation(Vector3.forward, -transform.forward));
             // destroy it once it finishes playing
             var particleSystemDuration = effect.GetComponent<ParticleSystem>().main.duration;
             Destroy(effect, particleSystemDuration);

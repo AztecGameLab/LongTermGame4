@@ -10,18 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca2e730c346ae974a8df7cead93c6e50, type: 3}
-  m_Name: Thud
+  m_Name: Dirt Hit
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 8300000, guid: 8335dbbffa5db0743a6db702507041eb, type: 3}
+  - {fileID: 8300000, guid: 1467dd0a110b3bb4c95ded56f72ca187, type: 3}
+  - {fileID: 8300000, guid: e65d6835f7b11f34aac3e4dba20a5786, type: 3}
+  - {fileID: 8300000, guid: c0eed178c9d0a8f49a89fd69ba5d4bc7, type: 3}
   looping: 0
   mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
-  modulatedValues:
-  - setting: 0
-    value: 0.15
-    modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
-  - setting: 1
-    value: 1
-    modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
-  id: 0
+  modulatedValues: []
