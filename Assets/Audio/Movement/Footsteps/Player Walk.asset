@@ -13,7 +13,20 @@ MonoBehaviour:
   m_Name: Player Walk
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 8936fdf953d028c4398f83a33afc0c21, type: 3}
+  - {fileID: 8300000, guid: 9b24a1dd28207d944b1be22feb861050, type: 3}
+  - {fileID: 8300000, guid: 18179cec9dfe0bf409666c925a75d0d0, type: 3}
+  - {fileID: 8300000, guid: 4bee534b13fbae34081d8283f94976e5, type: 3}
+  - {fileID: 8300000, guid: 550d338c16287e4438c5a0c9abf10472, type: 3}
+  - {fileID: 8300000, guid: 36c1789946a0ec64ea4b2a6fcba1677d, type: 3}
+  - {fileID: 8300000, guid: 6ed7235eb5749384ab5e5ee07c28fc70, type: 3}
   looping: 0
-  mixerGroup: {fileID: 0}
-  modulatedValues: []
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
+  modulatedValues:
+  - soundValue: 1
+    value: 1
+    modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
+  - soundValue: 0
+    value: 1
+    modulator: {fileID: 11400000, guid: df2d2bc52b5c7814b9909d02430121ac, type: 2}
