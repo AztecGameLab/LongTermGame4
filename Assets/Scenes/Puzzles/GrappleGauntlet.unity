@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 10
+  defaultTimeExpireResult: 0
   timerTick:
     m_PersistentCalls:
       m_Calls: []
@@ -1465,6 +1466,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  timerMultiSound: {fileID: 11400000, guid: 61ed892f76b2c3e4a9fa10ae4cab2290, type: 2}
+  timerFail: {fileID: 8300000, guid: 11f9b6b99891cff4b953c1c906e48519, type: 3}
+  timerSuccess: {fileID: 8300000, guid: 73769e5e594a48443916899adfc5954b, type: 3}
 --- !u!114 &1317280501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1971,6 +1975,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6439439648995917769, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729618479212439634, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

@@ -61,7 +61,6 @@ public class GauntletController : MonoBehaviour
         if (Charged)
         {
             onSuccess.Invoke();
-            Debug.Log("success");
             _currentTimer.StopTimer(true);
         }
     }
