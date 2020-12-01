@@ -141,6 +141,7 @@ public class GrapplingArrow : MonoBehaviour
 
         while (currentArrow == this && !stopPull && Vector3.Distance(player.transform.position, this.transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
+            player.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.transform.position = Vector3.Lerp(player.transform.position, this.transform.position, moveSpeed * Time.deltaTime);
             points[0] = player.transform.position;
             points[1] = this.transform.position;

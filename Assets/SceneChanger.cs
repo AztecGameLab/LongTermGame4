@@ -35,13 +35,7 @@ public class SceneChanger : MonoBehaviour
         LocalPlayerRotation = transform.InverseTransformDirection(PlayerManager.instance.transform.forward);
 
 
-
-        if (nextSceneName != "")
-        {
-            AudioManager.Instance().DisposeAll();
-            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
-        }
-        else
-            print("SceneChanger needs next scene name");
+        AudioManager.Instance().DisposeAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
