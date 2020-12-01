@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GrapplingArrow : MonoBehaviour
@@ -60,14 +61,17 @@ public class GrapplingArrow : MonoBehaviour
 
     private void Update()
     {
+        // Update the rope between arrow and player
         _line.SetPositions(new[] { _player.transform.position, transform.position });
         
+        // If the player tries to shoot while arrow is active, destroy this
         if (Input.GetMouseButton(0))
         {
             _audioManager.PlaySound(_snapSound);
             DestroyThis();
         }
     }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if(_collided)//so it can only collide once
@@ -78,7 +82,7 @@ public class GrapplingArrow : MonoBehaviour
         if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>()) //If object is not grappable, destroy line renderer on arrow and return
         {
             _audioManager.PlaySound(_fallSound, gameObject);
-            Invoke(nameof(DestroyThis), 1f);
+            DestroyThis();
         }
         else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
@@ -87,14 +91,11 @@ public class GrapplingArrow : MonoBehaviour
             Destroy(GetComponent<Rigidbody>());
             StartCoroutine(MoveObject(collision));
         }
-        
-        //Debug.Log(collision.rigidbody.mass);
     }
 
     private IEnumerator MoveObject(Collision collision)
     {
         _audioManager.PlaySound(_hitSound, gameObject);
-        LineRenderer line = GetComponent<LineRenderer>();
         var points = new Vector3[2];
         //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
         if (collision.rigidbody.mass < massThreshold)
@@ -111,18 +112,14 @@ public class GrapplingArrow : MonoBehaviour
                 collision.transform.position = Vector3.Lerp(collision.transform.position, _player.transform.position, moveSpeed * 2 * Time.deltaTime);
                 points[0] = _player.transform.position;
                 points[1] = transform.position;
-                if(line)
-                    line.SetPositions(points); // update line vertices
+                if(_line)
+                    _line.SetPositions(points); // update line vertices
 
                 yield return null;
             }
             
-            //Set bool variables back to default
-            _stopPull = false;
             collision.rigidbody.useGravity = true;
-            Destroy(line);
-            Invoke(nameof(DisposeAudio), 2f);
-            yield break;
+            DestroyThis();
         }
         
         ///////////////////////////////////////////
@@ -138,30 +135,22 @@ public class GrapplingArrow : MonoBehaviour
             _player.transform.position = Vector3.Lerp(_player.transform.position, this.transform.position, moveSpeed * Time.deltaTime);
             points[0] = _player.transform.position;
             points[1] = transform.position;
-            if(line)
-                line.SetPositions(points); // update line vertices
+            if(_line)
+                _line.SetPositions(points); // update line vertices
             yield return null;
         }
 
         _playerRb.useGravity = true;
-        //Set bool variables back to default
-        _stopPull = false;
-        Destroy(line);
-        //Debug.Log(isPulling);
-
-        CurrentArrow = null;
-        Invoke(nameof(DisposeAudio), 2f);
+        DestroyThis();
     }
 
     private void DestroyThis()
     {
-        DisposeAudio();
+        CurrentArrow = null;
+        
+        _audioManager.Dispose(gameObject, 2);
+
         Destroy(_line);
         Destroy(this);
-    }
-
-    private void DisposeAudio()
-    {
-        _audioManager.Dispose(gameObject);
     }
 }
