@@ -1,0 +1,6 @@
+"This bow is giving me the chills. It's got all of these strange contraptions built into it. But grabbing that thing was the biggest mistake I’ve made on this adventure. The moment I laid my hands on it, I was overwhelmed with its magical energy and felt light headed. Then suddenly, the room started to shake, the walls and floors began shifting, and molten lava filled the space between me and the exit. If anyone’s reading this, DON’T GRAB THAT BOW! You’ll regret it. I’ve made my mistake and now I’m left with no way out, and stuck here with this useless bow. Maybe I should try jumping over the lava..."
+
+Notes for programmers:
+-Lore Paper #3
+-Newer Paper Texture, (since it’s an adventurer from more recently, not a dwarf from 1000 years ago)
+-Place in the tutorial where you need to use the grappling hook to get over the lava
