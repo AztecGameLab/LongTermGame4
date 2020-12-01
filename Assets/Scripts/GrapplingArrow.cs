@@ -81,14 +81,30 @@ public class GrapplingArrow : MonoBehaviour
         }
         else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
         {
+            _audioManager.PlaySound(_hitSound, gameObject);
             transform.parent = collision.transform; 
             Destroy(GetComponent<Rigidbody>());
-            StartCoroutine(MoveObject(collision));
+            // StartCoroutine(MoveObject(collision));
+            StartCoroutine(PullToPlayer(collision.rigidbody));
         }
     }
 
+    private IEnumerator PullToPlayer(Rigidbody rb)
+    {
+        rb.velocity = Vector3.zero;
+        rb.useGravity = false;
+        while (CurrentArrow == this && !_stopPull && Vector3.Distance(rb.position, _player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
+        {
+            rb.transform.position = Vector3.Lerp(rb.transform.position, _player.transform.position, moveSpeed * 2 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        rb.useGravity = true;
+        DestroyThis();
+    }
+    
     private IEnumerator MoveObject(Collision collision)
     {
+        Debug.Log("start");
         _audioManager.PlaySound(_hitSound, gameObject);
         //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
         if (collision.rigidbody.mass < massThreshold)
@@ -102,9 +118,9 @@ public class GrapplingArrow : MonoBehaviour
             while (CurrentArrow == this && !_stopPull && Vector3.Distance(collision.transform.position, _player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
             {
                 collision.transform.position = Vector3.Lerp(collision.transform.position, _player.transform.position, moveSpeed * 2 * Time.deltaTime);
-                yield return null;
+                Debug.Log(collision.gameObject.name);
+                yield return new WaitForEndOfFrame();
             }
-            
             collision.rigidbody.useGravity = true;
             DestroyThis();
         }
