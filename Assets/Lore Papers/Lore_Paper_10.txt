@@ -1,0 +1,6 @@
+“Just when I thought Regin was going to fulfil his promise to the goddess, he began to show his true colors. The moment she reached for his magical bow her body began to glow and fuse with the bow itself. Suddenly, she was no more and all Regin could do was laugh. Was this the man I’ve been working for? I’m beginning to realize the point of the traps we’ve been building this whole time. But what happens now? The war will wage on, the Dwarves will leave the temple, and then what? Regin made it clear to us that we are NOT to let that bow escape this temple, or else the goddess will be freed. But I don’t care anymore. I need a new job.”
+
+Notes for the Programmers: 
+-Lore Paper #10
+-Old Dwarven Paper Texture
+-Place anywhere in the last level
