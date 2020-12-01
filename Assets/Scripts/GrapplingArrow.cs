@@ -20,15 +20,16 @@ public class GrapplingArrow : MonoBehaviour
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float massThreshold = 4;
     [SerializeField] private float pullRadiusThreshold = 4;
+    [SerializeField] private bool usePhysicsPull = false;
 
     public static GrapplingArrow CurrentArrow;
     
-    private bool _stopPull = false;
     private PlayerManager _player;
     private Rigidbody _playerRb;
     private LineRenderer _line;
     private Vector3[] _linePositions;
-
+    private bool _canceled = false;
+    
     private void Awake()
     {
         // initialize sounds
@@ -61,13 +62,14 @@ public class GrapplingArrow : MonoBehaviour
 
     private void Update()
     {
+        if (_canceled) DestroyThis();
         UpdateLinePosition();
         
         // If the player tries to shoot while arrow is active, destroy this
         if (Input.GetMouseButton(0))
         {
             _audioManager.PlaySound(_snapSound);
-            DestroyThis();
+            _canceled = true;
         }
     }
     
@@ -87,7 +89,7 @@ public class GrapplingArrow : MonoBehaviour
             Destroy(GetComponent<Rigidbody>());
             
             StartCoroutine(collision.rigidbody.mass < massThreshold
-                ? PullToPlayer(collision.rigidbody)
+                ? usePhysicsPull ? PullToPlayerPhysics(collision.rigidbody) : PullToPlayer(collision.rigidbody)
                 : PullPlayerToObject());
         }
     }
@@ -96,11 +98,13 @@ public class GrapplingArrow : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         rb.useGravity = false;
-        while (CurrentArrow == this && !_stopPull && Vector3.Distance(rb.position, _player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
+        
+        while (!_canceled && Vector3.Distance(rb.position, _player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
         {
             rb.transform.position = Vector3.Lerp(rb.transform.position, _player.transform.position, moveSpeed * 2 * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        
         rb.useGravity = true;
         DestroyThis();
     }
@@ -109,17 +113,35 @@ public class GrapplingArrow : MonoBehaviour
     {
         _playerRb.useGravity = false;
         
-        while (CurrentArrow == this && !_stopPull && Vector3.Distance(_player.transform.position, transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
+        while (!_canceled && Vector3.Distance(_player.transform.position, transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
         {
             _playerRb.velocity = Vector3.zero;
-            _player.transform.position = Vector3.Lerp(_player.transform.position, this.transform.position, moveSpeed * Time.deltaTime);
-            yield return null;
+            _player.transform.position = Vector3.Lerp(_player.transform.position, transform.position, moveSpeed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         }
 
         _playerRb.useGravity = true;
         DestroyThis();
     }
     
+    private IEnumerator PullToPlayerPhysics(Rigidbody rb)
+    {
+        rb.velocity = rb.velocity.normalized * Mathf.Min(rb.velocity.magnitude, 3);
+        
+        var vectorToPlayer = _player.transform.position - transform.position;
+        while (!_canceled && vectorToPlayer.magnitude > pullRadiusThreshold)
+        {
+            vectorToPlayer = _player.transform.position - rb.position;
+            rb.AddForceAtPosition(vectorToPlayer, transform.position);
+            rb.velocity = rb.velocity.normalized * Mathf.Max(rb.velocity.magnitude, 3);
+            yield return new WaitForEndOfFrame();
+        }
+
+        rb.velocity = rb.velocity.normalized * Mathf.Min(rb.velocity.magnitude, 3);
+
+        DestroyThis();
+    }
+
     private void DestroyThis()
     {
         CurrentArrow = null;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class InteractHoldable : Interactable
 {
     [SerializeField, Tooltip("The settings that will applied to this object.")]
