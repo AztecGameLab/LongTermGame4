@@ -73,19 +73,22 @@ public class GrapplingArrow : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        //if the collided object DOES have a rigid body, then the grapple will work on it
-        if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>()) //If object is not grappable, destroy line renderer on arrow and return
+        if (collision.rigidbody == null || !collision.rigidbody.GetComponent<IsGrappable>())
         {
+            // We hit something that cannot be used to grapple, so this script is no longer needed
             _audioManager.PlaySound(_fallSound, gameObject);
             DestroyThis();
         }
-        else if (!collision.gameObject.CompareTag("arrow"))//To keep players from stacking arrows oddly and from grabbing other arrows
+        else if (!collision.gameObject.CompareTag("arrow"))
         {
+            // We hit something that can be grappled, determine what object is pulled
             _audioManager.PlaySound(_hitSound, gameObject);
-            transform.parent = collision.transform; 
+            transform.parent = collision.transform;
             Destroy(GetComponent<Rigidbody>());
-            // StartCoroutine(MoveObject(collision));
-            StartCoroutine(PullToPlayer(collision.rigidbody));
+            
+            StartCoroutine(collision.rigidbody.mass < massThreshold
+                ? PullToPlayer(collision.rigidbody)
+                : PullPlayerToObject());
         }
     }
 
@@ -101,35 +104,9 @@ public class GrapplingArrow : MonoBehaviour
         rb.useGravity = true;
         DestroyThis();
     }
-    
-    private IEnumerator MoveObject(Collision collision)
+
+    private IEnumerator PullPlayerToObject()
     {
-        Debug.Log("start");
-        _audioManager.PlaySound(_hitSound, gameObject);
-        //If the object is above a certain mass, the object will pull the player. Else, the player pulls the object
-        if (collision.rigidbody.mass < massThreshold)
-        {
-            ///////////////////////////////////////////
-            // CASE: OBJECT is pulled towards player //
-            ///////////////////////////////////////////
-            
-            collision.rigidbody.velocity = Vector3.zero;
-            collision.rigidbody.useGravity = false;
-            while (CurrentArrow == this && !_stopPull && Vector3.Distance(collision.transform.position, _player.transform.position) > pullRadiusThreshold) //Test if we want to stop pulling, if not, continue with lerp
-            {
-                collision.transform.position = Vector3.Lerp(collision.transform.position, _player.transform.position, moveSpeed * 2 * Time.deltaTime);
-                Debug.Log(collision.gameObject.name);
-                yield return new WaitForEndOfFrame();
-            }
-            collision.rigidbody.useGravity = true;
-            DestroyThis();
-        }
-        
-        ///////////////////////////////////////////
-        // CASE: PLAYER is pulled towards object //
-        ///////////////////////////////////////////
-        
-        //When player is being pulled, player movement must temporarily be disabled to function properly
         _playerRb.useGravity = false;
         
         while (CurrentArrow == this && !_stopPull && Vector3.Distance(_player.transform.position, transform.position) > pullRadiusThreshold)//Test if we want to stop pulling, if not, continue with lerp
@@ -142,7 +119,7 @@ public class GrapplingArrow : MonoBehaviour
         _playerRb.useGravity = true;
         DestroyThis();
     }
-
+    
     private void DestroyThis()
     {
         CurrentArrow = null;
