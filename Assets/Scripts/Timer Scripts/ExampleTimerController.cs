@@ -15,25 +15,12 @@ public class ExampleTimerController : MonoBehaviour
 
     [SerializeField] private GameObject bar = default;
 
-    [SerializeField] private Sound startSound = default;
-    [SerializeField] private Sound tickSound = default;
-    [SerializeField] private Sound endSound = default;
-    private AudioManager _manager;
-    private SoundInstance _startSoundInstance;
-    private SoundInstance _tickSoundInstance;
-    private SoundInstance _endSoundInstance;
-    private float _timeSinceTick = 1f;
-
     private void OnEnable()
     {
         bar.transform.localScale = Vector3.zero;
         _startPos = platform.position;
         _endPos = endPosition.position;
         _angle = spinningThing.eulerAngles;
-        _manager = AudioManager.Instance();
-        _startSoundInstance = startSound.GenerateInstance();
-        _tickSoundInstance = tickSound.GenerateInstance();
-        _endSoundInstance = endSound.GenerateInstance();
     }
 
     public void UpdateTimerObjects(float completion)
@@ -41,16 +28,6 @@ public class ExampleTimerController : MonoBehaviour
         UpdateSpinningThing();
         UpdatePlatform(completion);
         UpdateBar(completion);
-
-        if (_timeSinceTick >= 1f)
-        {
-            PlayTickingSound();
-            _timeSinceTick = 0f;
-        }
-        else
-        {
-            _timeSinceTick += Time.deltaTime;
-        }
     }
     
     public void ResetTimerObjects()
@@ -80,7 +57,6 @@ public class ExampleTimerController : MonoBehaviour
         }
         
         bar.transform.localScale = Vector3.zero;
-        _timeSinceTick = 1f;
     }
 
     private void UpdateSpinningThing()
@@ -97,23 +73,4 @@ public class ExampleTimerController : MonoBehaviour
     {
         bar.transform.localScale = new Vector3(1, completion, 1);
     }
-
-    #region Sounds
-
-    public void PlayTickingSound()
-    {
-        _manager.PlaySound(_tickSoundInstance, bar);
-    }
-
-    public void PlayEndSound()
-    {
-        _manager.PlaySound(_startSoundInstance, bar);
-    }
-    
-    public void PlayStartSound()
-    {
-        _manager.PlaySound(_endSoundInstance, bar);
-    }
-
-    #endregion
 }

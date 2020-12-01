@@ -1,14 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LorePickup : Interactable
 {
-    [TextArea(5, 20)]
-    public string text;
-    protected override void OnInteract(Transform userTransform)
+    [TextArea(5, 20)] public string text;
+    [SerializeField] private Sound pickupSound = default;
+    
+    private AudioManager _audioManager;
+    private SoundInstance _pickupSound;
+    
+    private void Start()
     {
-        PlayerManager.instance.DisplayLore(text);
+        _audioManager = AudioManager.Instance();
+        _pickupSound = pickupSound.GenerateInstance();
     }
 
+    protected override void OnInteract(Transform userTransform)
+    {
+        _audioManager.PlaySound(_pickupSound);
+        PlayerManager.instance.DisplayLore(text);
+    }
 }

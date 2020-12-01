@@ -128,6 +128,8 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void Dispose(GameObject target)
     {
+        if (!_channels.ContainsKey(target)) return;
+        
         foreach (var channel in _channels[target])
         {
             StartCoroutine(channel.Stop());

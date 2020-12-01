@@ -73,6 +73,7 @@ MonoBehaviour:
 
     Never
     gonna tell a lie and hurt you'
+  pickupSound: {fileID: 11400000, guid: dca9202f72762a845a1dfd779e28413a, type: 2}
 --- !u!65 &7912093296851745410
 BoxCollider:
   m_ObjectHideFlags: 0
