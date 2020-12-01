@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
@@ -8,7 +6,6 @@ public class SceneChanger : MonoBehaviour
     static Vector3 LocalPlayerPosition;
     static Vector3 LocalPlayerRotation;
     static float LocalPlayerCameraRotation;
-    public string nextSceneName;
     public bool isEntrance;
 
     private void Start()
@@ -18,11 +15,6 @@ public class SceneChanger : MonoBehaviour
 
         PlayerManager.instance.transform.position = transform.TransformPoint(LocalPlayerPosition);
         PlayerManager.instance.transform.forward = transform.TransformDirection(LocalPlayerRotation);
-        
-    }
-
-    private void Update()
-    {
         
     }
 

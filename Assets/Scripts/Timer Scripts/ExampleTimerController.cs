@@ -15,18 +15,12 @@ public class ExampleTimerController : MonoBehaviour
 
     [SerializeField] private GameObject bar = default;
 
-    [SerializeField] private Sound startSound = default;
-    [SerializeField] private Sound tickSound = default;
-    [SerializeField] private Sound endSound = default;
-    private AudioManager _manager;
-
     private void OnEnable()
     {
         bar.transform.localScale = Vector3.zero;
         _startPos = platform.position;
         _endPos = endPosition.position;
         _angle = spinningThing.eulerAngles;
-        _manager = AudioManager.Instance();
     }
 
     public void UpdateTimerObjects(float completion)
