@@ -37,7 +37,10 @@ public class SceneChanger : MonoBehaviour
 
 
         if (nextSceneName != "")
+        {
+            AudioManager.Instance().DisposeAll();
             SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
+        }
         else
             print("SceneChanger needs next scene name");
     }
