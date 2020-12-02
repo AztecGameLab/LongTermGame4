@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -136,7 +137,16 @@ public class AudioManager : MonoBehaviour
         }
         _channels.Remove(target);
     }
-
+    public void Dispose(GameObject target, float time)
+    {
+        StartCoroutine(HelperDispose(target, time));
+    }
+    private IEnumerator HelperDispose(GameObject target, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Dispose(target);
+    }
+    
     /// <summary>
     /// Find an audio channel that isn't currently playing anything
     /// </summary>

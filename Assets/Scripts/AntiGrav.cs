@@ -11,6 +11,8 @@ public class AntiGrav : Interactable
     private AudioManager _audioManager;
     private MultiSoundInstance _gravitySound;
     private InteractHoldable _holdable;
+    private RigidbodyConstraints _previousConstraints;
+    
     private bool IsHoldable => _holdable != null;
     
     private void FixedUpdate()
@@ -54,6 +56,7 @@ public class AntiGrav : Interactable
         // initialize floating rigidbody settings
         _rb.useGravity = false;
         _rb.velocity = Vector3.zero;
+        _previousConstraints = _rb.constraints;
         _rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
@@ -64,13 +67,14 @@ public class AntiGrav : Interactable
         velo *= 0.25f;
         velo.y = -1;
         _rb.velocity = velo;
+        _rb.constraints = _previousConstraints;
         
         // Make sure the box is in the correct state to be ended (Invokes incorrectly otherwise)
         if (_ending || _gravitySound.State == MultiSoundState.Outro) return;
         _ending = true;
         CameraFX.instance.AddTrauma(0.25f);
         _audioManager.StopSound(_gravitySound, gameObject);
-        
+
         // Destroy this script after outro has finished playing
         Invoke(nameof(DestroyScript), (float) _gravitySound.OutroDuration + 0.1f - fallTime);
     }
