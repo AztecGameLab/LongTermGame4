@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119145711266871
 Transform:
@@ -122,6 +122,10 @@ Transform:
   - {fileID: 5620265178127092359}
   - {fileID: 9114537133219155041}
   - {fileID: 5170799854384637748}
+  - {fileID: 5874664008851196905}
+  - {fileID: 2409186810277337677}
+  - {fileID: 622360411190454417}
+  - {fileID: 316110389140299032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,7 +170,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119146303660216
 Transform:
@@ -207,7 +211,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119146341296419
 Transform:
@@ -249,7 +253,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119146625218799
 Transform:
@@ -341,7 +345,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119146819778715
 Transform:
@@ -432,7 +436,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119147026382195
 Transform:
@@ -473,7 +477,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119147120714283
 Transform:
@@ -514,7 +518,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &26119147757671328
 Transform:
@@ -541,6 +545,349 @@ Transform:
   m_Father: {fileID: 26119145711266871}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1111101322711070019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5874664008851196905}
+  - component: {fileID: 4215448050394775380}
+  - component: {fileID: 4213807590856601928}
+  - component: {fileID: 2656992314911133118}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &5874664008851196905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111101322711070019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.24, z: 4.89}
+  m_LocalScale: {x: 1, y: 0.16077, z: 11.8}
+  m_Children: []
+  m_Father: {fileID: 26119145711266871}
+  m_RootOrder: 93
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4215448050394775380
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111101322711070019}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4213807590856601928
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111101322711070019}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b396a9533fec55745ba19c742e9c6660, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &2656992314911133118
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111101322711070019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2150805626117418428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316110389140299032}
+  - component: {fileID: 728315646878133706}
+  m_Layer: 0
+  m_Name: Reflection Probe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &316110389140299032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2150805626117418428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.41, z: 4.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 26119145711266871}
+  m_RootOrder: 96
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!215 &728315646878133706
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2150805626117418428}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 0
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 8.5, y: 10, z: 13.4}
+  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
+--- !u!1 &3107880144473838480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 622360411190454417}
+  - component: {fileID: 4575893234197943316}
+  - component: {fileID: 1352089023575942756}
+  - component: {fileID: 1981066463267325436}
+  m_Layer: 0
+  m_Name: Cube (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &622360411190454417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107880144473838480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.543, z: 10.849}
+  m_LocalScale: {x: 1, y: 1.5903, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 26119145711266871}
+  m_RootOrder: 95
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4575893234197943316
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107880144473838480}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1352089023575942756
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107880144473838480}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b396a9533fec55745ba19c742e9c6660, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1981066463267325436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107880144473838480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3762311840599330064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2409186810277337677}
+  - component: {fileID: 4595779332649514449}
+  - component: {fileID: 4910492426813311331}
+  - component: {fileID: 6940321651413909859}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &2409186810277337677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762311840599330064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.543, z: -1}
+  m_LocalScale: {x: 1, y: 1.5903, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 26119145711266871}
+  m_RootOrder: 94
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4595779332649514449
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762311840599330064}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4910492426813311331
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762311840599330064}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b396a9533fec55745ba19c742e9c6660, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &6940321651413909859
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762311840599330064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &26119145726223538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -623,6 +970,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674817240977 stripped
@@ -642,6 +994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -787,6 +1144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuineC1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
@@ -1093,6 +1455,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesFloor1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5270546940785837364, guid: 8b5780bfb68b9744eb52b4cec0370eee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8928619439050640503, guid: 8b5780bfb68b9744eb52b4cec0370eee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1182,6 +1549,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -1533,6 +1905,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674800265819 stripped
@@ -1608,6 +1985,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442380180394013 stripped
@@ -1627,6 +2009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5270546940785837364, guid: 8b5780bfb68b9744eb52b4cec0370eee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8928619439050640503, guid: 8b5780bfb68b9744eb52b4cec0370eee,
         type: 3}
@@ -1868,6 +2255,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442380122372971 stripped
@@ -1982,6 +2374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -2143,6 +2540,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675185327357 stripped
@@ -2218,6 +2620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442380095749327 stripped
@@ -2237,6 +2644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -2398,6 +2810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675141039665 stripped
@@ -2512,6 +2929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -2658,6 +3080,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442379970042039 stripped
@@ -2677,6 +3104,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -2862,6 +3294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -3198,6 +3635,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442379925395620 stripped
@@ -3408,6 +3850,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3568,6 +4015,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674273232319 stripped
@@ -3657,6 +4109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuine9 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
@@ -3843,6 +4300,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674390739821 stripped
@@ -3862,6 +4324,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -4023,6 +4490,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674337965785 stripped
@@ -4113,6 +4585,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674359528049 stripped
@@ -4132,6 +4609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -4293,6 +4775,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674195829552 stripped
@@ -4312,6 +4799,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -4567,6 +5059,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuine9 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
@@ -4928,6 +5425,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Krystall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f9af2ca951ca19b4aa41713cb3c0c890,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9af2ca951ca19b4aa41713cb3c0c890, type: 3}
 --- !u!4 &4982810737316632432 stripped
@@ -4947,6 +5449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -5038,6 +5545,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesFloor1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5270546940785837364, guid: 8b5780bfb68b9744eb52b4cec0370eee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8928619439050640503, guid: 8b5780bfb68b9744eb52b4cec0370eee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5127,6 +5639,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -5383,6 +5900,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674437330939 stripped
@@ -5592,6 +6114,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -5848,6 +6375,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184674405211150 stripped
@@ -5867,6 +6399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -6013,6 +6550,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442380547118069 stripped
@@ -6032,6 +6574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -6122,6 +6669,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5270546940785837364, guid: 8b5780bfb68b9744eb52b4cec0370eee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8928619439050640503, guid: 8b5780bfb68b9744eb52b4cec0370eee,
         type: 3}
@@ -6853,6 +7405,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675979632075 stripped
@@ -7062,6 +7619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -7438,6 +8000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7527,6 +8094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -7618,6 +8190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7708,6 +8285,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7797,6 +8379,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -8053,6 +8640,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184676216283657 stripped
@@ -8072,6 +8664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -8233,6 +8830,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184676238134315 stripped
@@ -8323,6 +8925,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184676241377537 stripped
@@ -8342,6 +8949,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -8678,6 +9290,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442381055948751 stripped
@@ -8983,6 +9600,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesFloor1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5270546940785837364, guid: 8b5780bfb68b9744eb52b4cec0370eee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8928619439050640503, guid: 8b5780bfb68b9744eb52b4cec0370eee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9072,6 +9694,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -9518,6 +10145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675353884463 stripped
@@ -9537,6 +10169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -9818,6 +10455,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9978,6 +10620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675459335033 stripped
@@ -10092,6 +10739,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -10253,6 +10905,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675415340759 stripped
@@ -10342,6 +10999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuine9 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
@@ -10433,6 +11095,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675250561120 stripped
@@ -10507,6 +11174,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuineC1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
@@ -10677,6 +11349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuineC1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
@@ -10863,6 +11540,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675237564062 stripped
@@ -10882,6 +11564,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -11027,6 +11714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuineC1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
@@ -11238,6 +11930,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11398,6 +12095,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675654842204 stripped
@@ -11417,6 +12119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -11563,6 +12270,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &1757442381785682535 stripped
@@ -11582,6 +12294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
@@ -11673,6 +12390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11762,6 +12484,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -11908,6 +12635,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Krystall (6)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f9af2ca951ca19b4aa41713cb3c0c890,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9af2ca951ca19b4aa41713cb3c0c890, type: 3}
 --- !u!4 &4982810738542128636 stripped
@@ -11927,6 +12659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -12017,6 +12754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -12202,6 +12944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesWall3 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 957300159848963504, guid: c1caee5ac34a0b5479cff8c28dee5790,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6441031491842184554, guid: c1caee5ac34a0b5479cff8c28dee5790,
         type: 3}
@@ -12458,6 +13205,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675535278424 stripped
@@ -12643,6 +13395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine9 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6990116895993406300, guid: 54c7912b6ae4a384f84f3077d2a8f843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7912b6ae4a384f84f3077d2a8f843, type: 3}
 --- !u!4 &165184675504927160 stripped
@@ -12662,6 +13419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuinesFloor1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5270546940785837364, guid: 8b5780bfb68b9744eb52b4cec0370eee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8928619439050640503, guid: 8b5780bfb68b9744eb52b4cec0370eee,
         type: 3}
@@ -12948,6 +13710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuinesFloor3 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5451117942213855494, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6059426433835925674, guid: 07b96ddc63d8ae4428ced4ea40c9296a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13128,6 +13895,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 26119145711266871}
     m_Modifications:
+    - target: {fileID: 7778305884108687380, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305884123288635, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305884260291280, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778305884407598866, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13188,20 +13970,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlidingDoor (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7778305884407598867, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778305884407598893, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: StartOpen
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305884420839260, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305885078626994, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778305885078627021, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 7778305885184529992, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305885346294032, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778305885346294035, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305886056585882, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a69c4bf3aae3e9847b709ee0688fb4a1, type: 3}
@@ -13218,6 +14030,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 26119145711266871}
     m_Modifications:
+    - target: {fileID: 7778305884108687380, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305884123288635, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305884260291280, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778305884407598866, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13278,20 +14105,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlidingDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 7778305884407598867, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778305884407598893, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: StartOpen
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305884420839260, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305885078626994, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778305885078627021, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 7778305885184529992, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305885346294032, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778305885346294035, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778305886056585882, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a69c4bf3aae3e9847b709ee0688fb4a1, type: 3}
@@ -13368,6 +14225,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuineC1 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}
 --- !u!4 &5170799854384637748 stripped
@@ -13442,6 +14304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DwarvenRuineC1 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120815299393308092, guid: aeac3701e8861864a9ca29cc18783b09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeac3701e8861864a9ca29cc18783b09, type: 3}

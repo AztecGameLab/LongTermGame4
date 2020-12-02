@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
@@ -19,11 +17,11 @@ public class ReloadScene : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReloadTheScene();
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     ReloadTheScene();
 
-        }
+        // }
 
 
     }
@@ -31,7 +29,7 @@ public class ReloadScene : MonoBehaviour
     public void ReloadTheScene()
     {
 
-      
+            AudioManager.Instance().DisposeAll();
             SceneManager.LoadScene(sceneName);
 
        

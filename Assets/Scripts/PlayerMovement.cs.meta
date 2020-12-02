@@ -3,7 +3,10 @@ guid: a22bbaf561f7c422ebf9cfa2eb6d0f31
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _terrain: {fileID: 11400000, guid: dc89ef9080fda1d409f2f0b333dc8a23, type: 2}
+  - body: {instanceID: 0}
+  - camera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

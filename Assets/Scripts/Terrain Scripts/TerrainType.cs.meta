@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f12b779a84e355c469ba280e05a7dbfb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - walkSound: {fileID: 11400000, guid: 84ac58062bc37724f90a2a4b38ff08fe, type: 2}
+  - arrowHitSound: {fileID: 11400000, guid: 1743adeefdf92c8418b3d69c8a74bc8b, type: 2}
+  - arrowHitEffect: {fileID: 3403110522493912495, guid: 2911911c9cfd13c4daf11b8c5cab0097,
+      type: 3}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: b5149c5e4caaabb4cb8eda1ad1468c50, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

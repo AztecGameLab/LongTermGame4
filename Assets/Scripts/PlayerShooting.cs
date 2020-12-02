@@ -28,9 +28,9 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (GrapplingArrow.currentArrow != null)
+            if (GrapplingArrow.CurrentArrow != null)
             {
-                GrapplingArrow.currentArrow = null;
+                GrapplingArrow.CurrentArrow = null;
             }
         }
         else if (Input.GetMouseButton(0))

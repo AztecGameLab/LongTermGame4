@@ -3,7 +3,10 @@ guid: 6e7e1febbe43f494c960c065a87de5ce
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - timerMultiSound: {fileID: 11400000, guid: 61ed892f76b2c3e4a9fa10ae4cab2290, type: 2}
+  - timerFail: {fileID: 8300000, guid: 11f9b6b99891cff4b953c1c906e48519, type: 3}
+  - timerSuccess: {fileID: 8300000, guid: 73769e5e594a48443916899adfc5954b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

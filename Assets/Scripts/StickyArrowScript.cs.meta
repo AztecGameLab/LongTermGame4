@@ -3,7 +3,10 @@ guid: 8428de6781ae9d841a68e3d5dcf770bb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - arrowHitSound: {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
+  - arrowHitEffectPrefab: {fileID: 8655021196682452496, guid: 2911911c9cfd13c4daf11b8c5cab0097,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

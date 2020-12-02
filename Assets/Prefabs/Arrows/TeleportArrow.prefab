@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1281270970786844eae905ce086f50f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowHitSound: {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
+  arrowHitEffectPrefab: {fileID: 8655021196682452496, guid: 2911911c9cfd13c4daf11b8c5cab0097,
+    type: 3}
 --- !u!1001 &5839679612492026230
 PrefabInstance:
   m_ObjectHideFlags: 0
