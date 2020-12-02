@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using AmplifyShaderEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New MultiSound", menuName = "Audio Custom/MultiSound", order = 2)]
@@ -94,6 +96,8 @@ public class MultiSoundInstance : SoundInstance
             IsInactive |= !looping.isPlaying;
             yield return new WaitForEndOfFrame();
         }
+
+        IsInactive = false;
     }
 
     // This stage cannot be canceled programatically: it will always play to completion
@@ -104,7 +108,8 @@ public class MultiSoundInstance : SoundInstance
         outro.loop = false;
 
         yield return Crossfade(outro, looping);
-
+        if (outro == null) yield break;
+        
         // Wait for the outro to finish playing
         _state = MultiSoundState.Outro;
         yield return new WaitWhile(() => outro.isPlaying);
@@ -123,10 +128,12 @@ public class MultiSoundInstance : SoundInstance
         fadeIn.PlayScheduled(AudioSettings.dspTime + 0.1);
         fadeOut.SetScheduledEndTime(AudioSettings.dspTime + 0.1 + _crossfadeDuration);
         yield return new WaitForSeconds(0.1f);
-        
+
         // Over the crossfadeDuration, fadeIn gets louder as fadeOut gets quieter
-        while (Time.time - startTime <= _crossfadeDuration)
+        while (!IsInactive && Time.time - startTime <= _crossfadeDuration)
         {
+            if (fadeIn == null || fadeOut == null) yield break;
+            
             if (fadeIn.clip != OutroClip && IsInactive)
             {
                 yield return PlayOutro(fadeIn,fadeOut);
