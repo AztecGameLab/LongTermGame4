@@ -17,11 +17,11 @@ public class ReloadScene : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReloadTheScene();
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     ReloadTheScene();
 
-        }
+        // }
 
 
     }
