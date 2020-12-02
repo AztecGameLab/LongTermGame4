@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8351091702467463907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8531073477740354948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a1b10c415a033543b2a21d0379640cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravSound: {fileID: 11400000, guid: a268986f95c1e4843aef6b08e6efd88d, type: 2}
 --- !u!114 &-6785735657325182645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8428de6781ae9d841a68e3d5dcf770bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowHitSound: {fileID: 11400000, guid: d5bb0369aa512e0478d48ef630cd74f5, type: 2}
-  arrowHitEffectPrefab: {fileID: 8655021196682452496, guid: 2911911c9cfd13c4daf11b8c5cab0097,
-    type: 3}
 --- !u!114 &-1508522256186796463
 MonoBehaviour:
   m_ObjectHideFlags: 0
