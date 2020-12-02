@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &930968567771452724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.004796
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.379066
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Name
+      value: LorePaper#4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: text
+      value: 'Update for my Elven worshippers: So far, negotiations with the Dwarves
+        have been promising. Since I have arrived, they have decided to rename and
+        remodel a temple in my honor as a gesture of goodwill towards brokering peace
+        between our peoples. Once the temple is completed and the peace treaty is
+        signed, they will give me an enchanted bow and quiver as a symbol of our
+        new alliance. I am optimistic that this war will not end in blood as we had
+        feared, but instead, with ink.'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 757a21295b3a6c24c89bcd9580230c94, type: 3}

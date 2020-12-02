@@ -102,6 +102,17 @@ public class PlayerManager : MonoBehaviour
 
     void GetInput()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!loreDisplay.activeSelf)
+                s_playerInteract.TryInteract();
+            else
+                HideLore();
+        }
+
+        if(loreDisplay.activeSelf)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             audioManager.PlaySound(pullBowInstance);
@@ -114,14 +125,6 @@ public class PlayerManager : MonoBehaviour
             audioManager.StopSound(pullBowInstance);
             audioManager.PlaySound(shootArrowInstance);
             bowAnimator.SetTrigger("Shoot");
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (!loreDisplay.activeSelf)
-                s_playerInteract.TryInteract();
-            else
-                HideLore();
         }
     }
 
@@ -174,6 +177,9 @@ public class PlayerManager : MonoBehaviour
 
     void DevArrows()
     {
+        if(loreDisplay.activeSelf)
+            return;
+
         // Right-click to get next arrow
         if (Input.GetMouseButtonDown(1))
         {

@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &930968567771452724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.986412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.6239688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.650505
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Name
+      value: ReginGod
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: text
+      value: "Preparations must commence immediately. Extreme security measures have
+        top priority! \r\nWe can't risk any unwanted guests snooping around 1000
+        years from now and destroying the whole operation.\r\nNot that it would be
+        likely they release her anyway... \r\nThe Norse God of Crafting never fails!
+        All of my designs are flawless! Not even Miss Shifty Goddess herself would
+        be able to escape! \r\nI expect full secrecy and cooperation from you and
+        your men. Incompetence will not be tolerated! "
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 757a21295b3a6c24c89bcd9580230c94, type: 3}
