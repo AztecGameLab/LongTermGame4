@@ -44,7 +44,8 @@ public class SoundInstance
     public bool IsInactive { get; set; }
     public string Name => _name;
     public bool IsLooping => _settings.Looping;
-
+    public float Length => _settings.Clips[0].length;
+    
     public SoundInstance(Sound sound)
     {
         _name = sound.name;
@@ -86,7 +87,7 @@ public class SoundInstance
         }
 
         // Ending playback
-        mainSource.Stop();
+        if (mainSource != null) mainSource.Stop();
     }
     
     /// <summary>

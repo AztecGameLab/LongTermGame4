@@ -1,10 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float footstepTime = 1f;
+    [SerializeField] private TerrainType defaultTerrain = default;
+    private float _timeSinceFootstep;
+    private SoundInstance _footstepSound;
+    private AudioManager _audioManager;
+    private TerrainType _currentTerrain;
 
+    public TerrainType Terrain => _currentTerrain;
+    
     public float moveSpeed = 5f;
     public float rotateVerticleSpeed = 5f;
     public float rotateHorizontalSpeed = 5f;
@@ -14,12 +20,16 @@ public class PlayerMovement : MonoBehaviour
 
     private bool ground = true;
 
+    public bool IsActive => inputX != 0 || inputZ != 0;
     float inputX;
     float inputZ;
 
     // Start is called before the first frame update
     void Start()
     {
+        _audioManager = AudioManager.Instance();
+        _currentTerrain = defaultTerrain;
+        _footstepSound = Terrain.WalkSound.GenerateInstance();
     }
 
     // Update is called once per frame
@@ -57,12 +67,40 @@ public class PlayerMovement : MonoBehaviour
 
         }
         //Debug.Log(ground);
+
+        // plays footstep sound if we exceed the footstep time
+        if (_timeSinceFootstep > footstepTime && ground && IsActive)
+        {
+            _timeSinceFootstep = 0f;
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3f))
+            {
+                // if the terrain changed, update the sound and terrain variables
+                var raycastTerrain = hit.transform.GetComponent<Terrain>();
+                if (raycastTerrain != null && raycastTerrain.terrainType != Terrain)
+                {
+                    _currentTerrain = raycastTerrain.terrainType;
+                    _footstepSound = Terrain.WalkSound.GenerateInstance();
+                }
+                else if (raycastTerrain == null)
+                {
+                    _currentTerrain = defaultTerrain;
+                    _footstepSound = Terrain.WalkSound.GenerateInstance();
+                }
+
+                // play the footstep sound of the current terrain
+                _audioManager.PlaySound(_footstepSound);
+            }
+        }
+        else if (IsActive)
+        {
+            _timeSinceFootstep += Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()
     {
         //Movement
-        body.position += (transform.forward * inputZ + transform.right * inputX) * moveSpeed * Time.deltaTime;
+        body.position += (transform.forward * inputZ + transform.right * inputX) * (moveSpeed * Time.deltaTime);
 
         //ground check
         RaycastHit hit;

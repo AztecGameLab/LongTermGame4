@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 49859060}
   - component: {fileID: 49859059}
   - component: {fileID: 49859058}
+  - component: {fileID: 49859062}
   m_Layer: 0
   m_Name: Cube (10)
   m_TagString: Untagged
@@ -214,6 +215,19 @@ Transform:
   m_Father: {fileID: 1217456421}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &49859062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49859057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d8bc924791c3a49b5d46d345c4a0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: {fileID: 11400000, guid: ea0825f2656ca074087198e0b4db755e, type: 2}
 --- !u!1 &55880259
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +589,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 79.62, z: 0}
+--- !u!1 &189850713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8328415130406339980, guid: 023569f6f56c9274894a67d47fe89161,
+    type: 3}
+  m_PrefabInstance: {fileID: 973403644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &189850715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189850713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f56ed864a7eb84f9ac75a360005c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lavaAmbientSound: {fileID: 11400000, guid: 3074e8cdcd4ddd74e8e58314beab4275, type: 2}
+  lavaPopSound: {fileID: 11400000, guid: 66bc9ff9163c15d498c54b91ebc2dbd3, type: 2}
+  popFrequencySeconds: 5
+  popRandomOffsetSeconds: 1
+  lavaPopPrefab: {fileID: 8655021196682452496, guid: 3650031ba22cf344b957e9f16115c449,
+    type: 3}
 --- !u!1001 &218603283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -899,6 +937,7 @@ GameObject:
   - component: {fileID: 321575131}
   - component: {fileID: 321575130}
   - component: {fileID: 321575129}
+  - component: {fileID: 321575133}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -981,6 +1020,19 @@ Transform:
   m_Father: {fileID: 1217456421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &321575133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321575128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2d8bc924791c3a49b5d46d345c4a0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainType: {fileID: 11400000, guid: dc89ef9080fda1d409f2f0b333dc8a23, type: 2}
 --- !u!1 &356230679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1872,11 @@ PrefabInstance:
     - target: {fileID: 3438913975748953917, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729618479212439634, guid: bf0aa35baf52a6a408d97c37f9458d90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

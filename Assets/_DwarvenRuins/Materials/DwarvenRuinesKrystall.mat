@@ -105,7 +105,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionMultiplayer: 0.66
+    - _EmissionMultiplayer: 7.45
     - _EmissionSwitch: 1
     - _FresnelPower: 0.78
     - _FresnelScale: 1.51

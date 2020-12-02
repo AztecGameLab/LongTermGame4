@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
@@ -8,7 +6,6 @@ public class SceneChanger : MonoBehaviour
     static Vector3 LocalPlayerPosition;
     static Vector3 LocalPlayerRotation;
     static float LocalPlayerCameraRotation;
-    public string nextSceneName;
     public bool isEntrance;
 
     private void Start()
@@ -21,11 +18,6 @@ public class SceneChanger : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (isEntrance || other.tag != "Player")
@@ -35,10 +27,7 @@ public class SceneChanger : MonoBehaviour
         LocalPlayerRotation = transform.InverseTransformDirection(PlayerManager.instance.transform.forward);
 
 
-
-        if (nextSceneName != "")
-            SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
-        else
-            print("SceneChanger needs next scene name");
+        AudioManager.Instance().DisposeAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
