@@ -5,25 +5,32 @@ using UnityEngine;
 
 public class Channel
 {
-    [NotNull] public readonly AudioSource Source;
-    [CanBeNull] private Sound _attachedSound;
+    [NotNull] public readonly AudioSource MainSource;
+    [NotNull] public readonly AudioSource SchedulingSource;
+    
+    [CanBeNull] private SoundInstance _attachedSound;
     private bool _hasSound = false;
 
-    public bool IsAvailable => !Source.isPlaying;
-    public bool SoundEquals(Sound other) => _attachedSound != null && _attachedSound.id == other.id;
+    public bool IsAvailable => !MainSource.isPlaying && !SchedulingSource.isPlaying;
     
-    public Channel(AudioSource source, Sound sound = null)
+    public Channel(AudioSource mainSource, AudioSource schedulingSource, SoundInstance sound = null)
     {
-        Source = source;
+        MainSource = mainSource;
+        SchedulingSource = schedulingSource;
         
         if (sound != null) 
             SetSound(sound);
     }
 
-    public IEnumerator Play(Sound sound)
+    public bool HasSound(SoundInstance sound)
+    {
+        return _attachedSound == sound;
+    }
+
+    public IEnumerator Play(SoundInstance sound)
     {
         SetSound(sound);
-        yield return sound.PlayOnSource(Source);
+        yield return sound.PlayOnSource(MainSource, SchedulingSource);
     }
         
     public IEnumerator Stop()
@@ -32,7 +39,7 @@ public class Channel
         yield return new WaitForEndOfFrame();
     }
 
-    private void SetSound([NotNull] Sound sound)
+    private void SetSound([NotNull] SoundInstance sound)
     {
         _attachedSound = sound;
         _hasSound = true;
@@ -41,8 +48,7 @@ public class Channel
     public override string ToString()
     {
         StringBuilder result = new StringBuilder();
-        result.AppendLine(_hasSound ? _attachedSound.name : "None");
-        result.AppendLine("\tIs active: " + !IsAvailable);
+        result.AppendLine(_hasSound ? _attachedSound.ToString() : "None");
         return result.ToString();
     }
 }

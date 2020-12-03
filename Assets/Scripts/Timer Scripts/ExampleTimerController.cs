@@ -15,19 +15,12 @@ public class ExampleTimerController : MonoBehaviour
 
     [SerializeField] private GameObject bar = default;
 
-    [SerializeField] private Sound startSound = default;
-    [SerializeField] private Sound tickSound = default;
-    [SerializeField] private Sound endSound = default;
-    private AudioManager _manager;
-    private float _timeSinceTick = 1f;
-
     private void OnEnable()
     {
         bar.transform.localScale = Vector3.zero;
         _startPos = platform.position;
         _endPos = endPosition.position;
         _angle = spinningThing.eulerAngles;
-        _manager = AudioManager.Instance();
     }
 
     public void UpdateTimerObjects(float completion)
@@ -35,16 +28,6 @@ public class ExampleTimerController : MonoBehaviour
         UpdateSpinningThing();
         UpdatePlatform(completion);
         UpdateBar(completion);
-
-        if (_timeSinceTick >= 1f)
-        {
-            PlayTickingSound();
-            _timeSinceTick = 0f;
-        }
-        else
-        {
-            _timeSinceTick += Time.deltaTime;
-        }
     }
     
     public void ResetTimerObjects()
@@ -74,7 +57,6 @@ public class ExampleTimerController : MonoBehaviour
         }
         
         bar.transform.localScale = Vector3.zero;
-        _timeSinceTick = 1f;
     }
 
     private void UpdateSpinningThing()
@@ -91,23 +73,4 @@ public class ExampleTimerController : MonoBehaviour
     {
         bar.transform.localScale = new Vector3(1, completion, 1);
     }
-
-    #region Sounds
-
-    public void PlayTickingSound()
-    {
-        _manager.PlaySound(tickSound, bar);
-    }
-
-    public void PlayEndSound()
-    {
-        _manager.PlaySound(startSound, bar);
-    }
-    
-    public void PlayStartSound()
-    {
-        _manager.PlaySound(endSound, bar);
-    }
-
-    #endregion
 }

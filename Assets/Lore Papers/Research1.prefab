@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &930968567771452724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.004796
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.379066
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Name
+      value: Research1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: text
+      value: "I'm excited to finally be able to explore the depths of these newly
+        found ruins! \r\nThe fact that absolutely nothing is known about this site
+        gives me chills.\r\nI can't wait to see what's inside! \r\nWill there be
+        ancient writings? Breath-taking architecture? Maybe even some cool artifacts?!\r\nWhatever
+        I find it'll be an amazing win for science!!!\r"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 757a21295b3a6c24c89bcd9580230c94, type: 3}

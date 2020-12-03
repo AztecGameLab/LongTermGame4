@@ -6,24 +6,39 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PickupObjects.unity
-    guid: 545f589274b75c24787995f995268cd3
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 748f78ff2905ef048be7fda2ce2ea65a
   - enabled: 1
-    path: Assets/Scenes/Play.unity
-    guid: 63fc6f76aac53974a822163a9beecacf
-  - enabled: 1
-    path: Assets/Scenes/SceneChanger1.unity
-    guid: e0b5ff59a8f8cc74c88281d15565f909
-  - enabled: 1
-    path: Assets/Scenes/SceneChanger2.unity
-    guid: 35998c00c6ab6494296aa1e23099ff9c
-  - enabled: 1
     path: Assets/Scenes/MainMenuCredits.unity
     guid: 11b5e9d7a5518804684cfb4963c1d427
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PickupTutorial.unity
+    guid: 5e1eb9c18d27d4d4e938c4bb1917b28a
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/ArrowTriggerTutorial.unity
+    guid: 6fd5a5d95e6e32a499128ec5b1ae69d6
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/GauntletTutorial.unity
+    guid: 5567b894d3ea12d4b966b7c72bbdac1b
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/GrapplePullTutorial.unity
+    guid: 2b1397e5a1fe7a84f865a7c21cc233bf
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/EasyGrapplePuzzle.unity
+    guid: 029c3ddbb3562ac4f97ad96825ca2c9c
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/GrappleGauntlet.unity
+    guid: d62ae5ef76ca00545a2b93ff059db112
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/AntiGravTutorial.unity
+    guid: d820e5ea8e650184ea373453738f32e3
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/AntiGravLevels.unity
+    guid: 483ee1c3a3d335f4eb0f41ca398f99b3
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/Chad-Test Scene.unity
+    guid: 41c3bd94ee3d94936af94d6df584d170
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: d4c12bbcc6ae142468a43cc39e61379a
   m_configObjects: {}

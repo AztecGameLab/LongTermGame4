@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &930968567771452724
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.004796
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.379066
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745412, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Name
+      value: LorePaper#3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745414, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: text
+      value: This bow is giving me the chills. It's got all of these strange contraptions
+        built into it. But grabbing that thing was the biggest mistake I've made
+        on this adventure. The moment I laid my hands on it, I was overwhelmed with
+        its magical energy and felt light headed. Then suddenly, the room started
+        to shake, the walls and floors began shifting, and molten lava filled the
+        space between me and the exit. If anyone's reading this, DON'T GRAB THAT
+        BOW! You'll regret it. I've made my mistake and now I'm left with no way
+        out, and stuck here with this useless bow. Maybe I should try jumping over
+        the lava...
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 757a21295b3a6c24c89bcd9580230c94, type: 3}

@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DwarvenRuine11
       objectReference: {fileID: 0}
+    - target: {fileID: 8689869544428855157, guid: a32df4da2826e2a45abe6f5503750b63,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a0a4b6f02e6d98d4b84251cd30f70647, type: 2}
     - target: {fileID: 9154342184331150002, guid: a32df4da2826e2a45abe6f5503750b63,
         type: 3}
       propertyPath: m_LocalPosition.x
