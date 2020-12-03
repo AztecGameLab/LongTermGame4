@@ -53,7 +53,6 @@ public class ButtonManager : MonoBehaviour
     public void LoadScenePlay()
     {
         PlayWhoosh();
-        Debug.Log("stop");
         _audioManager.StopSound(_mainMusic);
         _playingMusic = false;
         SceneManager.LoadScene(2);
