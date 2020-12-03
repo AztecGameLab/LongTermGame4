@@ -23,6 +23,15 @@ public class DoorActivator : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (AnimateOnStart)
+        {
+            CameraFX.instance.AddTrauma(cameraShakeAmount);
+            CameraFX.instance.SetFrozen(true, animationTime);
+        }
+    }
+
 
     public void OpenDoor()
     {
