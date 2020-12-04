@@ -3,6 +3,7 @@
 public class LorePickup : Interactable
 {
     [TextArea(5, 20)] public string text;
+    public Sprite backgroundImage;
     [SerializeField] private Sound pickupSound = default;
     
     private AudioManager _audioManager;
@@ -17,6 +18,6 @@ public class LorePickup : Interactable
     protected override void OnInteract(Transform userTransform)
     {
         _audioManager.PlaySound(_pickupSound);
-        PlayerManager.instance.DisplayLore(text);
+        PlayerManager.instance.DisplayLore(text, backgroundImage);
     }
 }

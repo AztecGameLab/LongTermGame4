@@ -90,5 +90,11 @@ PrefabInstance:
         NOT to let that bow escape this temple, or else the goddess will be freed.
         But I don't care anymore. I need a new job.
       objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 21300000, guid: eb5c85de40f4411948b2c68efcbcea9a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757a21295b3a6c24c89bcd9580230c94, type: 3}
