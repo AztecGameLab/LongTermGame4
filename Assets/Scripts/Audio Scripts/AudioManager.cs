@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
         }
         
         // Make the sound 3D if its not targeting the global target.
-        sound.SetValue(SoundValue.SpacialBlend, target.Equals(_globalTarget) ? 0f : 1f);
+        sound.SetValue(SoundValue.SpacialBlend, target.Equals(_globalTarget) ? 0f : Mathf.Min(1f, sound.GetValue(SoundValue.SpacialBlend)));
 
         StartCoroutine(channel.Play(sound));
     }

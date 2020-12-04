@@ -164,7 +164,7 @@ public class SoundInstance
             OriginalValues[(int) SoundValue.Pan] = 0;
             OriginalValues[(int) SoundValue.MaxRange] = 500;
             OriginalValues[(int) SoundValue.MinRange] = 1;
-            OriginalValues[(int) SoundValue.SpacialBlend] = 0;
+            OriginalValues[(int) SoundValue.SpacialBlend] = 1;
             
             foreach (var modulated in ModulatedValues)
             {

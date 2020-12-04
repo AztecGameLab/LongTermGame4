@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   walkSound: {fileID: 11400000, guid: 84ac58062bc37724f90a2a4b38ff08fe, type: 2}
+  jumpSound: {fileID: 11400000, guid: 4c9efe765d3301b47a774c2fac568cee, type: 2}
+  jumpLandSound: {fileID: 11400000, guid: 2337a5dde56a1f04986ad2b5a08faa54, type: 2}
   arrowHitSound: {fileID: 11400000, guid: 1743adeefdf92c8418b3d69c8a74bc8b, type: 2}
   arrowHitEffect: {fileID: 3403110522493912495, guid: 2911911c9cfd13c4daf11b8c5cab0097,
     type: 3}

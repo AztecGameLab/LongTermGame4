@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
+    [SerializeField] private MultiSound doorSound = default;
+    private MultiSoundInstance _doorSound;
+    private AudioManager _audioManager;
+    
     public GameObject Door;
     public Vector3 OpenDirection = Vector3.up;
     public float TimeToOpen = 1;
@@ -13,6 +17,9 @@ public class SlidingDoor : MonoBehaviour
 
     private void Start()
     {
+        _audioManager = AudioManager.Instance();
+        _doorSound = doorSound.GenerateInstance();
+        
         // Start wherever the door
         ClosedPosition = Door.transform.position;
         // Move a distance that is proportional to the dimension of the door we are moving along (aka move up the height of the door with a y transform of 1)
@@ -22,12 +29,17 @@ public class SlidingDoor : MonoBehaviour
 
     public void Open()
     {
+        Debug.Log(_doorSound.IsInactive);
+        if (_doorSound.IsInactive) _audioManager.PlaySound(_doorSound, gameObject);
+        
         StopAllCoroutines();
         StartCoroutine(OpenClose(true));
     }
 
     public void Close()
     {
+        if (_doorSound.IsInactive) _audioManager.PlaySound(_doorSound, gameObject);
+        
         StopAllCoroutines();
         StartCoroutine(OpenClose(false));
     }
@@ -58,7 +70,7 @@ public class SlidingDoor : MonoBehaviour
             ElapsedTime += Time.deltaTime;
             yield return null;
         }
+        
+        _audioManager.StopSound(_doorSound, gameObject);
     }
-
-
 }

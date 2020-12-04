@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float _timeSinceFootstep;
     private SoundInstance _footstepSound;
     private SoundInstance _jumpSound;
-    private SoundInstance _landsound;
+    private SoundInstance _jumpLandSound;
     private AudioManager _audioManager;
     private TerrainType _currentTerrain;
 
@@ -35,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         _currentTerrain = defaultTerrain;
         _footstepSound = Terrain.WalkSound.GenerateInstance();
         _jumpSound = Terrain.JumpSound.GenerateInstance();
+        _jumpLandSound = Terrain.JumpLandSound.GenerateInstance();
     }
 
     // Update is called once per frame
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
                 // if the terrain changed, update the sound and terrain variables
                 UpdateTerrain(hit.transform.GetComponent<Terrain>());
                 
-                _audioManager.PlaySound(_landsound);
+                _audioManager.PlaySound(_jumpLandSound);
             }
         }
     }
@@ -145,14 +145,14 @@ public class PlayerMovement : MonoBehaviour
             _currentTerrain = newTerrain.terrainType;
             _footstepSound = Terrain.WalkSound.GenerateInstance();
             _jumpSound = Terrain.JumpSound.GenerateInstance();
-            _landsound = Terrain.JumpLandSound.GenerateInstance();
+            _jumpLandSound = Terrain.JumpLandSound.GenerateInstance();
         }
         else if (newTerrain == null)
         {
             _currentTerrain = defaultTerrain;
             _footstepSound = Terrain.WalkSound.GenerateInstance();
             _jumpSound = Terrain.JumpSound.GenerateInstance();
-            _landsound = Terrain.JumpLandSound.GenerateInstance();
+            _jumpLandSound = Terrain.JumpLandSound.GenerateInstance();
         }
     }
 }

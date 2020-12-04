@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Land Dirt
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: a85f4a1c34c8bfb4d8551ebbb448a1bd, type: 3}
   looping: 0
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
   modulatedValues: []

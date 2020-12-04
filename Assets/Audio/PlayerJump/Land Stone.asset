@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Land Stone
   m_EditorClassIdentifier: 
   clip:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 7aec65157519b3440a6308807d448cbd, type: 3}
   looping: 0
-  mixerGroup: {fileID: 0}
-  modulatedValues: []
+  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+    type: 2}
+  modulatedValues:
+  - soundValue: 0
+    value: 0.1
+    modulator: {fileID: 11400000, guid: 794cab4a21eae9344a5c193f9d115d13, type: 2}

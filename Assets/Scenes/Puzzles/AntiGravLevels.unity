@@ -19632,7 +19632,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh719828
+  m_Name: pb_Mesh191774
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25592,6 +25592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 455767668}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
@@ -43028,6 +43029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 822437163}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
@@ -73563,7 +73565,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh722100
+  m_Name: pb_Mesh194040
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -76648,7 +76650,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh719124
+  m_Name: pb_Mesh191070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -85707,7 +85709,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh721528
+  m_Name: pb_Mesh193484
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -86657,6 +86659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 1708035235}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
@@ -101618,6 +101621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 2044143672}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
