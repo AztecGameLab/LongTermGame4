@@ -8,6 +8,7 @@ TagManager:
   - arrow
   - puzzle_object
   - LavaCollider
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Arrow
   - Player
   - LavaCollider
-  - 
+  - Bow
   - 
   - 
   - 

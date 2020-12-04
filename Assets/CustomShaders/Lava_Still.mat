@@ -67,13 +67,13 @@ Material:
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
     - _Blend: 0
-    - _Brightness: 1
+    - _Brightness: 0.8
     - _BumpScale: 1
     - _Clamping: 0.5
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
-    - _EmmisionMultiplier: 80
+    - _EmmisionMultiplier: 60
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerManager : MonoBehaviour
@@ -38,6 +39,8 @@ public class PlayerManager : MonoBehaviour
     private bool gravArrow = false;
 
     public TMP_Text currentArrowName;
+    public bool stopShooting;
+    public void EnableShooting() => stopShooting = false;
 
 
     private void Awake()
@@ -110,18 +113,24 @@ public class PlayerManager : MonoBehaviour
                 HideLore();
         }
 
-        if(loreDisplay.activeSelf)
+        if (loreDisplay.activeSelf)
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !stopShooting)
         {
+            if (!bowAnimator)
+                bowAnimator = GetComponentInChildren<Animator>();
+
             audioManager.PlaySound(pullBowInstance);
             bowAnimator.SetTrigger("Draw");
         }
 
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !stopShooting)
         {
+            if (!bowAnimator)
+                bowAnimator = GetComponentInChildren<Animator>();
+
             audioManager.StopSound(pullBowInstance);
             audioManager.PlaySound(shootArrowInstance);
             bowAnimator.SetTrigger("Shoot");
@@ -129,10 +138,12 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public void DisplayLore(string text)
+    public void DisplayLore(string text, Sprite background = null)
     {
         loreDisplay.SetActive(true);
         loreDisplay.GetComponentInChildren<TextMeshProUGUI>().SetText(text);
+        if (background)
+            loreDisplay.GetComponent<Image>().sprite = background;
 
         s_playerMovement.enabled = false;
         s_looking.enabled = false;
@@ -177,7 +188,7 @@ public class PlayerManager : MonoBehaviour
 
     void DevArrows()
     {
-        if(loreDisplay.activeSelf)
+        if (loreDisplay.activeSelf)
             return;
 
         // Right-click to get next arrow

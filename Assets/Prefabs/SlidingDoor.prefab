@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778305884108687380}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 1.1399999, y: 4.69, z: -0.09684515}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 1.0564921}
+  m_LocalPosition: {x: 1.1399999, y: 4.69, z: -0.0025822}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 0.023479408}
   m_Children: []
   m_Father: {fileID: 7778305885078627021}
   m_RootOrder: 1
@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 7778305884123288628}
   - component: {fileID: 7778305884123288629}
   - component: {fileID: 7778305884123288634}
+  - component: {fileID: 2563003843316422108}
   m_Layer: 0
   m_Name: DwarvenRuinesWall3
   m_TagString: Untagged
@@ -121,8 +122,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778305884123288635}
   m_LocalRotation: {x: 0.00000028088027, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: -1.1399999, y: 4.69, z: 0.09596467}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 1.0564921}
+  m_LocalPosition: {x: -1.1399999, y: 4.69, z: 0.001703}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 0.023479408}
   m_Children: []
   m_Father: {fileID: 7778305885346294035}
   m_RootOrder: 0
@@ -188,6 +189,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8917405503882876278, guid: 4c0833d90bb1b29468f6140c91278531, type: 3}
+--- !u!65 &2563003843316422108
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778305884123288635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9548891, y: 1.9528813, z: 14}
+  m_Center: {x: 0, y: 0.97644556, z: -0.0000003054738}
 --- !u!1 &7778305884260291280
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +214,7 @@ GameObject:
   - component: {fileID: 7778305884260291309}
   - component: {fileID: 7778305884260291282}
   - component: {fileID: 7778305884260291283}
+  - component: {fileID: 5223573674706288474}
   m_Layer: 0
   m_Name: DwarvenRuinesWall3
   m_TagString: Untagged
@@ -215,8 +230,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778305884260291280}
   m_LocalRotation: {x: 0.00000028088027, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: 1.1399999, y: 4.69, z: 0.09596467}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 1.0564921}
+  m_LocalPosition: {x: 1.1399999, y: 4.69, z: 0.001703}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 0.023479408}
   m_Children: []
   m_Father: {fileID: 7778305885078627021}
   m_RootOrder: 0
@@ -282,6 +297,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8917405503882876278, guid: 4c0833d90bb1b29468f6140c91278531, type: 3}
+--- !u!65 &5223573674706288474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778305884260291280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9548891, y: 1.9528813, z: 14}
+  m_Center: {x: 0, y: 0.97644556, z: -0.0000003054738}
 --- !u!1 &7778305884407598867
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,8 +389,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778305884420839260}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -1.1399999, y: 4.69, z: -0.09684515}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 1.0564921}
+  m_LocalPosition: {x: -1.1399999, y: 4.69, z: -0.0025822}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 0.023479408}
   m_Children: []
   m_Father: {fileID: 7778305885346294035}
   m_RootOrder: 1
@@ -494,7 +522,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7778305885184529995
 Transform:
@@ -636,7 +664,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7778305885115473607
 Transform:
