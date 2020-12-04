@@ -92,6 +92,7 @@ public class MultiSoundInstance : SoundInstance
                 SetValue(value, target);
             }
 
+            if (looping == null) yield break;
             _settings.ApplyToSource(looping);
             IsInactive |= !looping.isPlaying;
             yield return new WaitForEndOfFrame();
@@ -103,6 +104,8 @@ public class MultiSoundInstance : SoundInstance
     // This stage cannot be canceled programatically: it will always play to completion
     private IEnumerator PlayOutro(AudioSource outro, AudioSource looping)
     {
+        if (outro == null) yield break;
+
         // Prepare both AudioSources for playback
         _settings.ApplyToSource(outro, OutroClip);
         outro.loop = false;
@@ -136,7 +139,7 @@ public class MultiSoundInstance : SoundInstance
             
             if (fadeIn.clip != OutroClip && IsInactive)
             {
-                yield return PlayOutro(fadeIn,fadeOut);
+                if (_state != MultiSoundState.Inactive) yield return PlayOutro(fadeIn,fadeOut);
                 break;
             }
             

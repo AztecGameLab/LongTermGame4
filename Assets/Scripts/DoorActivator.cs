@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DoorActivator : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class DoorActivator : MonoBehaviour
         {
             door.FinishMoving += (sender, args) => _audioManager.StopSound(_doorSound, gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        _audioManager.Dispose(gameObject);
     }
 
     private void Start()

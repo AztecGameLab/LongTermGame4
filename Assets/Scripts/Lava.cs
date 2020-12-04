@@ -47,7 +47,9 @@ public class Lava : MonoBehaviour
     {
         AdjustLavaVolume();
 
+        if (popFrequencySeconds < 0) return;
         _timeSincePop += Time.deltaTime;
+        Debug.Log(_timeSincePop);
         if (_timeSincePop < _nextPop) return;
 
         var offsetX = Random.Range(-_renderer.bounds.extents.x, _renderer.bounds.extents.x);

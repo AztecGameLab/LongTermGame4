@@ -14316,6 +14316,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 023569f6f56c9274894a67d47fe89161, type: 3}
+--- !u!65 &1851194692 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 8328415129434410772, guid: 023569f6f56c9274894a67d47fe89161,
+    type: 3}
+  m_PrefabInstance: {fileID: 1851194691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1877923685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15248,6 +15254,7 @@ GameObject:
   - component: {fileID: 1980808482}
   - component: {fileID: 1980808481}
   - component: {fileID: 1980808480}
+  - component: {fileID: 1980808479}
   m_Layer: 10
   m_Name: Lava (1)
   m_TagString: Untagged
@@ -15255,6 +15262,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &1980808479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980808478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f56ed864a7eb84f9ac75a360005c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lavaAmbientSound: {fileID: 11400000, guid: 3074e8cdcd4ddd74e8e58314beab4275, type: 2}
+  lavaAmbientStrength: 1
+  lavaPopSound: {fileID: 11400000, guid: 66bc9ff9163c15d498c54b91ebc2dbd3, type: 2}
+  popFrequencySeconds: -1
+  popRandomOffsetSeconds: 0
+  lavaPopPrefab: {fileID: 8655021196682452496, guid: 3650031ba22cf344b957e9f16115c449,
+    type: 3}
+  lavaCollider: {fileID: 1851194692}
 --- !u!23 &1980808480
 MeshRenderer:
   m_ObjectHideFlags: 0
