@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TerrainType defaultTerrain = default;
     private float _timeSinceFootstep;
     private SoundInstance _footstepSound;
+    private SoundInstance _jumpSound;
+    private SoundInstance _landsound;
     private AudioManager _audioManager;
     private TerrainType _currentTerrain;
 
@@ -19,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera camera;
 
     private bool ground = true;
+    private bool groundPrev = true;
 
     public bool IsActive => inputX != 0 || inputZ != 0;
     float inputX;
@@ -30,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         _audioManager = AudioManager.Instance();
         _currentTerrain = defaultTerrain;
         _footstepSound = Terrain.WalkSound.GenerateInstance();
+        _jumpSound = Terrain.JumpSound.GenerateInstance();
     }
 
     // Update is called once per frame
@@ -56,15 +61,23 @@ public class PlayerMovement : MonoBehaviour
         inputX = Input.GetAxis("Horizontal");
         inputZ = Input.GetAxis("Vertical");
 
-
+        
+        
         //Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (ground)
             {
                 body.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                
+                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3f))
+                {
+                    // if the terrain changed, update the sound and terrain variables
+                    UpdateTerrain(hit.transform.GetComponent<Terrain>());
+                
+                    _audioManager.PlaySound(_jumpSound);
+                }
             }
-
         }
         //Debug.Log(ground);
 
@@ -75,19 +88,8 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3f))
             {
                 // if the terrain changed, update the sound and terrain variables
-                var raycastTerrain = hit.transform.GetComponent<Terrain>();
-                if (raycastTerrain != null && raycastTerrain.terrainType != Terrain)
-                {
-                    _currentTerrain = raycastTerrain.terrainType;
-                    _footstepSound = Terrain.WalkSound.GenerateInstance();
-                }
-                else if (raycastTerrain == null)
-                {
-                    _currentTerrain = defaultTerrain;
-                    _footstepSound = Terrain.WalkSound.GenerateInstance();
-                }
-
-                // play the footstep sound of the current terrain
+                UpdateTerrain(hit.transform.GetComponent<Terrain>());
+                
                 _audioManager.PlaySound(_footstepSound);
             }
         }
@@ -103,8 +105,21 @@ public class PlayerMovement : MonoBehaviour
         body.position += (transform.forward * inputZ + transform.right * inputX) * (moveSpeed * Time.deltaTime);
 
         //ground check
+        groundPrev = ground;
+        
         RaycastHit hit;
         ground = Physics.SphereCast(transform.position, 0.35f, Vector3.down, out hit, 0.1f);
+        
+        if (ground && groundPrev == false)
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 3f))
+            {
+                // if the terrain changed, update the sound and terrain variables
+                UpdateTerrain(hit.transform.GetComponent<Terrain>());
+                
+                _audioManager.PlaySound(_landsound);
+            }
+        }
     }
 
     // void OnCollisionEnter(Collision other)
@@ -123,4 +138,21 @@ public class PlayerMovement : MonoBehaviour
     //     }
     // }
 
+    private void UpdateTerrain(Terrain newTerrain)
+    {
+        if (newTerrain != null && newTerrain.terrainType != Terrain)
+        {
+            _currentTerrain = newTerrain.terrainType;
+            _footstepSound = Terrain.WalkSound.GenerateInstance();
+            _jumpSound = Terrain.JumpSound.GenerateInstance();
+            _landsound = Terrain.JumpLandSound.GenerateInstance();
+        }
+        else if (newTerrain == null)
+        {
+            _currentTerrain = defaultTerrain;
+            _footstepSound = Terrain.WalkSound.GenerateInstance();
+            _jumpSound = Terrain.JumpSound.GenerateInstance();
+            _landsound = Terrain.JumpLandSound.GenerateInstance();
+        }
+    }
 }
