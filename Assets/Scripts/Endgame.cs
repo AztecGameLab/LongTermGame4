@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Endgame : MonoBehaviour
 {
     public RawImage image;
+    public Sound crickets;
+    
     public void EndGame()
     {
         StartCoroutine(end());
@@ -24,5 +26,11 @@ public class Endgame : MonoBehaviour
         }
         AudioManager.Instance().DisposeAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PlayCricketSound()
+    {
+        Debug.Log("cricket");
+        AudioManager.Instance().PlaySound(crickets.GenerateInstance(), gameObject);
     }
 }
