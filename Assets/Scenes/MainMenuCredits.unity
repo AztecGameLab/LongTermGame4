@@ -260,15 +260,16 @@ MonoBehaviour:
 
 
     Programmers: Ryan Wright, James K. Maron, Archer Hovey, Nicholas
-    Otero, Brandon M. Rendon, Mezi Iroaga, Daniel Walls, William Nelson
+    Otero, Brandon M. Rendon, Mezi Iroaga, Daniel Walls, William Nelson, Chad Keefer,
+    Matthew Morisky
 
 
-    Artists:
-    Naseem Tahbaz, Jacob Golden-Needham
+    Artists: Naseem Tahbaz, Jacob Golden-Needham
 
 
-    Audio Designers & Composers: David
-    Danetaras, Holden Thomas, Rafael Carrasco, Ryn Schroeder, Chris Potente'
+    Audio
+    Designers & Composers: David Danetaras, Holden Thomas, Rafael Carrasco, Ryn Schroeder,
+    Chris Potente'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

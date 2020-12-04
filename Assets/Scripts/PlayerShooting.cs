@@ -26,19 +26,19 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !PlayerManager.instance.stopShooting)
         {
             if (GrapplingArrow.CurrentArrow != null)
             {
                 GrapplingArrow.CurrentArrow = null;
             }
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0) && !PlayerManager.instance.stopShooting)
         {
             timer += Time.deltaTime;
             timer = Mathf.Clamp(timer, 0, timeToGetToMaxForce);
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && !PlayerManager.instance.stopShooting)
         {
             GameObject arrowObject = Instantiate(ArrowPrefab) as GameObject;
             arrowObject.transform.position = transform.position + transform.forward;
