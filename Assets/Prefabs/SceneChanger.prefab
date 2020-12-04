@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12049e667216814d829f53ebad27576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 
   isEntrance: 0
 --- !u!65 &6558884994308325007
 BoxCollider:
@@ -13978,8 +13977,14 @@ PrefabInstance:
     - target: {fileID: 7778305884407598893, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: StartOpen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7778305884407598893, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057,
+        type: 2}
     - target: {fileID: 7778305884420839260, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13993,7 +13998,7 @@ PrefabInstance:
     - target: {fileID: 7778305885078627021, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778305885184529992, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
@@ -14008,7 +14013,7 @@ PrefabInstance:
     - target: {fileID: 7778305885346294035, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778305886056585882, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
@@ -14115,6 +14120,12 @@ PrefabInstance:
       propertyPath: StartOpen
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7778305884407598893, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057,
+        type: 2}
     - target: {fileID: 7778305884420839260, guid: a69c4bf3aae3e9847b709ee0688fb4a1,
         type: 3}
       propertyPath: m_StaticEditorFlags

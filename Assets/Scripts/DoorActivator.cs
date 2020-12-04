@@ -1,9 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoorActivator : MonoBehaviour
 {
+    [SerializeField] private MultiSound doorSound = default;
+    private AudioManager _audioManager;
+    private MultiSoundInstance _doorSound;
+    
     public bool StartOpen;
     public bool AnimateOnStart;
     public float animationTime;
@@ -21,17 +23,25 @@ public class DoorActivator : MonoBehaviour
             door.animationTime = animationTime;
             door.AnimateOnStart = AnimateOnStart;
         }
+
+        foreach (var door in slidingDoors)
+        {
+            door.FinishMoving += (sender, args) => _audioManager.StopSound(_doorSound, gameObject);
+        }
     }
 
     private void Start()
     {
+        _audioManager = AudioManager.Instance();
+        _doorSound = doorSound.GenerateInstance();
+        
         if (AnimateOnStart)
         {
+            _audioManager.PlaySound(_doorSound, gameObject);
             CameraFX.instance.AddTrauma(cameraShakeAmount);
             CameraFX.instance.SetFrozen(true, animationTime);
         }
     }
-
 
     public void OpenDoor()
     {
@@ -53,6 +63,8 @@ public class DoorActivator : MonoBehaviour
 
     void SetDoor()
     {
+        if (_doorSound.IsInactive) _audioManager.PlaySound(_doorSound, gameObject);
+        
         if (cameraShakeAmount != 0)
         {
             CameraFX.instance.AddTrauma(cameraShakeAmount);
