@@ -81,9 +81,9 @@ PrefabInstance:
         type: 3}
       propertyPath: text
       value: "At last! I have made my way to the heart of the ruins! It looks like
-        some sort ceremonial room.\r\nI wonder what God they worshiped in here? The
-        best part of it... I found an artifact! \r\nIt's a bow in the middle of the
-        room but it looks Elvish?! What is going on?!\r"
+        some sort of ceremonial room.\r\nI wonder what God they worshiped in here?
+        The best part of it... I found an artifact! \r\nIt's a bow in the middle
+        of the room but it looks Elvish?! What is going on?!\r"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757a21295b3a6c24c89bcd9580230c94, type: 3}
