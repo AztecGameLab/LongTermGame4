@@ -1,18 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class MusicTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Music Settings")]
+    [SerializeField] private Sound music = default;
+    [SerializeField] private bool stopPrevious = false;
+
+    private static SoundInstance _music;
+    private static SoundInstance _currentPlaying;
+    private AudioManager _audioManager;
+    
+    private void Awake()
     {
-        
+        _music = music == null ? null : music.GenerateInstance();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _audioManager = AudioManager.Instance();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (stopPrevious) _audioManager.StopSound(_currentPlaying);
+        PlayMusic();
+    }
+
+    private void PlayMusic()
+    {
+        _audioManager.PlaySound(_music);
+        _currentPlaying = _music;
     }
 }

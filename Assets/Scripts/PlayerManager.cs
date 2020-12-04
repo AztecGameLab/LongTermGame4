@@ -22,11 +22,9 @@ public class PlayerManager : MonoBehaviour
     private AudioManager audioManager;
     public Sound pullBow;
     public Sound shootArrow;
-    public Sound music;
 
     private SoundInstance pullBowInstance;
     private SoundInstance shootArrowInstance;
-    private SoundInstance musicInstance;
 
     Animator bowAnimator;
 
@@ -48,7 +46,6 @@ public class PlayerManager : MonoBehaviour
         audioManager = AudioManager.Instance();
         pullBowInstance = pullBow.GenerateInstance();
         shootArrowInstance = shootArrow.GenerateInstance();
-        musicInstance = music.GenerateInstance();
 
         bowAnimator = GetComponentInChildren<Animator>();
 
@@ -82,7 +79,6 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         setRegArrow();
-        audioManager.PlaySound(musicInstance);
     }
 
     void Update()
