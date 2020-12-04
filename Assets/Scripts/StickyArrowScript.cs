@@ -8,11 +8,13 @@ public class StickyArrowScript : MonoBehaviour
     
     Rigidbody arrowRB;
     Quaternion arrowRotation;
+    private Collider _collider;
 
     private void Start()
     {
         _audioManager = AudioManager.Instance();
         arrowRB = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,6 +29,7 @@ public class StickyArrowScript : MonoBehaviour
             //changing collision detection mode to avoid warning from unity
             arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
+            _collider.enabled = false;
             //Make sure the arrow is pointing in the right dirrection using last known rotation before collision.
             gameObject.transform.rotation = arrowRotation;
             //Object sticks to where it first made contact, sinks in just enough to be embedded. 
@@ -41,7 +44,6 @@ public class StickyArrowScript : MonoBehaviour
                 //If you want the arrows to still interact physically with the world.
                 Destroy(arrowRB);
                 //could use the following if you don't mind arrows phasing through solid objects
-                //gameObject.GetComponent<Collider>().enabled = false;
             }
 
             var targetTerrain = collision.transform.GetComponent<Terrain>();

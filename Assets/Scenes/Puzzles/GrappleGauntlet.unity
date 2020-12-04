@@ -36123,8 +36123,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   timerMultiSound: {fileID: 11400000, guid: 61ed892f76b2c3e4a9fa10ae4cab2290, type: 2}
-  timerFail: {fileID: 8300000, guid: 11f9b6b99891cff4b953c1c906e48519, type: 3}
-  timerSuccess: {fileID: 8300000, guid: 73769e5e594a48443916899adfc5954b, type: 3}
+  timerFail: {fileID: 8300000, guid: 29721d56008e76e4083cfea465afe61c, type: 3}
+  timerSuccess: {fileID: 8300000, guid: b6b50d12521a3f642953982bc1ea6ae2, type: 3}
 --- !u!114 &1317280501
 MonoBehaviour:
   m_ObjectHideFlags: 0

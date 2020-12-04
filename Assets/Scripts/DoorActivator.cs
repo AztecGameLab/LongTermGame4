@@ -72,11 +72,11 @@ public class DoorActivator : MonoBehaviour
     {
         if (_doorSound.IsInactive) _audioManager.PlaySound(_doorSound, gameObject);
         
-        if (cameraShakeAmount != 0)
-        {
+        if (cameraShakeAmount != 0 && !CameraFX.instance.IsFrozen)
             CameraFX.instance.AddTrauma(cameraShakeAmount);
-            CameraFX.instance.SetFrozen(true, animationTime);
-        }
+
+        CameraFX.instance.SetFrozen(true, animationTime);
+
         foreach (var door in slidingDoors)
             door.SetDoor(isOpen);
     }

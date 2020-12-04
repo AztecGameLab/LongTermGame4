@@ -26,6 +26,7 @@ public class GrapplingArrow : MonoBehaviour
     
     private PlayerManager _player;
     private Rigidbody _playerRb;
+    private Collider _collider;
     private LineRenderer _line;
     private Vector3[] _linePositions;
     private bool _canceled = false;
@@ -45,7 +46,8 @@ public class GrapplingArrow : MonoBehaviour
         _line.widthMultiplier = 0.05f;
         _line.positionCount = 2;
         _linePositions = new Vector3[2];
-        
+
+        _collider = GetComponent<Collider>();
         CurrentArrow = this;
     }
 
@@ -87,6 +89,7 @@ public class GrapplingArrow : MonoBehaviour
             _audioManager.PlaySound(_hitSound, gameObject);
             transform.parent = collision.transform;
             Destroy(GetComponent<Rigidbody>());
+            _collider.enabled = false;
             
             StartCoroutine(collision.rigidbody.mass < massThreshold
                 ? usePhysicsPull ? PullToPlayerPhysics(collision.rigidbody) : PullToPlayer(collision.rigidbody)
