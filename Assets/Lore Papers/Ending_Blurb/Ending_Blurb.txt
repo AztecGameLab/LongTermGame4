@@ -1,0 +1,4 @@
+“Brave soul, I thank you for granting me my freedom. Without you, who knows how much longer I would’ve been stuck in that cursed contraption. But now my spirit is free. And who would’ve thought some random researcher would be the one to overcome those dangerous puzzles and cleanse the bow. Your good deeds will not go unnoticed, I promise you.” 
+
+Notes for Programmers:
+-This’ll be the end blurb that pops up when you finally escape the temple

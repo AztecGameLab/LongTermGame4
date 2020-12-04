@@ -233,8 +233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -136.3, y: 87.4}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -115.6, y: 87.4}
+  m_SizeDelta: {x: 212.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489187191
 MonoBehaviour:
@@ -255,10 +255,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Progammer Lead: Kain Shepard\nArt Lead: Liz \nAudio Lead:\n\nProgrammers:
-    name name name name name name name name name name\n\nArtists: name name name
-    name name name name name name\n\nAudio Designers & Composers: name name name
-    name name name name name name"
+  m_text: 'Project Leads: Kain Shepard, Elizabeth Newgard, Kyle McLain Kane, Michael
+    Brown
+
+
+    Programmers: Ryan Wright, James K. Maron, Archer Hovey, Nicholas
+    Otero, Brandon M. Rendon, Mezi Iroaga, Daniel Walls, William Nelson
+
+
+    Artists:
+    Naseem Tahbaz, Jacob Golden-Needham
+
+
+    Audio Designers & Composers: David
+    Danetaras, Holden Thomas, Rafael Carrasco, Ryn Schroeder, Chris Potente'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
