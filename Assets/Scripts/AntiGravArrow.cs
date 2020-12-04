@@ -13,8 +13,13 @@ public class AntiGravArrow : MonoBehaviour
         _gravSound = gravSound.GenerateInstance();
     }
 
+    bool collided;
     private void OnCollisionEnter(Collision other)
     {
+        if(collided)
+            return;
+
+        collided = true;
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         if (!rb || rb.isKinematic || other.gameObject.tag == "Player") return;
         

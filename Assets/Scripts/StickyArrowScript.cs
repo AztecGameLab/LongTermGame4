@@ -29,7 +29,7 @@ public class StickyArrowScript : MonoBehaviour
             //changing collision detection mode to avoid warning from unity
             arrowRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             arrowRB.isKinematic = true;
-            _collider.enabled = false;
+            //_collider.enabled = false;
             //Make sure the arrow is pointing in the right dirrection using last known rotation before collision.
             gameObject.transform.rotation = arrowRotation;
             //Object sticks to where it first made contact, sinks in just enough to be embedded. 
