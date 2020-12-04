@@ -3,7 +3,12 @@ guid: c3f56ed864a7eb84f9ac75a360005c11
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - lavaAmbientSound: {fileID: 11400000, guid: 3074e8cdcd4ddd74e8e58314beab4275, type: 2}
+  - lavaPopSound: {fileID: 11400000, guid: 66bc9ff9163c15d498c54b91ebc2dbd3, type: 2}
+  - lavaPopPrefab: {fileID: 8655021196682452496, guid: 3650031ba22cf344b957e9f16115c449,
+      type: 3}
+  - lavaCollider: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -34,7 +34,6 @@ public class NewSlidingDoor : MonoBehaviour
         
         if (wasMoving == true && IsMoving == false)
         {
-            Debug.Log("done moving");
             FinishMoving.Invoke(this, EventArgs.Empty);
         }
         
