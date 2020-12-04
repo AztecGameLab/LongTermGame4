@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SlidingDoor : MonoBehaviour
 {
-    [SerializeField] private MultiSound doorSound = default;
-    private MultiSoundInstance _doorSound;
+    [SerializeField] private Sound doorSound = default;
+    private SoundInstance _doorSound;
     private AudioManager _audioManager;
     
     public GameObject Door;
@@ -29,7 +29,6 @@ public class SlidingDoor : MonoBehaviour
 
     public void Open()
     {
-        Debug.Log(_doorSound.IsInactive);
         if (_doorSound.IsInactive) _audioManager.PlaySound(_doorSound, gameObject);
         
         StopAllCoroutines();
