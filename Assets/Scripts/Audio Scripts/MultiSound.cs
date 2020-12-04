@@ -111,11 +111,10 @@ public class MultiSoundInstance : SoundInstance
         outro.loop = false;
 
         yield return Crossfade(outro, looping);
-        if (outro == null) yield break;
         
         // Wait for the outro to finish playing
         _state = MultiSoundState.Outro;
-        yield return new WaitWhile(() => outro.isPlaying);
+        yield return new WaitWhile(() => outro != null && outro.isPlaying);
         
         // Make sure the outro has finished and reset state
         _state = MultiSoundState.Inactive;

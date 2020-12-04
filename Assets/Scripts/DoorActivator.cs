@@ -33,6 +33,7 @@ public class DoorActivator : MonoBehaviour
 
     private void OnDestroy()
     {
+        _audioManager.StopSound(_doorSound);
         _audioManager.Dispose(gameObject);
     }
 

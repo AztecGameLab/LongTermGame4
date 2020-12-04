@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MeshFilter))]
@@ -49,7 +48,6 @@ public class Lava : MonoBehaviour
 
         if (popFrequencySeconds < 0) return;
         _timeSincePop += Time.deltaTime;
-        Debug.Log(_timeSincePop);
         if (_timeSincePop < _nextPop) return;
 
         var offsetX = Random.Range(-_renderer.bounds.extents.x, _renderer.bounds.extents.x);

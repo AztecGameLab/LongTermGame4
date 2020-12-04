@@ -3121,9 +3121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lavaAmbientSound: {fileID: 11400000, guid: 3074e8cdcd4ddd74e8e58314beab4275, type: 2}
-  lavaAmbientStrength: 1
+  lavaAmbientStrength: 0.4
   lavaPopSound: {fileID: 11400000, guid: 66bc9ff9163c15d498c54b91ebc2dbd3, type: 2}
-  popFrequencySeconds: 0
+  popFrequencySeconds: -1
   popRandomOffsetSeconds: 1
   lavaPopPrefab: {fileID: 8655021196682452496, guid: 3650031ba22cf344b957e9f16115c449,
     type: 3}
