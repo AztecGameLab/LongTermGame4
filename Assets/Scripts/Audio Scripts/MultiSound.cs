@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using AmplifyShaderEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New MultiSound", menuName = "Audio Custom/MultiSound", order = 2)]
@@ -90,24 +92,29 @@ public class MultiSoundInstance : SoundInstance
                 SetValue(value, target);
             }
 
+            if (looping == null) yield break;
             _settings.ApplyToSource(looping);
             IsInactive |= !looping.isPlaying;
             yield return new WaitForEndOfFrame();
         }
+
+        IsInactive = false;
     }
 
     // This stage cannot be canceled programatically: it will always play to completion
     private IEnumerator PlayOutro(AudioSource outro, AudioSource looping)
     {
+        if (outro == null) yield break;
+
         // Prepare both AudioSources for playback
         _settings.ApplyToSource(outro, OutroClip);
         outro.loop = false;
 
         yield return Crossfade(outro, looping);
-
+        
         // Wait for the outro to finish playing
         _state = MultiSoundState.Outro;
-        yield return new WaitWhile(() => outro.isPlaying);
+        yield return new WaitWhile(() => outro != null && outro.isPlaying);
         
         // Make sure the outro has finished and reset state
         _state = MultiSoundState.Inactive;
@@ -123,13 +130,15 @@ public class MultiSoundInstance : SoundInstance
         fadeIn.PlayScheduled(AudioSettings.dspTime + 0.1);
         fadeOut.SetScheduledEndTime(AudioSettings.dspTime + 0.1 + _crossfadeDuration);
         yield return new WaitForSeconds(0.1f);
-        
+
         // Over the crossfadeDuration, fadeIn gets louder as fadeOut gets quieter
-        while (Time.time - startTime <= _crossfadeDuration)
+        while (!IsInactive && Time.time - startTime <= _crossfadeDuration)
         {
+            if (fadeIn == null || fadeOut == null) yield break;
+            
             if (fadeIn.clip != OutroClip && IsInactive)
             {
-                yield return PlayOutro(fadeIn,fadeOut);
+                if (_state != MultiSoundState.Inactive) yield return PlayOutro(fadeIn,fadeOut);
                 break;
             }
             

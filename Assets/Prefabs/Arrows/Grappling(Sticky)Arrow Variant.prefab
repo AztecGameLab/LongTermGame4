@@ -20,7 +20,7 @@ MonoBehaviour:
   moveSpeed: 1
   massThreshold: 4
   pullRadiusThreshold: 4
-  usePhysicsPull: 0
+  usePhysicsPull: 1
 --- !u!1001 &6455761322496615826
 PrefabInstance:
   m_ObjectHideFlags: 0

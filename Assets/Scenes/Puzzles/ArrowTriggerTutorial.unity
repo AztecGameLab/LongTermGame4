@@ -578,6 +578,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -3947,6 +3953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7791ccb23b7c86240940264b16ef58b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   StartOpen: 0
   AnimateOnStart: 0
   animationTime: 1
@@ -6719,6 +6726,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -7841,6 +7854,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name

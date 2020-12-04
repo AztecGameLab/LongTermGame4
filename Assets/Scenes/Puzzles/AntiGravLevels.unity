@@ -25844,6 +25844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 455767668}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
@@ -43459,6 +43460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 822437163}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
@@ -87249,6 +87251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 1708035235}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1
@@ -95345,25 +95348,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3438913974619587666, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: field of view
-      value: 75
-      objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953890, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438913975748953891, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: jumpSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438913975748953891, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953917, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
@@ -95420,23 +95408,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
+    - target: {fileID: 3938867727025992057, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
-      propertyPath: music
-      value: 
-      objectReference: {fileID: 11400000, guid: 848754497d017b449868058198015a58,
-        type: 2}
+      propertyPath: m_RenderPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7729618479212439634, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8991737844130606993, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: maxDistance
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 478235547165812087, guid: bf0aa35baf52a6a408d97c37f9458d90, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bf0aa35baf52a6a408d97c37f9458d90, type: 3}
 --- !u!1001 &1911332792
 PrefabInstance:
@@ -102309,6 +102292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057, type: 2}
   Door: {fileID: 2044143672}
   OpenDirection: {x: 0, y: 3, z: 0}
   TimeToOpen: 1

@@ -576,6 +576,11 @@ PrefabInstance:
       propertyPath: AnimateOnStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5620265178127092408, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
+        type: 3}
+      propertyPath: StartOpen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5874664008851196905, guid: a1b69f49d2bab2649a39e0c6e587ee5b,
         type: 3}
       propertyPath: m_LocalScale.z

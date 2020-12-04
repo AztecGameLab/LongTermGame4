@@ -20,7 +20,6 @@ public class AudioManager : MonoBehaviour
 
     private int SourcesCount => _channels.Values.Count;
     private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
-    private int ActiveChannelCount => _channels.Values.Sum(channels => channels.Sum(channel => channel.MainSource.isPlaying ? 1 : 0));
     
     public static AudioManager Instance()
     {
@@ -67,7 +66,7 @@ public class AudioManager : MonoBehaviour
         }
         
         // Make the sound 3D if its not targeting the global target.
-        sound.SetValue(SoundValue.SpacialBlend, target.Equals(_globalTarget) ? 0f : 1f);
+        sound.SetValue(SoundValue.SpacialBlend, target.Equals(_globalTarget) ? 0f : Mathf.Min(1f, sound.GetValue(SoundValue.SpacialBlend)));
 
         StartCoroutine(channel.Play(sound));
     }
@@ -220,7 +219,6 @@ public class AudioManager : MonoBehaviour
         }
         
         GUILayout.Label("Sources: " + SourcesCount);
-        GUILayout.Label("Active channels: " + ActiveChannelCount + " / " + TotalChannelCount);
         for (var targetIndex = 0; targetIndex < _channels.Count; targetIndex++)
         {
             var target = _channels.ElementAt(targetIndex);

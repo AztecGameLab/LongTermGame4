@@ -13074,6 +13074,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneChangerEnterance
       objectReference: {fileID: 0}
+    - target: {fileID: 7037785763878238731, guid: f6a7dd02d14218e4caed814942d62203,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d0a23c97a9f5ee4ebda4d5ffc68a057,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a7dd02d14218e4caed814942d62203, type: 3}
 --- !u!4 &715028908 stripped
@@ -13190,6 +13196,12 @@ PrefabInstance:
       propertyPath: TimeToOpen
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -14119,6 +14131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d, type: 2}
   Door: {fileID: 750144966}
   OpenDirection: {x: 0.955, y: 0, z: 0}
   TimeToOpen: 0.5
@@ -18716,6 +18729,12 @@ PrefabInstance:
       propertyPath: TimeToOpen
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -20548,6 +20567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d, type: 2}
   Door: {fileID: 1071053739}
   OpenDirection: {x: -0.955, y: 0, z: 0}
   TimeToOpen: 0.5
@@ -23415,6 +23435,12 @@ PrefabInstance:
       propertyPath: TimeToOpen
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -23526,6 +23552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d, type: 2}
   Door: {fileID: 1217953246}
   OpenDirection: {x: 0.955, y: 0, z: 0}
   TimeToOpen: 0.5
@@ -25373,6 +25400,12 @@ PrefabInstance:
       propertyPath: TimeToOpen
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -29552,6 +29585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d, type: 2}
   Door: {fileID: 1481924480}
   OpenDirection: {x: 0.955, y: 0, z: 0}
   TimeToOpen: 0.5
@@ -35622,6 +35656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d, type: 2}
   Door: {fileID: 1707273310}
   OpenDirection: {x: -0.955, y: 0, z: 0}
   TimeToOpen: 0.5
@@ -36498,8 +36533,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   timerMultiSound: {fileID: 11400000, guid: 61ed892f76b2c3e4a9fa10ae4cab2290, type: 2}
-  timerFail: {fileID: 8300000, guid: 11f9b6b99891cff4b953c1c906e48519, type: 3}
-  timerSuccess: {fileID: 8300000, guid: 73769e5e594a48443916899adfc5954b, type: 3}
+  timerFail: {fileID: 8300000, guid: 29721d56008e76e4083cfea465afe61c, type: 3}
+  timerSuccess: {fileID: 8300000, guid: b6b50d12521a3f642953982bc1ea6ae2, type: 3}
 --- !u!114 &1721585131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39456,6 +39491,12 @@ PrefabInstance:
       propertyPath: TimeToOpen
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -41715,6 +41756,12 @@ PrefabInstance:
       propertyPath: TimeToOpen
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5601936621256442057, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
+        type: 3}
+      propertyPath: doorSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d,
+        type: 2}
     - target: {fileID: 5601936622306225984, guid: ebf9bc0c7b4126c48b169f51b0c97c6b,
         type: 3}
       propertyPath: m_Name
@@ -43297,6 +43344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38839874d365af244a1529d243c2b09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: 11400000, guid: 1cb9fd5c73b327343b08fd780d18d38d, type: 2}
   Door: {fileID: 2080913237}
   OpenDirection: {x: -0.955, y: 0, z: 0}
   TimeToOpen: 0.5
