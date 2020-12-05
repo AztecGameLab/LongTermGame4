@@ -29099,10 +29099,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -29128,7 +29128,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1261468228
 RectTransform:
@@ -35327,10 +35327,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1279522356548292856, guid: bf0aa35baf52a6a408d97c37f9458d90,
+    - target: {fileID: 77129171131014597, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_fontSizeMax
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3438913975748953890, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
@@ -35390,21 +35390,6 @@ PrefabInstance:
     - target: {fileID: 3438913975748953917, guid: bf0aa35baf52a6a408d97c37f9458d90,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4984713569114710062, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: stopShooting
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5580332773329930241, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5815907307618826590, guid: bf0aa35baf52a6a408d97c37f9458d90,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
