@@ -134,13 +134,16 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public void DisplayLore(string text, Sprite background = null)
+    public void DisplayLore(LorePickup pickup)
     {
         loreDisplay.SetActive(true);
-        loreDisplay.GetComponentInChildren<TextMeshProUGUI>().SetText(text);
-        if (background)
-            loreDisplay.GetComponent<Image>().sprite = background;
-
+        var TMPComp = loreDisplay.GetComponentInChildren<TextMeshProUGUI>(); 
+        TMPComp.SetText(pickup.text);
+        TMPComp.font = pickup.font;
+        
+        if (pickup.backgroundImage)
+            loreDisplay.GetComponent<Image>().sprite = pickup.backgroundImage;
+        
         s_playerMovement.enabled = false;
         s_looking.enabled = false;
         s_playerShooting.enabled = false;

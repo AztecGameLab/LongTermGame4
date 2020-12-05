@@ -6277,6 +6277,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: LorePaper#2
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: ed2c694e81cc34e43a155924a1cc6c65,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: 75b209be7a4e66a438e3963e4f904a60,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed2c694e81cc34e43a155924a1cc6c65, type: 3}
 --- !u!4 &356695710 stripped

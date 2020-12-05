@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class LorePickup : Interactable
 {
     [TextArea(5, 20)] public string text;
     public Sprite backgroundImage;
     [SerializeField] private Sound pickupSound = default;
+    [SerializeField] public TMP_FontAsset font = default;
     
     private AudioManager _audioManager;
     private SoundInstance _pickupSound;
@@ -18,6 +20,6 @@ public class LorePickup : Interactable
     protected override void OnInteract(Transform userTransform)
     {
         _audioManager.PlaySound(_pickupSound);
-        PlayerManager.instance.DisplayLore(text, backgroundImage);
+        PlayerManager.instance.DisplayLore(this);
     }
 }
