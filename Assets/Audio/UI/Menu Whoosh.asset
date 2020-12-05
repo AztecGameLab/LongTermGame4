@@ -15,6 +15,6 @@ MonoBehaviour:
   clip:
   - {fileID: 8300000, guid: 7cbcea37069b8fc41b73563d3adcc3c1, type: 3}
   looping: 0
-  mixerGroup: {fileID: -7330543538994768758, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
+  mixerGroup: {fileID: -2904906825670662266, guid: 4617a18eb8577a4488e9e692a8ff5bf0,
     type: 2}
   modulatedValues: []
