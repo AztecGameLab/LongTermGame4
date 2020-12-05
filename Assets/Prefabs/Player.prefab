@@ -1113,6 +1113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PullSelfTutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 1815646936228256112, guid: e42821767c6254846895cfe85294db8e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1815646936924550160, guid: e42821767c6254846895cfe85294db8e,
         type: 3}
       propertyPath: m_Text
@@ -1252,6 +1257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PullObjectsTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815646936228256112, guid: e42821767c6254846895cfe85294db8e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1815646936924550160, guid: e42821767c6254846895cfe85294db8e,
         type: 3}
