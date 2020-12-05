@@ -70,6 +70,8 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         _audioManager.PlaySound(_menuWhoosh);
+        _audioManager.StopSound(MusicTrigger._currentPlaying);
+        MusicTrigger._currentPlaying = null;
         unpausedSnapshot.TransitionTo(0.01f);
         SceneManager.LoadScene("MainMenu");
     }
