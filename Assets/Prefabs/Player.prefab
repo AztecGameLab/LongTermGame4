@@ -121,7 +121,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.6
+  m_fontSize: 35
   m_fontSizeBase: 25.6
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -521,7 +521,7 @@ MonoBehaviour:
   - {fileID: 2726300047447418399, guid: 29433fa00ea76194b94c8d745aa4a587, type: 3}
   loreDisplay: {fileID: 7674144383529920765}
   currentArrowName: {fileID: 1187481976946072760}
-  stopShooting: 1
+  stopShooting: 0
 --- !u!114 &2087326524746666265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6090441844994325891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1693,7 +1693,7 @@ PrefabInstance:
     - target: {fileID: 5383399437275722677, guid: e87e687a682ae90458f1af603c11fc26,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e87e687a682ae90458f1af603c11fc26, type: 3}
@@ -2051,7 +2051,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7bb8f0515e2ec424bb8573238a8bd3b7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 959779994824311327, guid: 7bb8f0515e2ec424bb8573238a8bd3b7,
         type: 3}
