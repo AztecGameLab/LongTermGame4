@@ -16,7 +16,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField, Tooltip("Display the debug window for the AudioManager")] 
-    private bool showDebug;
+    private bool showDebug = false;
 
     private int SourcesCount => _channels.Values.Count;
     private int TotalChannelCount => _channels.Values.Sum(channels => channels.Count);
@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
 
-        showDebug = Debug.isDebugBuild;
+        // showDebug = Debug.isDebugBuild;
         _globalTarget = new GameObject("Global Target");
         _globalTarget.transform.parent = transform;
         _channels = new Dictionary<GameObject, HashSet<Channel>>();
