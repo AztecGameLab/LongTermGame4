@@ -30891,6 +30891,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: LorePaper#4
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: 96a828ed768ac014da2c69f55183e015,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fad5ff4ac828ec43be9396ac54beff4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a828ed768ac014da2c69f55183e015, type: 3}
 --- !u!1001 &1749660520

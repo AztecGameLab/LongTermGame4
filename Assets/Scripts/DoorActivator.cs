@@ -37,7 +37,7 @@ public class DoorActivator : MonoBehaviour
         CameraFX.instance.SetFrozen(false, 0);
     }
     
-    private void OnDestroy()
+    private void OnDisable()
     {
         _audioManager.Dispose(gameObject);
     }

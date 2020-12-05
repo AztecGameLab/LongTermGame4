@@ -479,6 +479,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grocery
       objectReference: {fileID: 0}
+    - target: {fileID: 4597528286200970959, guid: de3994baff4ca44478c2e3cccfcc641a,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: 75b209be7a4e66a438e3963e4f904a60,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de3994baff4ca44478c2e3cccfcc641a, type: 3}
 --- !u!1001 &96235211
@@ -10585,6 +10591,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: 75b209be7a4e66a438e3963e4f904a60,
+        type: 2}
     - target: {fileID: 7912093296851745415, guid: 757a21295b3a6c24c89bcd9580230c94,
         type: 3}
       propertyPath: text

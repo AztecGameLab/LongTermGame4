@@ -18656,6 +18656,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Research2
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: d62bedaa1f191374d9aec69572e487dc,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: c21475537deb7da4bb298cb9c3f6696f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d62bedaa1f191374d9aec69572e487dc, type: 3}
 --- !u!1001 &776033232
@@ -27140,6 +27146,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Research3
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: 61df19cb539f90f458a8e5f94df8d7b8,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: c21475537deb7da4bb298cb9c3f6696f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61df19cb539f90f458a8e5f94df8d7b8, type: 3}
 --- !u!1001 &1133711447
@@ -28335,6 +28347,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Research1
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: 25716d9777d77fe40b663c265410900b,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: c21475537deb7da4bb298cb9c3f6696f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25716d9777d77fe40b663c265410900b, type: 3}
 --- !u!1001 &1218614882
@@ -48702,6 +48720,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Research4
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: fba40779817a1c447a614ab013f61ba2,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: c21475537deb7da4bb298cb9c3f6696f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fba40779817a1c447a614ab013f61ba2, type: 3}
 --- !u!1 &2136212335

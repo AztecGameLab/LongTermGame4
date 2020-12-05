@@ -34472,6 +34472,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sealing
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: a4f7a06ca7d113c44a371fe0888b0422,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: 75b209be7a4e66a438e3963e4f904a60,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f7a06ca7d113c44a371fe0888b0422, type: 3}
 --- !u!1001 &594158940
@@ -60993,6 +60999,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: LorePaper#8
       objectReference: {fileID: 0}
+    - target: {fileID: 7000300349677023155, guid: eff814c7af540af44b65a3aa6ddf740a,
+        type: 3}
+      propertyPath: font
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fad5ff4ac828ec43be9396ac54beff4,
+        type: 2}
     - target: {fileID: 7000300349677023158, guid: eff814c7af540af44b65a3aa6ddf740a,
         type: 3}
       propertyPath: m_Size.x
