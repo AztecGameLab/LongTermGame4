@@ -27,7 +27,6 @@ public class Endgame : MonoBehaviour
         {
             t += Time.deltaTime;
             image.color = new Color(0, 0, 0, t / time);
-            Debug.Log(1 - t / time);
             AudioManager.SetMusicVolume(mixer, 1 - t / time);
             yield return null;
         }
@@ -38,7 +37,6 @@ public class Endgame : MonoBehaviour
 
     public void PlayCricketSound()
     {
-        Debug.Log("cricket");
         AudioManager.Instance().PlaySound(crickets.GenerateInstance(), gameObject);
     }
 }
