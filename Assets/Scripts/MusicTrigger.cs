@@ -11,8 +11,9 @@ public class MusicTrigger : MonoBehaviour
     [SerializeField] private bool playOnStart = false;
     [SerializeField] private float fadeTime = 5;
     
+    private SoundInstance _stopped;
     private SoundInstance _music;
-    private static SoundInstance _currentPlaying;
+    public static SoundInstance _currentPlaying;
     private AudioManager _audioManager;
     
     private void Awake()
@@ -23,11 +24,23 @@ public class MusicTrigger : MonoBehaviour
     private void Start()
     {
         _audioManager = AudioManager.Instance();
-        if (playOnStart) PlayMusic();
+        if (playOnStart)
+        {
+            if (stopPrevious)
+            {
+                StartCoroutine(StopPrevious(_currentPlaying));
+            }
+            else
+            {
+                PlayMusic();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.gameObject.CompareTag("Player")) return;
+    
         if (stopPrevious)
         {
             StartCoroutine(StopPrevious(_currentPlaying));
@@ -38,16 +51,25 @@ public class MusicTrigger : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (_stopped != null && !_stopped.IsInactive) _audioManager.StopSound(_stopped);
+    }
+
     private void PlayMusic()
     {
-        if (music != null && _currentPlaying != _music) _audioManager.PlaySound(_music);
-        _currentPlaying = _music;
+        if (music != null && _currentPlaying != _music)
+        {
+            _audioManager.PlaySound(_music);
+            _currentPlaying = _music;
+        }
     }
 
     private IEnumerator StopPrevious(SoundInstance music)
     {
         var elapsed = 0f;
         var initialVolume = music.GetValue(SoundValue.Volume);
+        _stopped = music;
         
         while (elapsed < fadeTime)
         {

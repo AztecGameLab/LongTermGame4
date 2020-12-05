@@ -478,8 +478,8 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3438913974526681110}
-  m_Enabled: 1
-  m_CastShadows: 1
+  m_Enabled: 0
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -782,7 +782,6 @@ MonoBehaviour:
   s_playerInteract: {fileID: 0}
   pullBow: {fileID: 11400000, guid: b5efe45b4c671094c934b1513ff080ee, type: 2}
   shootArrow: {fileID: 11400000, guid: ffbeca2253036054aa297a3fdc1a0834, type: 2}
-  music: {fileID: 11400000, guid: 15b66b39f59e4f34597fce3d6f9467b8, type: 2}
   DevArrowSelection:
   - {fileID: 2841423412555271410, guid: 2a689f3e77d39e64884345823134f36a, type: 3}
   - {fileID: 8531073477740354948, guid: 2a5041ae04ec0214b8b60f48781b43d9, type: 3}

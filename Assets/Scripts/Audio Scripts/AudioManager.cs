@@ -102,6 +102,12 @@ public class AudioManager : MonoBehaviour
         var trueVolume = Mathf.Clamp(volume, 0.0001f, 1f);
         mixer.SetFloat("MasterVolume", Mathf.Log10(trueVolume) * 20);
     }
+    
+    public static void SetMusicVolume(AudioMixer mixer, float volume)
+    {
+        var trueVolume = Mathf.Clamp(volume, 0.0001f, 1f);
+        mixer.SetFloat("MusicVolume", Mathf.Log10(trueVolume) * 20);
+    }
 
     /// <summary>
     /// Disposes of all non-global GameObjects being tracked.
