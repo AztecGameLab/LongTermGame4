@@ -58,10 +58,22 @@ public class MusicTrigger : MonoBehaviour
 
     private void PlayMusic()
     {
-        if (music != null && _currentPlaying != _music)
+        if (music != null)
         {
-            _audioManager.PlaySound(_music);
-            _currentPlaying = _music;
+            if (_currentPlaying != null && _currentPlaying.Name != _music.Name)
+            {
+                // if there is music playing, but its different... change it
+                _audioManager.PlaySound(_music);
+                _currentPlaying = _music;    
+            }
+            else if (_currentPlaying == null)
+            {
+                // if there is no music playing... change it
+                _audioManager.PlaySound(_music);
+                _currentPlaying = _music;    
+            }
+            
+            // if there is music playing, but its the same, don't do anything
         }
     }
 
