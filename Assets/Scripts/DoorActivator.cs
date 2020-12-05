@@ -27,10 +27,16 @@ public class DoorActivator : MonoBehaviour
 
         foreach (var door in slidingDoors)
         {
-            door.FinishMoving += (sender, args) => _audioManager.StopSound(_doorSound, gameObject);
+            door.FinishMoving += OnFinishedMoving;
         }
     }
 
+    private void OnFinishedMoving(object sender, EventArgs args)
+    {
+        _audioManager.StopSound(_doorSound, gameObject);
+        CameraFX.instance.SetFrozen(false, 0);
+    }
+    
     private void OnDestroy()
     {
         _audioManager.StopSound(_doorSound);

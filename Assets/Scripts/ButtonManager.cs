@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
@@ -8,11 +10,16 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private Sound heavyClick = default;
     [SerializeField] private Sound mainMusic = default;
 
+    [SerializeField] private bool endGameMenu = false;
+    [SerializeField] private Sound endGameMenuMusic = default;
+    [SerializeField] private AudioMixer mixer = default;
+    
     private SoundInstance _whooshSound;
     private SoundInstance _lightClick;
     private SoundInstance _heavyClick;
     private AudioManager _audioManager;
 
+    private static bool _playingEndMusic = false;
     private static bool _playingMusic = false;
     private static SoundInstance _mainMusic;
     
@@ -23,12 +30,34 @@ public class ButtonManager : MonoBehaviour
         _lightClick = lightClick.GenerateInstance();
         _heavyClick = heavyClick.GenerateInstance();
         _audioManager = AudioManager.Instance();
+        AudioManager.SetMusicVolume(mixer, 1);
 
-        if (!_playingMusic)
+        if (!_playingMusic || _mainMusic.IsInactive)
         {
-            _mainMusic = mainMusic.GenerateInstance();
+            Sound musicToPlay;
+
+            if (endGameMenu)
+            {
+                _playingEndMusic = true;
+                musicToPlay = endGameMenuMusic;
+            }
+            else
+            {
+                musicToPlay = mainMusic;
+            }
+            
+            _mainMusic = musicToPlay.GenerateInstance();
             _audioManager.PlaySound(_mainMusic);
             _playingMusic = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (_playingEndMusic && _mainMusic.IsInactive)
+        {
+            _playingEndMusic = false;
+            Invoke(nameof(Start), 0.1f);
         }
     }
 

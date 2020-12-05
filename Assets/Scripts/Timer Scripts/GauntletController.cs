@@ -35,6 +35,8 @@ public class GauntletController : MonoBehaviour
         {
             target.collisionStart.RemoveListener(OnTargetActivate);
         }
+        
+        _currentTimer.StopTimer(false);
     }
 
     public void StartGauntlet(Timer timer)
